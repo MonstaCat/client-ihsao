@@ -1,0 +1,24 @@
+{
+  "name": "client-ihsao",
+  "version": "1.0.0",
+  "description": "Client Side For IHSAO 2021",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tailwindcss build ./src/public/css/styles.css -o ./src/public/css/tailwind.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MonstaCat/client-ihsao.git"
+  },
+  "author": "Andika Rizki Pradana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MonstaCat/client-ihsao/issues"
+  },
+  "homepage": "https://github.com/MonstaCat/client-ihsao#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.13",
+    "tailwindcss": "^2.1.2"
+  }
+}
