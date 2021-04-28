@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .box-shadow-pink {
+    box-shadow: 0.225rem 0.225rem 0 0px #e1788e;
+  }
+  .box-shadow-black {
+    box-shadow: 0.225rem 0.225rem 0 0px #000;
+  }
+}
