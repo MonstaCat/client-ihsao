@@ -61,7 +61,7 @@
                     </div>
                 </div>
 
-                <form action="" class="text-left my-6 mx-4">
+                <form action="#" id="form-login" class="text-left my-6 mx-4">
                     <div class="bg-ihsao-purple p-1 px-2 mb-5 border-2 border-black box-shadow-black">
                         <label class="block text-white" for="email">Email:</label>
                         <input class="bg-transparent w-full text-xl focus:outline-none text-white mt-1" type="email"
@@ -93,6 +93,58 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+    <script>
+        const socket = io( `http://localhost:3000` );
+        const API_PESERTA = `http://localhost:3000/api/peserta`;
+
+        /**
+         * jalankan semua fungsi jika socket sudah terhubung
+         */
+        socket.on( `connect`, () => {
+            authenticaion();
+        } )    
+
+        /**
+         * fungsi untuk melakukan login
+         */
+        authenticaion = () => {
+            $( `#form-login` ).submit( e => {
+                e.preventDefault();
+
+                $( `button[type='submit']` ).text( `Loading...` );
+
+                const request = JSON.stringify({
+                    email: $( `#email` ).val(),
+                    password: $( `#password` ).val(),
+                })
+
+                fetch( `${API_PESERTA}/login`, {
+                    mode: `cors`,
+                    method: "POST",
+                    body: request,
+                    headers: {
+                        "Content-Type": `application/json`
+                    }
+                } )
+                .then( response => response.json() )
+                .then( data => { 
+                    setUserData( data ) 
+                    $( `button[type='submit']` ).text( `Masuk!` );
+                } );
+
+            } )
+        }
+
+        setUserData = data => {
+            localStorage.setItem( `email`, data.email );
+            localStorage.setItem( `token`, data.token );
+
+            socket.emit( `bind-peserta`, data.token );
+
+            console.log( `anda berhasil login` )
+        }
+    </script>
 </body>
 
 </html>
