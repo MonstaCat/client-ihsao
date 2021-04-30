@@ -36,23 +36,19 @@
                     <a href="" class="ml-14 flex items-center">Tentang IHSAO</a>
                     <a href="" class="ml-14 flex items-center">Kategori Olimpiade</a>
                     <a href="" class="ml-14 flex items-center">Timeline</a>
-                    <a href=""
-                        class="ml-14 mt-4 mb-4 flex items-center w-32 h-10 justify-center font-mono tracking-widest bg-ihsao-yellow text-black border-2 border-black box-shadow-black">Masuk!</a>
+                    <a href="" class="ml-14 mt-4 mb-4 flex items-center w-32 h-10 justify-center font-mono tracking-widest bg-ihsao-yellow text-black border-2 border-black box-shadow-black">Masuk!</a>
                 </div>
         </header>
 
         <main class="mb-auto" id="particles-js">
         </main>
 
-        <footer
-            class="flex text-sm font-bold font-mono items-center justify-between bg-yellow-500 border-t-2 h-7 border-black">
+        <footer class="flex text-sm font-bold font-mono items-center justify-between bg-yellow-500 border-t-2 h-7 border-black">
             <div class="flex ml-5">
-                &copy;2021&nbsp;<a href="https://www.instagram.com/andikarizkipradana/" target="_blank"
-                    class="text-pink-800 hover:text-pink-900">Inter High School Accounting Olympiad (IHSAO)</a>
+                &copy;2021&nbsp;<a href="https://www.instagram.com/andikarizkipradana/" target="_blank" class="text-pink-800 hover:text-pink-900">Inter High School Accounting Olympiad (IHSAO)</a>
             </div>
             <div class="flex mr-5">
-                Design by&nbsp;<a href="https://www.instagram.com/andikarizkipradana/" target="_blank"
-                    class="text-pink-800 hover:text-pink-900">Andika Rizki Pradana</a>
+                Design by&nbsp;<a href="https://www.instagram.com/andikarizkipradana/" target="_blank" class="text-pink-800 hover:text-pink-900">Andika Rizki Pradana</a>
             </div>
         </footer>
 
