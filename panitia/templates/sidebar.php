@@ -53,11 +53,18 @@
             <hr class="my-4 md:min-w-full" />
             <!-- Heading -->
             <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-                Data Peserta
+                Fitur Peserta
             </h6>
 
             <!-- Navigation -->
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+                <li class="items-center">
+                    <a href="./mchoice.php" class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500">
+                        <i class="fas fa-file-alt mr-2 text-sm text-blueGray-300"></i>
+                        Data Peserta
+                    </a>
+                </li>
+
                 <li class="items-center">
                     <a href="./mchoice.php" class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500">
                         <i class="fas fa-file-alt mr-2 text-sm text-blueGray-300"></i>
@@ -110,6 +117,30 @@
                     <a href="./peserta.php" class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-pink-600">
                         <i class="fas fa-file-upload mr-2 text-sm text-blueGray-300"></i>
                         Input data peserta
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Divider -->
+            <hr class="my-4 md:min-w-full" />
+            <!-- Heading -->
+            <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+                Generate Token
+            </h6>
+
+            <!-- Navigation -->
+            <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+                <li class="items-center">
+                    <a href="./soal.php" class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500">
+                        <i class="fas fa-file-upload mr-2 text-sm text-blueGray-300"></i>
+                        Generate Token Peserta
+                    </a>
+                </li>
+
+                <li class="items-center">
+                    <a href="./peserta.php" class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-pink-600">
+                        <i class="fas fa-file-upload mr-2 text-sm text-blueGray-300"></i>
+                        Generate Token Panitia
                     </a>
                 </li>
             </ul>
