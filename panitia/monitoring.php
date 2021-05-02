@@ -1,5 +1,6 @@
 <?php
 $PageTitle = "Monitoring Peserta";
+$PageFile = "monitoring";
 
 include_once('templates/header.php');
 ?>
