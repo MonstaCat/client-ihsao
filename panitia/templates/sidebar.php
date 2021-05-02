@@ -42,7 +42,7 @@
             <hr class="my-4 md:min-w-full" />
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                 <li class="items-center">
-                    <a href="./index.php" class="text-xs uppercase py-3 font-bold block text-pink-500 hover:text-pink-600">
+                    <a href="./index.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "index" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-tv mr-2 text-sm opacity-75"></i>
                         Dashboard
                     </a>
@@ -59,21 +59,21 @@
             <!-- Navigation -->
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                 <li class="items-center">
-                    <a href="./mchoice.php" class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500">
+                    <a href="./dpeserta.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "dpeserta" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-alt mr-2 text-sm text-blueGray-300"></i>
                         Data Peserta
                     </a>
                 </li>
 
                 <li class="items-center">
-                    <a href="./mchoice.php" class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500">
+                    <a href="./mchoice.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "mchoice" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-alt mr-2 text-sm text-blueGray-300"></i>
                         Data Multiplechoice
                     </a>
                 </li>
 
                 <li class="items-center">
-                    <a href="./kasus.php" class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500">
+                    <a href="./kasus.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "kasus" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-alt mr-2 text-sm text-blueGray-300"></i>
                         Data Soal Kasus
                     </a>
@@ -90,7 +90,7 @@
             <!-- Navigation -->
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                 <li class="items-center">
-                    <a href="./monitoring.php" class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500">
+                    <a href="./monitoring.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "monitoring" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-ban mr-2 text-sm text-blueGray-300"></i>
                         Monitoring
                     </a>
@@ -107,14 +107,14 @@
             <!-- Navigation -->
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                 <li class="items-center">
-                    <a href="./soal.php" class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500">
+                    <a href="./soal.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "soal" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-upload mr-2 text-sm text-blueGray-300"></i>
                         Input Soal
                     </a>
                 </li>
 
                 <li class="items-center">
-                    <a href="./peserta.php" class="text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-pink-600">
+                    <a href="./peserta.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "peserta" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-upload mr-2 text-sm text-blueGray-300"></i>
                         Input data peserta
                     </a>
