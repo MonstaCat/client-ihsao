@@ -10,3 +10,9 @@
     @apply: bg-red-500;
     background-color: #ef4444;
 }
+
+.select2-container--default .select2-selection--single {
+    @apply appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2;
+    height: 2.1rem;
+    border-color: #71717a;
+}
