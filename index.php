@@ -18,11 +18,38 @@
     <link rel="stylesheet" href="/src/public/css/tailwind.css">
     <!-- Countdown Css -->
     <link rel="stylesheet" href="/src/public/css/jquery.countdown.css">
+    <!-- Preloader Css -->
+    <link rel="stylesheet" href="/src/public/css/preloader.css">
     <!-- Custom Css -->
     <link rel="stylesheet" href="/src/public/css/custom.css">
 </head>
 
 <body>
+    <div class="flex flex-col justify-center items-center preloader-wrapper">
+        <div class="flex-1 text-center preloader">
+            <div class="preloader-text">
+                <p>IHSAO 2021</p>
+            </div>
+            <div class="windows8">
+                <div class="wBall" id="wBall_1">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_2">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_3">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_4">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_5">
+                    <div class="wInnerBall"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="flex flex-col h-screen">
 
         <header class="fixed w-full text-white text-base bg-transparent z-50" id="nav">
@@ -131,6 +158,8 @@
 
     <!-- Jquery Js -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Preloader Js -->
+    <script src="/src/public/js/preloader.js"></script>
     <!-- Countdown Js -->
     <script src="/src/public/js/jquery.countdown.min.js"></script>
     <!-- Particles Js -->
