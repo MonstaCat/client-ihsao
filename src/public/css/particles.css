@@ -1,0 +1,13 @@
+#particles-js canvas {
+    background-color: #252730;
+    display: block;
+    height: 100vh !important;
+    vertical-align: bottom;
+}
+
+#particles-js {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+}
