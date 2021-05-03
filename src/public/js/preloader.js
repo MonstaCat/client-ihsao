@@ -6,3 +6,6 @@ $(window).on('load', function() {
     $('.preloader-wrapper').delay(3000).fadeOut();
     $('body').removeClass('preloader-site');
 });
+$(window).on('beforeunload', function() {
+    $(window).scrollTop(0);
+});
