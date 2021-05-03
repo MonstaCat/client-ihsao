@@ -4,6 +4,10 @@
     z-index: 2;
 }
 
+body {
+    overflow: overlay;
+}
+
 .header-text {
     grid-area: text;
     font-family: 'Sarpanch',
@@ -29,8 +33,30 @@
     text-align: center;
     position: absolute;
     z-index: 10 !important;
+    overflow-y: auto;
 }
 
 .home-space {
     margin-bottom: 100vh;
+}
+
+/*-------------------- Custom Scrollbar -------------------- */
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
