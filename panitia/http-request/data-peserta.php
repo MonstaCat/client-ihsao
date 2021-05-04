@@ -28,7 +28,7 @@ $dataset = [];
 foreach( $output->data as $data ){
 	$dataset[] = array(
 		$data->nama,
-		$data->tim,
+		$data->kelompok->nama_tim,
 		$data->is_used,
 		$data->is_banned,
 		$data->token
