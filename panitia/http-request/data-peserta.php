@@ -1,8 +1,15 @@
 <?php  
 
+$query = array(
+	"page" => $_GET[ "draw" ],
+	"limit" => intval($_GET[ "length" ]),
+	"offset" => intval($_GET[ "start" ]),
+	"peserta" => $_GET[ "search" ][ "value" ]
+); 
+
 $endpoint = "http://localhost:3000/api/peserta";
 $endpoint .= "?";
-$endpoint .= http_build_query( $_GET );
+$endpoint .= http_build_query( $query );
 
 $ch = curl_init();
 
