@@ -101,55 +101,165 @@ include_once('templates/header.php');
     <!--Datatables -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-flash-1.6.4/b-html5-1.6.4/b-print-1.6.4/datatables.min.js">
-    </script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-flash-1.6.4/b-html5-1.6.4/b-print-1.6.4/datatables.min.js"></script>
+
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
     <script>
+        const socket = io( `http://localhost:3000` );
+        const API_PESERTA = `http://localhost:3000/api/peserta`;
+        const API_KEY = `d033e22ae348aeb5660fc2140aec35850c4da997`
 
-        let tablePeserta = $('#monitoring-peserta').DataTable({
-            responsive: true,
-            dom: 'Blfrtip',
-            serverSide: true,
-            ajax: {
-                url: "http-request/data-peserta.php",
-                dataType: "JSON"
-            },
-            columnDefs: [
-                {
-                    "render": ( data, type, row ) => {
-                        let status = "";
+        createDataTable = () => {
+            // membuat data tabel peserta
+            let tablePeserta = $('#monitoring-peserta').DataTable({
+                responsive: true,
+                dom: 'Blfrtip',
+                serverSide: true,
+                ajax: {
+                    url: "http-request/data-peserta.php",
+                    dataType: "JSON"
+                },
+                columnDefs: [
+                    {
+                        "render": ( data, type, row ) => {
+                            let status = "";
 
-                        if( row[2] ){
-                            status = "Digunakan";
-                        }
-                        else {
-                            status = "Tidak Digunakan";
-                        }
-                        return status;
+                            if( row[2] ){
+                                status = `<div id="status-${row[4]}">Digunakan</div>`;
+                            }
+                            else {
+                                status = `<div id="status-${row[4]}">Tidak Digunakan</div>`;
+                            }
+                            return status;
+                        },
+                        "targets": 2
                     },
-                    "targets": 2
-                },
-                {
-                    "render": ( data, type, row ) => {
-                        return `<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                <input type="checkbox" token="${row[4]}" name="toggle" id="toggle-${row[4]}" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer">
-                                <label for="toggle-${row[4]}" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                                </div>`;
+                    {
+                        "render": ( data, type, row ) => {
+                            
+                            let dis = ""
+
+                            if( row[3] ){
+                                dis = `<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                    <input type="checkbox" checked token="${row[4]}" name="toggle" id="toggle-${row[4]}" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer">
+                                    <label for="toggle-${row[4]}" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                                    </div>`;
+                            }
+                            else {
+                                dis = `<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                    <input type="checkbox" token="${row[4]}" name="toggle" id="switch-banned-${row[4]}" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer">
+                                    <label for="switch-banned-${row[4]}" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                                    </div>`;
+                            }
+
+                            return dis;
+                        },
+                        "targets": 3
                     },
-                    "targets": 3
-                },
-                {
-                    "render": ( data, type, row ) => {
-                        return `<button token="${row[4]}" class="bg-yellow-500 text-white active:bg-amber-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-                                <i class="fas fa-sync mr-2"></i>Reset Token
-                                </button>`;
-                    },
-                    "targets": 4
+                    {
+                        "render": ( data, type, row ) => {
+                            return `<button token="${row[4]}" class="bg-yellow-500 text-white active:bg-amber-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                                    <i class="fas fa-sync mr-2"></i>Reset Token
+                                    </button>`;
+                        },
+                        "targets": 4
+                    }
+                ],
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ]
+            })
+        }
+
+        /**
+         * memanajemen data token apakah akan di
+         * banned atau di reset
+         *
+         * @param  string  type  banned | reset
+         * @param  string  token
+         */
+        tokenManager = ( type, token ) => {
+            return new Promise( res => {
+                let url = "";
+
+                if( type == `banned` ){
+                    url = `${API_PESERTA}/banned/${token}`;
                 }
-            ],
-            buttons: [
-                'copy', 'excel', 'pdf'
-            ]
-        })
+                else if( type == `reset` ){
+                    url = `${API_PESERTA}/reset-token/${token}`;
+                }
+
+                fetch( url, {
+                    method: "POST",
+                    mode: `cors`,
+                    headers: {
+                        "Authorization": API_KEY
+                    }
+                } )
+                .then( response => response.json() )
+                .then( data => {
+                    res( true );
+                })
+            }) 
+        }
+
+        /**
+         * menangani event saat checkbox diskualifikasi
+         * di klik
+         */
+        handleDiskualifikasi = () => {
+            $( "#monitoring-peserta tbody" ).on( `change`, `tr td :checkbox`, function(e){
+                if( this.checked ){
+                    const disMsg = confirm( `Diskualifikasi token ini ?` );
+
+                    if( disMsg ){
+                        tokenManager( `banned`, $( this ).attr( `token` ) )
+                        .then( res => {
+                            socket.emit( `banned-peserta`, $( this ).attr( `token` ) );
+                        } )
+                    }
+                    else {
+                        this.checked = false;
+                    }
+                }
+                else {
+                    const disMsg = confirm( `Reset token ini ?` );
+
+                    if( disMsg ){
+                        this.checked = false;
+                    }
+                    else {
+                        this.checked = true;
+                    }
+                }
+            } )
+        }
+
+        handleResetToken = () => {
+            $( "#monitoring-peserta tbody" ).on( `click`, `tr td button`, function(e){
+                let resMsg = confirm( `Reset token ini ?` );
+
+                if( resMsg ){
+                    tokenManager( `reset`, $(this).attr( `token` ) )
+                    .then( res => {
+                        $( `#status-${$(this).attr( `token` )}` ).html( `Tidak digunakan` );
+                        $( `#switch-banned-${$(this).attr( `token` )}` ).prop( `checked`, false );
+                    } )
+                }
+            })
+        }
+
+        $( document ).ready( function(){
+            socket.on( `connect`, () => {
+                createDataTable()
+                handleDiskualifikasi();
+                handleResetToken();
+            } )
+
+            socket.on( `has-new-token`, token => {
+                $( `#status-${token}` ).html("Digunakan")
+            } )
+        } )
     </script>
 </body>
 
