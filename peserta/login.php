@@ -137,12 +137,19 @@
         }
 
         setUserData = data => {
-            localStorage.setItem( `email`, data.email );
-            localStorage.setItem( `token`, data.token );
 
-            socket.emit( `bind-peserta`, data.token );
+            socket.emit( `bind-peserta`, data.data.token );
 
-            console.log( `anda berhasil login` )
+            if( data.code == 403 ){
+                alert( data.msg );
+            }
+            else {
+                localStorage.setItem( `email`, data.data.email );
+                localStorage.setItem( `token`, data.data.token );
+                // sementara
+                window.location = `http://localhost/ihsao/peserta/home.php`;
+            }
+
         }
     </script>
 </body>
