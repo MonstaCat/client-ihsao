@@ -32,14 +32,14 @@ include_once('templates/header.php');
                                         <table id="monitoring-peserta">
                                             <thead>
                                                 <tr>
-                                                    <th data-priority="1">Nama Peserta</th>
-                                                    <th data-priority="2">Nama Kelompok</th>
-                                                    <th data-priority="3">Status</th>
-                                                    <th data-priority="4">Diskualifikasi</th>
-                                                    <th data-priority="5">Action</th>
+                                                    <th>Nama Peserta</th>
+                                                    <th>Nama Kelompok</th>
+                                                    <th>Status</th>
+                                                    <th>Diskualifikasi</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <!-- <tbody>
                                                 <tr>
                                                     <td>Tiger Nixon</td>
                                                     <td>A</td>
@@ -72,14 +72,14 @@ include_once('templates/header.php');
                                                         </button>
                                                     </td>
                                                 </tr>
-                                            </tbody>
+                                            </tbody> -->
                                             <tfoot>
                                                 <tr>
-                                                    <th data-priority="1">Nama Peserta</th>
-                                                    <th data-priority="2">Nama Kelompok</th>
-                                                    <th data-priority="3">Status</th>
-                                                    <th data-priority="4">Diskualifikasi</th>
-                                                    <th data-priority="5">Action</th>
+                                                    <th>Nama Peserta</th>
+                                                    <th>Nama Kelompok</th>
+                                                    <th>Status</th>
+                                                    <th>Diskualifikasi</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -104,19 +104,52 @@ include_once('templates/header.php');
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-flash-1.6.4/b-html5-1.6.4/b-print-1.6.4/datatables.min.js">
     </script>
     <script>
-        $(document).ready(function() {
-            let table = $('#monitoring-peserta').DataTable({
-                responsive: true,
-                dom: 'Blfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
-            }).columns.adjust().responsive.recalc();
-        });
 
-        $(':checkbox').change(function() {
-            console.log($(this).val()) // hasil:  ini checkbox 1
-        });
+        let tablePeserta = $('#monitoring-peserta').DataTable({
+            responsive: true,
+            dom: 'Blfrtip',
+            serverSide: true,
+            ajax: {
+                url: "http-request/data-peserta.php",
+                dataType: "JSON"
+            },
+            columnDefs: [
+                {
+                    "render": ( data, type, row ) => {
+                        let status = "";
+
+                        if( row[2] ){
+                            status = "Digunakan";
+                        }
+                        else {
+                            status = "Tidak Digunakan";
+                        }
+                        return status;
+                    },
+                    "targets": 2
+                },
+                {
+                    "render": ( data, type, row ) => {
+                        return `<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input type="checkbox" token="${row[4]}" name="toggle" id="toggle-${row[4]}" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer">
+                                <label for="toggle-${row[4]}" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                                </div>`;
+                    },
+                    "targets": 3
+                },
+                {
+                    "render": ( data, type, row ) => {
+                        return `<button token="${row[4]}" class="bg-yellow-500 text-white active:bg-amber-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                                <i class="fas fa-sync mr-2"></i>Reset Token
+                                </button>`;
+                    },
+                    "targets": 4
+                }
+            ],
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ]
+        })
     </script>
 </body>
 
