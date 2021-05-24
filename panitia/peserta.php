@@ -65,20 +65,6 @@ include_once('templates/header.php');
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="md:flex">
-                                                <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
-                                                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="pembina">
-                                                        Nama Pembina
-                                                    </label>
-                                                    <input type="text" placeholder="Nama Pembina" id="pembina" name="pembina" autocomplete="off" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2">
-                                                </div>
-                                                <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
-                                                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="no_pembina">
-                                                        Nomor Hp Pembina
-                                                    </label>
-                                                    <input type="number" placeholder="Nomor Hp Pembina" id="no_pembina" name="no_pembina" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2">
-                                                </div>
-                                            </div>
                                         </div>
                                         <button type="submit" class="float-right bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                                             Submit Data Peserta
