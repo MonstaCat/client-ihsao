@@ -119,6 +119,13 @@
                         Input data peserta
                     </a>
                 </li>
+
+                <li class="items-center">
+                    <a href="./tim.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "tim" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                        <i class="fas fa-file-upload mr-2 text-sm text-blueGray-300"></i>
+                        Input data tim
+                    </a>
+                </li>
             </ul>
 
             <!-- Divider -->
