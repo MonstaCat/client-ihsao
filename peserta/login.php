@@ -137,17 +137,18 @@
         }
 
         setUserData = data => {
+            console.log(data);
 
-            socket.emit( `bind-peserta`, data.data.token );
-
-            if( data.code == 403 ){
-                alert( data.msg );
-            }
-            else {
+            if( data.code == 200 ){
+                socket.emit( `bind-peserta`, data.data.token );
+                
                 localStorage.setItem( `email`, data.data.email );
                 localStorage.setItem( `token`, data.data.token );
                 // sementara
                 window.location = `http://localhost/ihsao/peserta/home.php`;
+            }
+            else {
+                alert( data.msg );
             }
 
         }
