@@ -183,14 +183,14 @@ include_once('templates/header.php');
                 let url = "";
 
                 if( type == `banned` ){
-                    url = `${API_PESERTA}/banned/${token}`;
+                    url = `${API_PESERTA}/token/banned/${token}`;
                 }
                 else if( type == `reset` ){
-                    url = `${API_PESERTA}/reset-token/${token}`;
+                    url = `${API_PESERTA}/token/reset/${token}`;
                 }
 
                 fetch( url, {
-                    method: "POST",
+                    method: "put",
                     mode: `cors`,
                     headers: {
                         "Authorization": API_KEY
