@@ -51,8 +51,7 @@ include_once('templates/header.php');
                                                         Asal Sekolah
                                                     </label>
                                                     <select id="sekolah" name="sekolah" style="width: 100%;">
-                                                        <option value="AL">Asal Sekolah</option>
-                                                        <option value="WY">B</option>
+                                                        <option value="">Asal Sekolah</option>
                                                     </select>
                                                 </div>
                                                 <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
@@ -60,8 +59,7 @@ include_once('templates/header.php');
                                                         Nama Tim
                                                     </label>
                                                     <select id="tim" name="tim" style="width: 100%;">
-                                                        <option value="AL">Nama Tim</option>
-                                                        <option value="WY">B</option>
+                                                        <option value="">Nama Tim</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -91,7 +89,77 @@ include_once('templates/header.php');
     <!-- Select 2 Js Integration -->
     <script>
         $(document).ready(function() {
-            $('#sekolah').select2();
+
+            var sekolahIsExist = false;
+
+            $('#sekolah').select2({
+                tags: true,
+                minimumInputLength: 3,
+                ajax: { 
+                    url: `http-request/select2.data-sekolah.php`,
+                    delay: 250,
+                    dataType: "json",
+                    data: function( params ) {
+                        return {
+                            q: params.term,
+                            page: params.page || 1,
+                            limit: 30
+                        }
+                    },
+                    cache: true,
+
+                    processResults: function( data, params ) {
+                        params.page = params.page || 1;
+
+                        sekolahIsExist = Boolean( data.items.length )
+
+                        return {
+                            results: data.items,
+                            pagination: {
+                                more: ( params.page * 30 ) < data.total_count
+                            }
+                        }
+                    }
+                }
+            })
+            .on( `select2:select`, function( e ){
+                createTeam( e.params.data );
+            } )
+
+            /**
+             * membuat select option untuk data tim
+             *
+             * @param object data value sekolah
+             */
+            createTeam = ( data ) => {
+                $('#tim').select2({
+                    tags: true,
+                    ajax: {
+                        url : "http-request/select2.data-tim.php",
+                        dataType: "json",
+                        delay: 250,
+                        cache: true,
+                        data: function( params ){
+                            return {
+                                q: params.term,
+                                page: params.page || 1,
+                                sekolah: data.id,
+                                limit: 30
+                            }
+                        },
+                        processResults: function( data, params ){
+                            params.page = params.page || 1;
+
+                            return {
+                                results: data.items,
+                                pagination: {
+                                    more: ( params.page * 30 ) < data.total_count
+                                }
+                            }
+                        }
+                    }
+                });    
+            }
             $('#tim').select2();
             $('b[role="presentation"]').hide();
         });
