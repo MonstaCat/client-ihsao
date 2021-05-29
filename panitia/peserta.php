@@ -30,45 +30,45 @@ include_once('templates/header.php');
                                         </h2>
 
                                         <!-- Content Body -->
-                                        <div class="flex flex-col">
-                                            <div class="md:flex">
-                                                <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
-                                                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="email">
-                                                        Email Peserta
-                                                    </label>
-                                                    <input type="email" placeholder="Email" id="email" name="email" autocomplete="off" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2">
+                                        <form id="form-tambah-peserta">
+                                            <div class="flex flex-col">
+                                                <div class="md:flex">
+                                                    <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
+                                                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="email">
+                                                            Email Peserta
+                                                        </label>
+                                                        <input type="email" placeholder="Email" id="email" name="email" autocomplete="off" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2">
+                                                    </div>
+                                                    <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
+                                                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="password">
+                                                            Password
+                                                        </label>
+                                                        <input type="text" placeholder="Password" id="password" name="password" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2">
+                                                    </div>
                                                 </div>
-                                                <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
-                                                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="password">
-                                                        Password
-                                                    </label>
-                                                    <input type="text" placeholder="Password" id="password" name="password" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2">
+                                                <div class="md:flex">
+                                                    <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
+                                                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="sekolah">
+                                                            Asal Sekolah
+                                                        </label>
+                                                        <select id="sekolah" name="sekolah" style="width: 100%;">
+                                                            <option value="">Asal Sekolah</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
+                                                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="tim">
+                                                            Nama Tim
+                                                        </label>
+                                                        <select id="tim" name="tim" style="width: 100%;">
+                                                            <option value="">Nama Tim</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="md:flex">
-                                                <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
-                                                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="sekolah">
-                                                        Asal Sekolah
-                                                    </label>
-                                                    <select id="sekolah" name="sekolah" style="width: 100%;">
-                                                        <option value="AL">Asal Sekolah</option>
-                                                        <option value="WY">B</option>
-                                                    </select>
-                                                </div>
-                                                <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
-                                                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="tim">
-                                                        Nama Tim
-                                                    </label>
-                                                    <select id="tim" name="tim" style="width: 100%;">
-                                                        <option value="AL">Nama Tim</option>
-                                                        <option value="WY">B</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="float-right bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-                                            Submit Data Peserta
-                                        </button>
+                                            <button type="submit" class="float-right bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                                                Submit Data Peserta
+                                            </button>
+                                        </form>
                                         <!-- End of content body -->
                                     </div>
                                 </div>
@@ -91,9 +91,114 @@ include_once('templates/header.php');
     <!-- Select 2 Js Integration -->
     <script>
         $(document).ready(function() {
-            $('#sekolah').select2();
+
+            var PESERTA_ENDPOINT = "http://localhost:3000/api/peserta";
+            var API_KEY = `d033e22ae348aeb5660fc2140aec35850c4da997`;
+            var sekolahIsExist = false;
+
+            $('#sekolah').select2({
+                tags: true,
+                ajax: { 
+                    url: `http-request/select2.data-sekolah.php`,
+                    delay: 250,
+                    dataType: "json",
+                    data: function( params ) {
+                        return {
+                            q: params.term,
+                            page: params.page || 1,
+                            limit: 30
+                        }
+                    },
+                    cache: true,
+
+                    processResults: function( data, params ) {
+                        params.page = params.page || 1;
+
+                        sekolahIsExist = Boolean( data.items.length )
+
+                        return {
+                            results: data.items,
+                            pagination: {
+                                more: ( params.page * 30 ) < data.total_count
+                            }
+                        }
+                    }
+                }
+            })
+            .on( `select2:select`, function( e ){
+                createTeam( e.params.data );
+            } )
+
+            /**
+             * membuat select option untuk data tim
+             *
+             * @param object data value sekolah
+             */
+            createTeam = ( data ) => {
+                $('#tim').select2({
+                    tags: true,
+                    ajax: {
+                        url : "http-request/select2.data-tim.php",
+                        dataType: "json",
+                        delay: 250,
+                        cache: true,
+                        data: function( params ){
+                            return {
+                                q: params.term,
+                                page: params.page || 1,
+                                sekolah: data.id,
+                                limit: 30
+                            }
+                        },
+                        processResults: function( data, params ){
+                            params.page = params.page || 1;
+
+                            return {
+                                results: data.items,
+                                pagination: {
+                                    more: ( params.page * 30 ) < data.total_count
+                                }
+                            }
+                        }
+                    }
+                });    
+            }
             $('#tim').select2();
             $('b[role="presentation"]').hide();
+
+            /**
+             * ketika form tambah peserta di submit
+             */
+            $( `form#form-tambah-peserta` ).submit( function( e ){
+                e.preventDefault();
+
+                let serialize = $(this).serializeArray();
+                let formData = {};
+
+                for( let i = 0; i < serialize.length; i++ ){
+
+                    const data = { [ serialize[ i ].name ]: serialize[ i ].value }
+                    
+                    formData = { ...formData, ...data };
+                }
+
+                $( `button[type="submit"]` ).text( `Loading...` );
+                fetch( `${PESERTA_ENDPOINT}`, {
+                    method: "POST",
+                    mode: `cors`,
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": API_KEY
+                    },
+                    body: JSON.stringify( formData )
+                } )
+                .then( response => response.json() )
+                .then( result => {
+                    $( `button[type="submit"]` ).text( `Submit Data Peserta` );
+
+                    alert( result.msg );
+                } )
+            } )
         });
     </script>
 
