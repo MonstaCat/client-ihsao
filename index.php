@@ -1,3 +1,6 @@
+<?php
+include('config.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,21 +11,23 @@
     <title>IHSAO 2021 - Inter High School Accounting Olympiad 2021</title>
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/src/public/img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/src/public/img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/src/public/img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/src/public/img/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo BASE_URL; ?>/src/public/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo BASE_URL; ?>/src/public/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo BASE_URL; ?>/src/public/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="<?php echo BASE_URL; ?>/src/public/img/favicon/site.webmanifest">
     <!-- Particles Js -->
-    <link rel="stylesheet" href="/src/public/css/particles.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/src/public/css/particles.css">
     <!-- Tailwind Css -->
-    <link rel="stylesheet" href="/src/public/css/tailwind.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/src/public/css/tailwind.css">
     <!-- Countdown Css -->
-    <link rel="stylesheet" href="/src/public/css/jquery.countdown.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/src/public/css/jquery.countdown.css">
     <!-- Preloader Css -->
-    <link rel="stylesheet" href="/src/public/css/preloader.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/src/public/css/preloader.css">
     <!-- Custom Css -->
-    <link rel="stylesheet" href="/src/public/css/custom.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/src/public/css/custom.css">
 </head>
+
+<!-- class="overflow-x-hidden lg:overflow-x-auto" -->
 
 <body>
     <!-- <div class="flex flex-col justify-center items-center preloader-wrapper">
@@ -53,33 +58,41 @@
     <div class="flex flex-col h-screen">
 
         <header class="fixed w-full text-white text-base bg-transparent z-50" id="nav">
-            <div class="container mx-auto flex justify-between">
-                <div class="flex left-0">
-                    <a href="" class="flex items-center">
-                        <div class="text-3xl header-text tracking-widest" id="header-title">
-                            <p class="ml-1 -m-2">IHSAO</p>
-                            <p class="ml-1 -m-2">2021</p>
-                        </div>
-                        <img class="h-14 ml-3" src="/src/public/img/ihsao png.png" alt="" id="header-icon">
-                    </a>
+            <div x-data="{ open: false }" class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+                <div class="p-4 flex flex-row items-center justify-between">
+                    <div class="flex left-0">
+                        <a href="" class="flex items-center">
+                            <div class="text-3xl header-text tracking-widest" id="header-title">
+                                <p class="ml-1 -m-2">IHSAO</p>
+                                <p class="ml-1 -m-2">2021</p>
+                            </div>
+                            <img class="h-14 ml-3" src="<?php echo BASE_URL; ?>/src/public/img/ihsao png.png" alt="" id="header-icon">
+                        </a>
+                    </div>
+                    <button class="md:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
+                        <svg fill="currentColor" viewBox="0 0 20 20" class="fill-current text-yellow-400 w-6 h-6">
+                            <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                            <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
                 </div>
-                <div class="flex right-0" id="navigation">
-                    <div class="uppercase text-sm ml-10 flex items-center font-mono tracking-wide font-bold text-yellow-400">
+                <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row" id="navigation">
+                    <div class="uppercase text-sm ml-5 flex items-center font-mono tracking-wide font-bold text-yellow-400">
                         <a href="#particles-js" id="section-1">Beranda</a>
                     </div>
-                    <div class="uppercase text-sm ml-10 flex items-center font-mono tracking-wide hover:text-gray-300">
+                    <div class="uppercase text-sm ml-5 flex items-center font-mono tracking-wide hover:text-gray-300">
                         <a href="#sec-2" id="section-2">Tentang IHSAO</a>
                     </div>
-                    <div class="uppercase text-sm ml-10 flex items-center font-mono tracking-wide hover:text-gray-300">
+                    <div class="uppercase text-sm ml-5 flex items-center font-mono tracking-wide hover:text-gray-300">
                         <a href="#sec-3" id="section-3">Kategori Perlombaan</a>
                     </div>
-                    <div class="uppercase text-sm ml-10 flex items-center font-mono tracking-wide hover:text-gray-300">
+                    <div class="uppercase text-sm ml-5 mr-9 flex items-center font-mono tracking-wide hover:text-gray-300">
                         <a href="#sec-4">Timeline</a>
                     </div>
                     <div>
-                        <a href="" class="ml-14 mt-4 mb-4 flex items-center w-32 h-10 justify-center font-mono tracking-widest bg-ihsao-yellow text-black border-2 border-black box-shadow-black hover:bg-ihsao-purple hover:text-white">Masuk!</a>
+                        <a href="" class="ml-5 mt-4 mb-4 flex items-center w-32 h-10 justify-center font-mono tracking-widest bg-ihsao-yellow text-black border-2 border-black box-shadow-black hover:bg-ihsao-purple hover:text-white">Masuk!</a>
                     </div>
-                </div>
+                </nav>
             </div>
         </header>
 
@@ -112,7 +125,7 @@
                 </div>
                 <div class="divider div-transparent div-dot mb-20"></div>
                 <div class="flex justify-between mb-28">
-                    <div class="w-1/4">
+                    <div class="w-0 invisible md:visible md:w-1/4">
                         <div class="w-full h-auto border-2 border-black bg-yellow-500 box-shadow-black">
                             <div class="flex justify-between">
                                 <div class="flex mx-4 my-2 left-0">
@@ -125,11 +138,11 @@
                                 </div>
                             </div>
                             <div class="my-4 mx-4 border-2 bg-white border-black">
-                                <img src="src/public/img/ihsao png.png" alt="">
+                                <img src="<?php echo BASE_URL; ?>/src/public/img/ihsao png.png" alt="">
                             </div>
                         </div>
                     </div>
-                    <div class="w-3/4 ml-20">
+                    <div class="w-full px-6 md:ml-20 md:w-3/4">
                         <p class="mb-8">
                             <span class="font-semibold">Inter High School Accounting Olympiad (IHSAO) 2021</span>, merupakan acara perlombakan akuntansi yang tahun ini mengusung tema “Be a Gold Generation to Change The World” dipersembahakan oleh Himpunan Mahasiswa Akuntansi Politeknik Caltex Riau. Kegiatan IHSAO memiliki berbagai cabang lomba yang berbeda setiap tahunnya dan ditujukan untuk siswa tingkat: SMA/MA/SMK/MK se-Indonesia.
                         </p>
@@ -159,7 +172,7 @@
                 <div class="divider div-transparent div-dot mb-20"></div>
                 <div class="flex flex-col mb-28">
                     <div class="flex mb-28">
-                        <div class="mb-16 mr-10 w-3/5">
+                        <div class="w-full px-6 md:mb-16 md:mr-10 md:w-3/5">
                             <h2 class="text-2xl text-gray-800 mb-5 font-semibold">Olimpiade</h2>
                             <p class="mb-4">
                                 Lomba Olimpiade adalah lomba dalam bidang akuntansi bagi para siswa-siswi SMA/SMK/Sederajat di Indonesia. Lomba olimpiade ini terdiri dari masing-masing perwakilan sekolah yaitu satu tim. Satu tim terdiri dari 3 orang peserta. Di lomba ini ada beberapa regu yang akan bertanding dalam 3 tahap. Tiga tahap tersebut adalah Penyisihan, Semifinal, dan Final (Cerdas Cermat).
@@ -168,7 +181,7 @@
                                 Kompetisi ini diharapkan mampu mempersiapkan tenaga ahli akuntansi yang mampu beradaptasi dengan perkembangan ilmu pengetahuan dan teknologi yang sangat dinamis di era digital.
                             </p>
                         </div>
-                        <div class="w-2/5">
+                        <div class="w-0 invisible md:visible md:w-2/5">
                             <div class="w-full h-50 border-2 border-black bg-yellow-500 box-shadow-black">
                                 <div class="flex justify-between">
                                     <div class="flex mx-4 mt-2 left-0">
@@ -181,13 +194,13 @@
                                     </div>
                                 </div>
                                 <div class="my-4 mx-4 border-2 bg-purple-900 border-black">
-                                    <img src="/src/public/img/olimpiade-min.jpeg" class="object-cover h-56 w-full transition img-filter" alt="olimpiade">
+                                    <img src="<?php echo BASE_URL; ?>/src/public/img/olimpiade-min.jpeg" class="object-cover h-56 w-full transition img-filter" alt="olimpiade">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="flex mb-28">
-                        <div class="w-2/5">
+                        <div class="w-0 invisible md:visible md:w-2/5">
                             <div class="w-full h-50 border-2 border-black bg-yellow-500 box-shadow-black">
                                 <div class="flex justify-between">
                                     <div class="flex mx-4 mt-2 left-0">
@@ -200,11 +213,11 @@
                                     </div>
                                 </div>
                                 <div class="my-4 mx-4 border-2 bg-purple-900 border-black">
-                                    <img src="/src/public/img/myob-min.jpeg" class="object-cover h-56 w-full transition img-filter" alt="myob">
+                                    <img src="<?php echo BASE_URL; ?>/src/public/img/myob-min.jpeg" class="object-cover h-56 w-full transition img-filter" alt="myob">
                                 </div>
                             </div>
                         </div>
-                        <div class="w-3/5 ml-10 mb-16">
+                        <div class="w-full px-6 md:mb-16 md:w-3/5 md:ml-10">
                             <h2 class="text-2xl text-gray-800 mb-5 font-semibold">MYOB</h2>
                             <p class="mb-4">
                                 Lomba MYOB adalah lomba tentang penyelesaian kasus transaksi keuangan menggunakan software. Lomba MYOB ini memiliki tujuan untuk meningkatkan kualitas, keterampilan, dan mengembangkan wawasan siswa-siswi dalam hal aplikasi akuntansi ke dalam komputer khususnya menggunakan software MYOB. Lomba MYOB merupakan lomba yang terdiri dari 1 tim masing-masing sekolah yang setiap timnya terdiri dari 3 orang.
@@ -215,13 +228,13 @@
                         </div>
                     </div>
                     <div class="flex mb-28">
-                        <div class="mb-16 mr-10 w-3/5">
+                        <div class="w-full px-6 md:mb-16 md:mr-10 md:w-3/5">
                             <h2 class="text-2xl text-gray-800 mb-5 font-semibold">Karya Ilmiah (LKTI)</h2>
                             <p class="mb-4">
                                 Lomba Karya Tulis Ilmiah merupakan ajang kompetisi untuk menciptakan suatu karya ilmiah yang bersifat objektif, sederhana, kreatif dan berguna bagi kehidupan masyarakat. Lomba Karya Tulis Ilmiah ini bersifat individu. Karya Tulis Ilmiah ini dipersiapkan sebelum perlombaan. Akan dipilih 5 (lima) terbaik dari seluruh karya yang telah dikumpulkan. Karya yang termasuk 5 (lima) terbaik tersebut akan dipresentasikan di hari perlombaan. Lomba Karya Tulis Ilmiah ini mengangkat tema “ Peran Pajak Dalam Pengendalian Ekonomi di Masa Pandemi.”
                             </p>
                         </div>
-                        <div class="w-2/5">
+                        <div class="w-0 invisible md:visible md:w-2/5">
                             <div class="w-full h-50 border-2 border-black bg-yellow-500 box-shadow-black">
                                 <div class="flex justify-between">
                                     <div class="flex mx-4 mt-2 left-0">
@@ -234,13 +247,13 @@
                                     </div>
                                 </div>
                                 <div class="my-4 mx-4 border-2 bg-purple-900 border-black">
-                                    <img src="/src/public/img/lkti-min.jpeg" class="object-cover h-56 w-full transition img-filter" alt="lkti">
+                                    <img src="<?php echo BASE_URL; ?>/src/public/img/lkti-min.jpeg" class="object-cover h-56 w-full transition img-filter" alt="lkti">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="flex mb-28">
-                        <div class="w-2/5">
+                        <div class="w-0 invisible md:visible md:w-2/5">
                             <div class="w-full h-50 border-2 border-black bg-yellow-500 box-shadow-black">
                                 <div class="flex justify-between">
                                     <div class="flex mx-4 mt-2 left-0">
@@ -253,11 +266,11 @@
                                     </div>
                                 </div>
                                 <div class="my-4 mx-4 border-2 bg-purple-900 border-black">
-                                    <img src="/src/public/img/essai-min.jpeg" class="object-cover h-56 w-full transition img-filter" alt="essai">
+                                    <img src="<?php echo BASE_URL; ?>/src/public/img/essai-min.jpeg" class="object-cover h-56 w-full transition img-filter" alt="essai">
                                 </div>
                             </div>
                         </div>
-                        <div class="w-3/5 ml-10 mb-16">
+                        <div class="w-full px-6 md:mb-16 md:w-3/5 md:ml-10">
                             <h2 class="text-2xl text-gray-800 mb-5 font-semibold">Essai</h2>
                             <p class="mb-4">
                                 Lomba essai adalah lomba tulisan berisi ide atau gagasan kreatif yang dikembangkan menurut ketentuan pola pikir ilmiah dan mengacu pada informasi yang reliable, permasalahan beserta pemecahannya. Lomba essai ini merupakan salah satu lomba yang diselenggarakan IHSAO 2021. Lomba essai ini ditujukan untuk seluruh siswa SMA/SMK/Sederajat. Adanya lomba essai ini diharapkan dapat menjadi sarana untuk mengembangkan bakat, minat, dan potensi pelajar di bidang menulis. Masing- masing sekolah mengirimkan 1 perwakilan untuk mengikuti lomba. Lomba essai ini mengangkat tema “ Sinergi Pengendalian Inflasi di Tengah Pandemi.”
@@ -265,13 +278,13 @@
                         </div>
                     </div>
                     <div class="flex mb-28">
-                        <div class="mb-16 mr-10 w-3/5">
+                        <div class="w-full px-6 md:mb-16 md:mr-10 md:w-3/5">
                             <h2 class="text-2xl text-gray-800 mb-5 font-semibold">Poster & Animasi (POSMA)</h2>
                             <p class="mb-4">
                                 Lomba Posma (Poster Animasi) yaitu lomba perpaduan antara pembuatan poster dan dipresentasikan dalam bentuk animasi. Lomba poster animasi ini memberi wadah guna mendorong semangat literasi dan kemampuan kritis serta inovatif peserta berdasarkan data sebagai basisnya. Tiap sekolah yang mengikuti perlombaan ini hanya boleh mengirimkan 1 perwakilan peserta untuk mengikuti lomba. Lomba poster animasi ini mengangkat tema “Investasi Menyelamatkan Finansial di Era New Normal.”
                             </p>
                         </div>
-                        <div class="w-2/5">
+                        <div class="w-0 invisible md:visible md:w-2/5">
                             <div class="w-full h-50 border-2 border-black bg-yellow-500 box-shadow-black">
                                 <div class="flex justify-between">
                                     <div class="flex mx-4 mt-2 left-0">
@@ -284,7 +297,7 @@
                                     </div>
                                 </div>
                                 <div class="my-4 mx-4 border-2 bg-purple-900 border-black">
-                                    <img src="/src/public/img/posma-min.jpeg" class="object-cover h-56 w-full transition img-filter" alt="posma">
+                                    <img src="<?php echo BASE_URL; ?>/src/public/img/posma-min.jpeg" class="object-cover h-56 w-full transition img-filter" alt="posma">
                                 </div>
                             </div>
                         </div>
@@ -381,47 +394,73 @@
                 <div class="container text-white flex flex-col justify-center">
                     <div class="mb-20">
                         <h2 class="text-xl text-center mb-6 text-yellow-500">Hosted By :</h2>
-                        <img class="h-20 mx-auto opacity-50 hover:opacity-100 transition" src="/src/public/img/himaksi-fix.png" alt="logo himaksi">
+                        <img class="h-20 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/himaksi-fix.png" alt="logo himaksi">
                     </div>
                     <div class="mb-20">
                         <h2 class="text-xl text-center mb-6 text-yellow-500">Media Partner By :</h2>
-                        <div class="flex flex-col">
+                        <div class="sm:flex sm:flex-col md:invisible md:h-0">
                             <div class="flex mb-10">
-                                <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition" src="/src/public/img/media-partner/pekanbaru-event.PNG" alt="pekanbaru event">
-                                <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition" src="/src/public/img/media-partner/info.lomba.png" alt="info.lomba">
-                                <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition" src="/src/public/img/media-partner/brosispku.png" alt="brosuspku">
-                                <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition" src="/src/public/img/media-partner/pkukomunitas.png" alt="pku komunitas">
-                                <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition" src="/src/public/img/media-partner/riautoday.png" alt="riau today">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/pekanbaru-event.PNG" alt="pekanbaru event">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/info.lomba.png" alt="info.lomba">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/brosispku.png" alt="brosuspku">
                             </div>
                             <div class="flex mb-10">
-                                <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition" src="/src/public/img/media-partner/infolomba.png" alt="infolomba">
-                                <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition" src="/src/public/img/media-partner/eventkampus.png" alt="event kampus">
-                                <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition" src="/src/public/img/media-partner/info-event.png" alt="info event">
-                                <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="/src/public/img/media-partner/lokerpku1.jpg" alt="lokerpku1">
-                                <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="/src/public/img/media-partner/arena-lomba.jpeg" alt="arena lomba">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/pkukomunitas.png" alt="pku komunitas">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/riautoday.png" alt="riau today">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/infolomba.png" alt="infolomba">
+                            </div>
+                            <div class="flex mb-10">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/eventkampus.png" alt="event kampus">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/info-event.png" alt="info event">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/lokerpku1.jpg" alt="lokerpku1">
+                            </div>
+                            <div class="flex mb-10">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/arena-lomba.jpeg" alt="arena lomba">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/eventpelajar.jpeg" alt="event pelajar">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/mahasiswapku.jpeg" alt="mahasiswa pku">
                             </div>
                             <div class="flex">
-                                <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="/src/public/img/media-partner/eventpelajar.jpeg" alt="event pelajar">
-                                <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="/src/public/img/media-partner/mahasiswapku.jpeg" alt="mahasiswa pku">
-                                <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="/src/public/img/media-partner/sudut50kota.jpg" alt="sudut 50 kota">
-                                <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="/src/public/img/media-partner/pkukini.jpg" alt="pku kini">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/sudut50kota.jpg" alt="sudut 50 kota">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/pkukini.jpg" alt="pku kini">
+                            </div>
+                        </div>
+                        <div class="invisible h-0 md:visible md:h-auto flex flex-col">
+                            <div class="flex mb-10">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/pekanbaru-event.PNG" alt="pekanbaru event">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/info.lomba.png" alt="info.lomba">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/brosispku.png" alt="brosuspku">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/pkukomunitas.png" alt="pku komunitas">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/riautoday.png" alt="riau today">
+                            </div>
+                            <div class="flex mb-10">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/infolomba.png" alt="infolomba">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/eventkampus.png" alt="event kampus">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/info-event.png" alt="info event">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/lokerpku1.jpg" alt="lokerpku1">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/arena-lomba.jpeg" alt="arena lomba">
+                            </div>
+                            <div class="flex">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/eventpelajar.jpeg" alt="event pelajar">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/mahasiswapku.jpeg" alt="mahasiswa pku">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/sudut50kota.jpg" alt="sudut 50 kota">
+                                <img class="h-11 md:h-16 mx-auto opacity-50 hover:opacity-100 transition rounded-lg" src="<?php echo BASE_URL; ?>/src/public/img/media-partner/pkukini.jpg" alt="pku kini">
                             </div>
                         </div>
                     </div>
                     <div class="mb-20">
                         <h2 class="text-xl text-center mb-6 text-yellow-500">Supported By :</h2>
-                        <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition" src="/src/public/img/politeknik_caltex_riau.png" alt="politeknik caltex riau">
+                        <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/politeknik_caltex_riau.png" alt="politeknik caltex riau">
                     </div>
                 </div>
             </div>
         </section>
 
-        <footer class=" flex text-sm font-bold font-mono items-center justify-between bg-yellow-500 h-7">
-            <div class="flex ml-5">
-                &copy;2021&nbsp;<a href="https://www.instagram.com/andikarizkipradana/" target="_blank" class="text-pink-800 hover:text-pink-900">Inter High School Accounting Olympiad (IHSAO)</a>
+        <footer class=" flex flex-col text-sm font-light font-mono items-center bg-black md:justify-between md:h-7 md:flex-row">
+            <div class="mt-5 mb-1 flex md:ml-5 md:mt-5 md:mb-5 text-white">
+                &copy;2021&nbsp;<a href="https://www.instagram.com/ihsao2021/" target="_blank" class="text-pink-800 hover:text-pink-900 font-bold">Inter High School Accounting Olympiad (IHSAO)</a>
             </div>
-            <div class="flex mr-5">
-                Design by&nbsp;<a href="https://www.instagram.com/andikarizkipradana/" target="_blank" class="text-pink-800 hover:text-pink-900">Andika Rizki Pradana</a>
+            <div class="mb-5 mt-1 flex md:mr-5 md:mb-5 md:mt-5 text-white">
+                Design by&nbsp;<a href="https://www.instagram.com/andikarizkipradana/" target="_blank" class="text-pink-800 hover:text-pink-900 font-bold">Andika Rizki Pradana</a>
             </div>
         </footer>
 
@@ -432,10 +471,12 @@
     <!-- Preloader Js -->
     <!-- <script src="/src/public/js/preloader.js"></script> -->
     <!-- Countdown Js -->
-    <script src="/src/public/js/jquery.countdown.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>/src/public/js/jquery.countdown.min.js"></script>
     <!-- Particles Js -->
-    <script src="/src/public/js/particles.min.js"></script>
-    <script src="/src/public/js/particles-config.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>/src/public/js/particles.min.js"></script>
+    <script src="<?php echo BASE_URL; ?>/src/public/js/particles-config.min.js"></script>
+    <!-- Alphine Js -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script>
         // initialize countdown
         var now = new Date();
