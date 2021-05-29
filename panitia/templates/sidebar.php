@@ -38,16 +38,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Divider -->
-            <hr class="my-4 md:min-w-full" />
-            <ul class="md:flex-col md:min-w-full flex flex-col list-none">
-                <li class="items-center">
-                    <a href="./index.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "index" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
-                        <i class="fas fa-tv mr-2 text-sm opacity-75"></i>
-                        Dashboard
-                    </a>
-                </li>
-            </ul>
 
             <!-- Divider -->
             <hr class="my-4 md:min-w-full" />
@@ -62,6 +52,20 @@
                     <a href="./dpeserta.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "dpeserta" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-alt mr-2 text-sm text-blueGray-300"></i>
                         Data Peserta
+                    </a>
+                </li>
+
+                <li class="items-center">
+                    <a href="./dsekolah.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "dsekolah" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                        <i class="fas fa-file-alt mr-2 text-sm text-blueGray-300"></i>
+                        Data Sekolah
+                    </a>
+                </li>
+
+                <li class="items-center">
+                    <a href="./dtim.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "dtim" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                        <i class="fas fa-file-alt mr-2 text-sm text-blueGray-300"></i>
+                        Data Tim
                     </a>
                 </li>
 
@@ -124,6 +128,13 @@
                     <a href="./tim.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "tim" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-upload mr-2 text-sm text-blueGray-300"></i>
                         Input data tim
+                    </a>
+                </li>
+
+                <li class="items-center">
+                    <a href="./sekolah.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "sekolah" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                        <i class="fas fa-file-upload mr-2 text-sm text-blueGray-300"></i>
+                        Input data sekolah
                     </a>
                 </li>
             </ul>
