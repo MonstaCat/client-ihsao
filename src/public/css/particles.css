@@ -1,11 +1,11 @@
-#particles-js canvas {
+#beranda canvas {
     background-color: #252730;
     display: block;
     height: 100vh !important;
     vertical-align: bottom;
 }
 
-#particles-js {
+#beranda {
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -27,10 +27,8 @@ include('config.php');
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/src/public/css/custom.css">
 </head>
 
-<!-- class="overflow-x-hidden lg:overflow-x-auto" -->
-
-<body>
-    <!-- <div class="flex flex-col justify-center items-center preloader-wrapper">
+<body class="overflow-x-hidden lg:overflow-x-auto">
+    <div class="flex flex-col justify-center items-center preloader-wrapper">
         <div class="flex-1 text-center preloader">
             <div class="preloader-text">
                 <p>IHSAO 2021</p>
@@ -53,11 +51,11 @@ include('config.php');
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <div class="flex flex-col h-screen">
 
-        <header class="fixed w-full text-white text-base bg-transparent z-50" id="nav">
+        <header class="w-full text-white text-base bg-transparent z-50 md:fixed" id="nav">
             <div x-data="{ open: false }" class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
                 <div class="p-4 flex flex-row items-center justify-between">
                     <div class="flex left-0">
@@ -78,16 +76,16 @@ include('config.php');
                 </div>
                 <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row" id="navigation">
                     <div class="uppercase text-sm ml-5 flex items-center font-mono tracking-wide font-bold text-yellow-400">
-                        <a href="#particles-js" id="section-1">Beranda</a>
+                        <a href="#beranda" id="section-1">Beranda</a>
                     </div>
                     <div class="uppercase text-sm ml-5 flex items-center font-mono tracking-wide hover:text-gray-300">
-                        <a href="#sec-2" id="section-2">Tentang IHSAO</a>
+                        <a href="#tentang" id="section-2">Tentang IHSAO</a>
                     </div>
                     <div class="uppercase text-sm ml-5 flex items-center font-mono tracking-wide hover:text-gray-300">
-                        <a href="#sec-3" id="section-3">Kategori Perlombaan</a>
+                        <a href="#kategori" id="section-3">Kategori Perlombaan</a>
                     </div>
                     <div class="uppercase text-sm ml-5 mr-9 flex items-center font-mono tracking-wide hover:text-gray-300">
-                        <a href="#sec-4">Timeline</a>
+                        <a href="#timeline">Timeline</a>
                     </div>
                     <div>
                         <a href="" class="ml-5 mt-4 mb-4 flex items-center w-32 h-10 justify-center font-mono tracking-widest bg-ihsao-yellow text-black border-2 border-black box-shadow-black hover:bg-ihsao-purple hover:text-white">Masuk!</a>
@@ -96,7 +94,7 @@ include('config.php');
             </div>
         </header>
 
-        <div id="particles-js">
+        <div id="beranda">
             <div id="inside">
                 <ul id="event-countdown">
                     <li><span class="days text-white countdown-text">00</span>
@@ -118,7 +116,7 @@ include('config.php');
             </div>
         </div>
 
-        <section class="w-full h-auto bg-white" id="sec-2">
+        <section class="w-full h-auto bg-white" id="tentang">
             <div class="container mx-auto ">
                 <div class="flex justify-center text-2xl text-gray-800 text-center mt-28 mb-6">
                     <h1>Inter High School Accounting Olympiad&nbsp;|&nbsp;<span class="font-bold">IHSAO 2021<span></h1>
@@ -164,7 +162,7 @@ include('config.php');
             </div>
         </section>
 
-        <section class="w-full h-auto bg-white" id="sec-3">
+        <section class="w-full h-auto bg-white" id="kategori">
             <div class="container mx-auto ">
                 <div class="flex justify-center text-2xl text-gray-800 text-center mt-28 mb-6">
                     <h1>Kategori Perlombaan&nbsp;|&nbsp;<span class="font-bold">IHSAO 2021<span></h1>
@@ -306,7 +304,7 @@ include('config.php');
             </div>
         </section>
 
-        <section class="w-full bg-black h-auto" id="sec-4">
+        <section class="w-full bg-black h-auto" id="timeline">
             <div class="container mx-auto ">
                 <div class="flex justify-center text-2xl text-yellow-500 text-center mt-28 mb-6">
                     <h1>Timeline&nbsp;|&nbsp;<span class="font-bold">IHSAO 2021<span></h1>
@@ -469,7 +467,7 @@ include('config.php');
     <!-- Jquery Js -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Preloader Js -->
-    <!-- <script src="/src/public/js/preloader.js"></script> -->
+    <script src="/src/public/js/preloader.js"></script>
     <!-- Countdown Js -->
     <script src="<?php echo BASE_URL; ?>/src/public/js/jquery.countdown.min.js"></script>
     <!-- Particles Js -->
@@ -588,7 +586,7 @@ include('config.php');
                     .end().filter("[href='#" + id + "']").parent().addClass("font-bold text-yellow-400").removeClass("hover:text-gray-300");
             }
 
-            if (id == 'sec-4') {
+            if (id == 'timeline') {
                 $("#nav").removeClass("bg-ihsao-primary");
                 $("#nav").addClass("bg-black");
             } else {
