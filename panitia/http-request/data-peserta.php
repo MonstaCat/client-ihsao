@@ -1,5 +1,7 @@
 <?php  
 
+require '../../config.php';
+
 $query = array(
 	"page" => $_GET[ "draw" ],
 	"limit" => intval($_GET[ "length" ]),
@@ -7,7 +9,7 @@ $query = array(
 	"peserta" => $_GET[ "search" ][ "value" ]
 ); 
 
-$endpoint = "http://localhost:3000/api/peserta";
+$endpoint = BASE_URL . "api/peserta";
 $endpoint .= "?";
 $endpoint .= http_build_query( $query );
 

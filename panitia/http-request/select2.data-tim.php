@@ -1,5 +1,7 @@
 <?php  
 
+require '../../config.php';
+
 $query = array(
 	"page" => isset( $_GET[ "page" ] ) ? $_GET[ "page" ] : 1,
 	"limit" => isset( $_GET[ "limit" ] ) ? intval($_GET[ "limit" ]) : 30,
@@ -7,7 +9,7 @@ $query = array(
 	"sekolah" => isset( $_GET[ "sekolah" ] ) ? $_GET[ "sekolah" ] : "",
 ); 
 
-$endpoint = "http://localhost:3000/api/tim";
+$endpoint = BASE_URL . "api/tim";
 $endpoint .= "?";
 $endpoint .= http_build_query( $query );
 

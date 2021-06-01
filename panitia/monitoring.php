@@ -104,10 +104,11 @@ include_once('templates/header.php');
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-flash-1.6.4/b-html5-1.6.4/b-print-1.6.4/datatables.min.js"></script>
 
     <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+    <script src="../api-routing.js"></script>
     <script>
         const socket = io(`http://localhost:3000`);
-        const API_PESERTA = `http://localhost:3000/api/peserta`;
-        const API_KEY = `d033e22ae348aeb5660fc2140aec35850c4da997`
+        // const API_PESERTA = `http://localhost:3000/api/peserta`;
+        // const API_KEY = `d033e22ae348aeb5660fc2140aec35850c4da997`
 
         createDataTable = () => {
             // membuat data tabel peserta

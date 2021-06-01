@@ -142,9 +142,10 @@ include('../config.php');
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
     <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+    <script src="../api-routing.js"></script>
     <script>
         const socket = io(`http://localhost:3000`);
-        const API_PESERTA = `http://localhost:3000/api/peserta`;
+        // const API_PESERTA = `http://localhost:3000/api/peserta`;
 
         /**
          * jalankan semua fungsi jika socket sudah terhubung

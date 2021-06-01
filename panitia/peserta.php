@@ -88,12 +88,12 @@ include_once('templates/header.php');
     <!-- Select 2 Js -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <!-- Select 2 Js Integration -->
+    <script src="../api-routing.js" ></script>
     <script>
         $(document).ready(function() {
 
-            var PESERTA_ENDPOINT = "http://localhost:3000/api/peserta";
-            var API_KEY = `d033e22ae348aeb5660fc2140aec35850c4da997`;
+            // var API_PESERTA = "http://localhost:3000/api/peserta";
+            // var API_KEY = `d033e22ae348aeb5660fc2140aec35850c4da997`;
             var sekolahIsExist = false;
 
             $('#sekolah').select2({
@@ -183,7 +183,7 @@ include_once('templates/header.php');
                 }
 
                 $( `button[type="submit"]` ).text( `Loading...` );
-                fetch( `${PESERTA_ENDPOINT}`, {
+                fetch( `${API_PESERTA}`, {
                     method: "POST",
                     mode: `cors`,
                     headers: {
