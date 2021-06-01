@@ -113,7 +113,7 @@
                 <li class="items-center">
                     <a href="./soal.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "soal" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-upload mr-2 text-sm text-blueGray-300"></i>
-                        Input Soal
+                        Input Soal Multi
                     </a>
                 </li>
 
