@@ -47,6 +47,14 @@ include_once('templates/header.php');
                                                     </div>
                                                 </div>
                                                 <div class="md:flex">
+                                                    <div class="md:w-full mr-3 mb-6 md:mb-0 flex-1">
+                                                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="nama">
+                                                            Nama Peserta
+                                                        </label>
+                                                        <input type="text" placeholder="Nama Peserta" id="nama" name="nama" autocomplete="off" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2">
+                                                    </div>
+                                                </div>
+                                                <div class="md:flex">
                                                     <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
                                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="sekolah">
                                                             Asal Sekolah
@@ -88,7 +96,7 @@ include_once('templates/header.php');
     <!-- Select 2 Js -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <script src="../api-routing.js" ></script>
+    <script src="../api-routing.js"></script>
     <script>
         $(document).ready(function() {
 
@@ -96,52 +104,52 @@ include_once('templates/header.php');
             // var API_KEY = `d033e22ae348aeb5660fc2140aec35850c4da997`;
             var sekolahIsExist = false;
 
-            $('#sekolah').select2({  
-                ajax: { 
-                    url: `http-request/select2.data-sekolah.php`,
-                    delay: 250,
-                    dataType: "json",
-                    data: function( params ) {
-                        return {
-                            q: params.term,
-                            page: params.page || 1,
-                            limit: 30
-                        }
-                    },
-                    cache: true,
+            $('#sekolah').select2({
+                    ajax: {
+                        url: `http-request/select2.data-sekolah.php`,
+                        delay: 250,
+                        dataType: "json",
+                        data: function(params) {
+                            return {
+                                q: params.term,
+                                page: params.page || 1,
+                                limit: 30
+                            }
+                        },
+                        cache: true,
 
-                    processResults: function( data, params ) {
-                        params.page = params.page || 1;
+                        processResults: function(data, params) {
+                            params.page = params.page || 1;
 
-                        sekolahIsExist = Boolean( data.items.length )
+                            sekolahIsExist = Boolean(data.items.length)
 
-                        return {
-                            results: data.items,
-                            pagination: {
-                                more: ( params.page * 30 ) < data.total_count
+                            return {
+                                results: data.items,
+                                pagination: {
+                                    more: (params.page * 30) < data.total_count
+                                }
                             }
                         }
                     }
-                }
-            })
-            .on( `select2:select`, function( e ){
-                createTeam( e.params.data );
-            } )
+                })
+                .on(`select2:select`, function(e) {
+                    createTeam(e.params.data);
+                })
 
             /**
              * membuat select option untuk data tim
              *
              * @param object data value sekolah
              */
-            createTeam = ( data ) => {
+            createTeam = (data) => {
                 $('#tim').select2({
-                    
+
                     ajax: {
-                        url : "http-request/select2.data-tim.php",
+                        url: "http-request/select2.data-tim.php",
                         dataType: "json",
                         delay: 250,
                         cache: true,
-                        data: function( params ){
+                        data: function(params) {
                             return {
                                 q: params.term,
                                 page: params.page || 1,
@@ -149,18 +157,18 @@ include_once('templates/header.php');
                                 limit: 30
                             }
                         },
-                        processResults: function( data, params ){
+                        processResults: function(data, params) {
                             params.page = params.page || 1;
 
                             return {
                                 results: data.items,
                                 pagination: {
-                                    more: ( params.page * 30 ) < data.total_count
+                                    more: (params.page * 30) < data.total_count
                                 }
                             }
                         }
                     }
-                });    
+                });
             }
             $('#tim').select2();
             $('b[role="presentation"]').hide();
@@ -168,43 +176,48 @@ include_once('templates/header.php');
             /**
              * ketika form tambah peserta di submit
              */
-            $( `form#form-tambah-peserta` ).submit( function( e ){
+            $(`form#form-tambah-peserta`).submit(function(e) {
                 e.preventDefault();
 
                 let form = this;
                 let serialize = $(this).serializeArray();
                 let formData = {};
 
-                for( let i = 0; i < serialize.length; i++ ){
+                for (let i = 0; i < serialize.length; i++) {
 
-                    const data = { [ serialize[ i ].name ]: serialize[ i ].value }
-                    
-                    formData = { ...formData, ...data };
+                    const data = {
+                        [serialize[i].name]: serialize[i].value
+                    }
+
+                    formData = {
+                        ...formData,
+                        ...data
+                    };
                 }
 
-                $( `button[type="submit"]` ).text( `Loading...` );
-                fetch( `${API_PESERTA}`, {
-                    method: "POST",
-                    mode: `cors`,
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": API_KEY
-                    },
-                    body: JSON.stringify( formData )
-                } )
-                .then( response => response.json() )
-                .then( result => {
-                    $( `button[type="submit"]` ).text( `Submit Data Peserta` );
+                $(`button[type="submit"]`).text(`Loading...`);
+                fetch(`${API_PESERTA}`, {
+                        method: "POST",
+                        mode: `cors`,
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": API_KEY
+                        },
+                        body: JSON.stringify(formData)
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        $(`button[type="submit"]`).text(`Submit Data Peserta`);
 
-                    alert( result.msg );
+                        alert(result.msg);
 
-                    if( result.code == 200 ) {
-                        form.querySelector( `input[name="email"]` ).value = "";
-                        form.querySelector( `input[name="password"]` ).value = "";
-                        form.querySelector( `input[name="email"]` ).focus();
-                    }
-                } )
-            } )
+                        if (result.code == 200) {
+                            form.querySelector(`input[name="email"]`).value = "";
+                            form.querySelector(`input[name="password"]`).value = "";
+                            form.querySelector(`input[name="email"]`).focus();
+                        }
+                    })
+            })
         });
     </script>
 
