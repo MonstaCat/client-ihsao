@@ -39,40 +39,6 @@ include_once('templates/header.php');
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
-                                            <!-- <tbody>
-                                                <tr>
-                                                    <td>Tiger Nixon</td>
-                                                    <td>A</td>
-                                                    <td>Token Digunakan</td>
-                                                    <td>
-                                                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                                            <input type="checkbox" name="toggle" id="toggle-1" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" value="toggle-1">
-                                                            <label for="toggle-1" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <button class="bg-yellow-500 text-white active:bg-amber-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-                                                            <i class="fas fa-sync mr-2"></i>Reset Token
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Donna Snider</td>
-                                                    <td>A</td>
-                                                    <td>Token Belum Digunakan</td>
-                                                    <td>
-                                                        <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                                            <input type="checkbox" name="toggle" id="toggle-2" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" value="toggle-2">
-                                                            <label for="toggle-2" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <button class="bg-yellow-500 text-white active:bg-amber-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-                                                            <i class="fas fa-sync mr-2"></i>Reset Token
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody> -->
                                             <tfoot>
                                                 <tr>
                                                     <th>Nama Peserta</th>
