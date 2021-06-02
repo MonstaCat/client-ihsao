@@ -107,8 +107,6 @@ include_once('templates/header.php');
     <script src="../api-routing.js"></script>
     <script>
         const socket = io(`http://localhost:3000`);
-        // const API_PESERTA = `http://localhost:3000/api/peserta`;
-        // const API_KEY = `d033e22ae348aeb5660fc2140aec35850c4da997`
 
         createDataTable = () => {
             // membuat data tabel peserta
