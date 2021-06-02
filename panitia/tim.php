@@ -37,8 +37,7 @@ include_once('templates/header.php');
                                                         Cabang Lomba
                                                     </label>
                                                     <select id="cabang_lomba" name="cabang_lomba" style="width: 100%;">
-                                                        <option value="AL">Cabang Lomba</option>
-                                                        <option value="WY">B</option>
+                                                        <option value="">Cabang Lomba</option>
                                                     </select>
                                                 </div>
                                                 <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
@@ -98,10 +97,35 @@ include_once('templates/header.php');
     <!-- Select 2 Js -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+    <script src="../api-routing.js"></script>
+
     <!-- Select 2 Js Integration -->
     <script>
         $(document).ready(function() {
-            $('#cabang_lomba').select2();
+            $('#cabang_lomba').select2({
+                ajax: {
+                    url : `http-request/select2.data-lomba.php`,
+                    delay: 250,
+                    dataType: "json",
+                    data: function( params ) {
+                        return {
+                            q: params.term,
+                            page: params.page || 1,
+                            limit: 10
+                        }
+                    },
+                    processResults: function( data, params ){
+                        params.page = params.page || 1;
+
+                        return {
+                            results: data.items,
+                            pagination: {
+                                more: ( params.page * 10 ) < data.total_count
+                            }
+                        }
+                    }
+                }
+            });
             $('#sekolah').select2();
             $('b[role="presentation"]').hide();
         });
