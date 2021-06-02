@@ -116,6 +116,7 @@ include_once('templates/header.php');
                 responsive: true,
                 dom: 'Blfrtip',
                 serverSide: true,
+                destroy: true,
                 ajax: {
                     url: "http-request/data-peserta.php",
                     dataType: "JSON"
@@ -165,7 +166,7 @@ include_once('templates/header.php');
                 ],
                 buttons: [
                     'copy', 'excel', 'pdf'
-                ]
+                ],
             })
         }
 
