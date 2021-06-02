@@ -118,7 +118,7 @@ include_once('templates/header.php');
                 serverSide: true,
                 destroy: true,
                 ajax: {
-                    url: "http-request/data-peserta.php",
+                    url: "http-request/datatable.data-peserta.php",
                     dataType: "JSON"
                 },
                 columnDefs: [{
