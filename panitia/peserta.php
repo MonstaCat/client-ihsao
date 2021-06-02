@@ -96,8 +96,7 @@ include_once('templates/header.php');
             // var API_KEY = `d033e22ae348aeb5660fc2140aec35850c4da997`;
             var sekolahIsExist = false;
 
-            $('#sekolah').select2({
-                tags: true,
+            $('#sekolah').select2({  
                 ajax: { 
                     url: `http-request/select2.data-sekolah.php`,
                     delay: 250,
@@ -136,7 +135,7 @@ include_once('templates/header.php');
              */
             createTeam = ( data ) => {
                 $('#tim').select2({
-                    tags: true,
+                    
                     ajax: {
                         url : "http-request/select2.data-tim.php",
                         dataType: "json",
@@ -172,6 +171,7 @@ include_once('templates/header.php');
             $( `form#form-tambah-peserta` ).submit( function( e ){
                 e.preventDefault();
 
+                let form = this;
                 let serialize = $(this).serializeArray();
                 let formData = {};
 
@@ -197,6 +197,12 @@ include_once('templates/header.php');
                     $( `button[type="submit"]` ).text( `Submit Data Peserta` );
 
                     alert( result.msg );
+
+                    if( result.code == 200 ) {
+                        form.querySelector( `input[name="email"]` ).value = "";
+                        form.querySelector( `input[name="password"]` ).value = "";
+                        form.querySelector( `input[name="email"]` ).focus();
+                    }
                 } )
             } )
         });
