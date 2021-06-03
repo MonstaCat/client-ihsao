@@ -212,6 +212,7 @@ include_once('templates/header.php');
                         alert(result.msg);
 
                         if (result.code == 200) {
+                            form.querySelector(`input[name="nama"]`).value = "";
                             form.querySelector(`input[name="email"]`).value = "";
                             form.querySelector(`input[name="password"]`).value = "";
                             form.querySelector(`input[name="email"]`).focus();
