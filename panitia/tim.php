@@ -30,54 +30,55 @@ include_once('templates/header.php');
                                         </h2>
 
                                         <!-- Content Body -->
-                                        <div class="flex flex-col">
-                                            <div class="md:flex">
-                                                <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
-                                                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="pembina">
-                                                        Cabang Lomba
-                                                    </label>
-                                                    <select id="cabang_lomba" name="cabang_lomba" style="width: 100%;">
-                                                        <option value="">Cabang Lomba</option>
-                                                    </select>
+                                        <form id="form-tambah-tim">
+                                            <div class="flex flex-col">
+                                                <div class="md:flex">
+                                                    <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
+                                                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="pembina">
+                                                            Cabang Lomba
+                                                        </label>
+                                                        <select id="cabang_lomba" name="lomba" style="width: 100%;">
+                                                            <option value="">Cabang Lomba</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
+                                                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="nama_tim">
+                                                            Nama Tim
+                                                        </label>
+                                                        <input type="text" placeholder="Nama Tim" id="nama_tim" name="nama_tim" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2">
+                                                    </div>
                                                 </div>
-                                                <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
-                                                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="nama_tim">
-                                                        Nama Tim
-                                                    </label>
-                                                    <input type="text" placeholder="Nama Tim" id="nama_tim" name="nama_tim" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2">
-                                                </div>
-                                            </div>
 
-                                            <div class="md:flex">
-                                                <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
-                                                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="pembina">
-                                                        Nama Pembina
-                                                    </label>
-                                                    <input type="text" placeholder="Nama Pembina" id="pembina" name="pembina" autocomplete="off" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2">
+                                                <div class="md:flex">
+                                                    <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
+                                                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="pembina">
+                                                            Nama Pembina
+                                                        </label>
+                                                        <input type="text" placeholder="Nama Pembina" id="pembina" name="nama_pembina" autocomplete="off" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2">
+                                                    </div>
+                                                    <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
+                                                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="hp_pembina">
+                                                            Nomor Hp Pembina
+                                                        </label>
+                                                        <input type="text" placeholder="Nomor Hp Pembina" id="hp_pembina" name="hp_pembina" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2">
+                                                    </div>
                                                 </div>
-                                                <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
-                                                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="no_pembina">
-                                                        Nomor Hp Pembina
-                                                    </label>
-                                                    <input type="number" placeholder="Nomor Hp Pembina" id="no_pembina" name="no_pembina" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2">
-                                                </div>
-                                            </div>
 
-                                            <div class="md:flex">
-                                                <div class="md:w-full mr-3 mb-6 md:mb-0 flex-1">
-                                                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="sekolah">
-                                                        Sekolah
-                                                    </label>
-                                                    <select id="sekolah" name="sekolah" style="width: 100%;">
-                                                        <option value="AL">Sekolah</option>
-                                                        <option value="WY">B</option>
-                                                    </select>
+                                                <div class="md:flex">
+                                                    <div class="md:w-full mr-3 mb-6 md:mb-0 flex-1">
+                                                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="sekolah">
+                                                            Sekolah
+                                                        </label>
+                                                        <select id="sekolah" name="sekolah" style="width: 100%;">
+                                                            <option value="">Sekolah</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <button type="submit" class="float-right bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-                                            Submit Data Tim
-                                        </button>
+                                            <button type="submit" class="float-right bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                                                Submit Data Tim
+                                            </button>
+                                        </form>
                                         <!-- End of content body -->
                                     </div>
                                 </div>
@@ -102,6 +103,10 @@ include_once('templates/header.php');
     <!-- Select 2 Js Integration -->
     <script>
         $(document).ready(function() {
+            /**
+             * mengintegrasikan select2 ke element select
+             * cabang lomba
+             */
             $('#cabang_lomba').select2({
                 ajax: {
                     url : `http-request/select2.data-lomba.php`,
@@ -126,7 +131,81 @@ include_once('templates/header.php');
                     }
                 }
             });
-            $('#sekolah').select2();
+
+            /**
+             * mengintegrasikan select2 ke element select
+             * sekolah
+             */
+            $('#sekolah').select2({
+                    ajax: {
+                        url: `http-request/select2.data-sekolah.php`,
+                        delay: 250,
+                        dataType: "json",
+                        data: function(params) {
+                            return {
+                                q: params.term,
+                                page: params.page || 1,
+                                limit: 30
+                            }
+                        },
+                        cache: true,
+
+                        processResults: function(data, params) {
+                            params.page = params.page || 1;
+
+                            sekolahIsExist = Boolean(data.items.length)
+
+                            return {
+                                results: data.items,
+                                pagination: {
+                                    more: (params.page * 30) < data.total_count
+                                }
+                            }
+                        }
+                    }
+            })
+
+            /**
+             * menambahkan data kedalam database
+             */
+            $( `#form-tambah-tim` ).submit( function( e ){
+                e.preventDefault();
+
+                $( `button[type="submit"]` ).text( `Loading...` );
+
+                let formData = {};
+                let dataSerialize = $( this ).serializeArray();
+
+                for( let i = 0; i < dataSerialize.length; i++ ){
+                    const data = { [ dataSerialize[ i ].name ]: dataSerialize[ i ].value };
+
+                    formData = { ...formData, ...data };
+                }
+
+                formData = JSON.stringify( formData );
+
+                fetch( API_TIM, {
+                    method: "post",
+                    mode: "cors",
+                    headers : {
+                        "Authorization": API_KEY,
+                        "Content-Type": "application/json"
+                    },
+                    body: formData
+                } )
+                .then( response => response.json() )
+                .then( result => {
+                    $( `button[type="submit"]` ).text( `Submit Data Tim` );
+                    
+                    alert( result.msg );
+
+                    if( result.code == 200 ) {
+                        $( `input[ name="nama_tim" ]` ).val( "" );
+                        $( `input[ name="nama_tim" ]` ).focus();
+                    }
+                } )
+            } )
+
             $('b[role="presentation"]').hide();
         });
     </script>
