@@ -32,12 +32,11 @@ include_once('templates/header.php');
                                         <table id="data-tim">
                                             <thead>
                                                 <tr>
-                                                    <th data-priority="1">ID</th>
                                                     <th data-priority="2">Nama Tim</th>
                                                     <th data-priority="3">Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <!-- <tbody>
                                                 <tr>
                                                     <td>TIM001</td>
                                                     <td>Tim A</td>
@@ -56,10 +55,9 @@ include_once('templates/header.php');
                                                         </button>
                                                     </td>
                                                 </tr>
-                                            </tbody>
+                                            </tbody> -->
                                             <tfoot>
                                                 <tr>
-                                                    <th data-priority="1">ID</th>
                                                     <th data-priority="2">Nama Tim</th>
                                                     <th data-priority="3">Action</th>
                                                 </tr>
@@ -92,8 +90,33 @@ include_once('templates/header.php');
                 dom: 'Blfrtip',
                 buttons: [
                     'copy', 'excel', 'pdf'
+                ],
+                serverSide: true,
+                ajax: {
+                    url: "http-request/datatable.data-tim.php",
+                    dataType: "JSON"
+                },
+                columnDefs: [
+                    {
+                        "render": ( data, type, row ) => {
+                            return row[ 1 ] 
+                        },
+                        "targets": 0
+                    },
+                    {
+                        "render": ( data, type, row ) => {
+                            const element = `<button token="${row[ 0 ]}" class="button-edit bg-yellow-500 text-white active:bg-yellow-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" @click="isDialogOpen = true">
+                                                Edit
+                                            </button>
+                                            <button token="${row[ 0 ]}"  class=" button-hapus bg-red-500 text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                                                Hapus
+                                            </button>`;
+                            return element;
+                        },
+                        targets: 1
+                    }
                 ]
-            }).columns.adjust().responsive.recalc();
+            })
         });
     </script>
 </body>
