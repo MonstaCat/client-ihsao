@@ -2,16 +2,16 @@
 $PageTitle = "Input Data Tim";
 $PageFile = "tim";
 
-include_once('templates/header.php');
+include_once('../templates/header.php');
 ?>
 
 <body class="text-blueGray-700 antialiased">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
-        <?php include_once('templates/sidebar.php'); ?>
+        <?php include_once('../templates/sidebar.php'); ?>
         <div class="relative md:ml-64 bg-blueGray-50">
-            <?php include_once('templates/navbar.php'); ?>
-            <?php include_once('templates/header-info.php'); ?>
+            <?php include_once('../templates/navbar.php'); ?>
+            <?php include_once('../templates/header-info.php'); ?>
 
             <!-- Content -->
             <div class="px-4 md:px-10 mx-auto w-full -m-24">
@@ -87,7 +87,7 @@ include_once('templates/header.php');
                     </div>
 
                 </div>
-                <?php include_once('templates/footer.php'); ?>
+                <?php include_once('../templates/footer.php'); ?>
             </div>
         </div>
     </div>
@@ -109,23 +109,23 @@ include_once('templates/header.php');
              */
             $('#cabang_lomba').select2({
                 ajax: {
-                    url : `http-request/select2.data-lomba.php`,
+                    url: `http-request/select2.data-lomba.php`,
                     delay: 250,
                     dataType: "json",
-                    data: function( params ) {
+                    data: function(params) {
                         return {
                             q: params.term,
                             page: params.page || 1,
                             limit: 10
                         }
                     },
-                    processResults: function( data, params ){
+                    processResults: function(data, params) {
                         params.page = params.page || 1;
 
                         return {
                             results: data.items,
                             pagination: {
-                                more: ( params.page * 10 ) < data.total_count
+                                more: (params.page * 10) < data.total_count
                             }
                         }
                     }
@@ -137,74 +137,79 @@ include_once('templates/header.php');
              * sekolah
              */
             $('#sekolah').select2({
-                    ajax: {
-                        url: `http-request/select2.data-sekolah.php`,
-                        delay: 250,
-                        dataType: "json",
-                        data: function(params) {
-                            return {
-                                q: params.term,
-                                page: params.page || 1,
-                                limit: 30
-                            }
-                        },
-                        cache: true,
+                ajax: {
+                    url: `http-request/select2.data-sekolah.php`,
+                    delay: 250,
+                    dataType: "json",
+                    data: function(params) {
+                        return {
+                            q: params.term,
+                            page: params.page || 1,
+                            limit: 30
+                        }
+                    },
+                    cache: true,
 
-                        processResults: function(data, params) {
-                            params.page = params.page || 1;
+                    processResults: function(data, params) {
+                        params.page = params.page || 1;
 
-                            sekolahIsExist = Boolean(data.items.length)
+                        sekolahIsExist = Boolean(data.items.length)
 
-                            return {
-                                results: data.items,
-                                pagination: {
-                                    more: (params.page * 30) < data.total_count
-                                }
+                        return {
+                            results: data.items,
+                            pagination: {
+                                more: (params.page * 30) < data.total_count
                             }
                         }
                     }
+                }
             })
 
             /**
              * menambahkan data kedalam database
              */
-            $( `#form-tambah-tim` ).submit( function( e ){
+            $(`#form-tambah-tim`).submit(function(e) {
                 e.preventDefault();
 
-                $( `button[type="submit"]` ).text( `Loading...` );
+                $(`button[type="submit"]`).text(`Loading...`);
 
                 let formData = {};
-                let dataSerialize = $( this ).serializeArray();
+                let dataSerialize = $(this).serializeArray();
 
-                for( let i = 0; i < dataSerialize.length; i++ ){
-                    const data = { [ dataSerialize[ i ].name ]: dataSerialize[ i ].value };
+                for (let i = 0; i < dataSerialize.length; i++) {
+                    const data = {
+                        [dataSerialize[i].name]: dataSerialize[i].value
+                    };
 
-                    formData = { ...formData, ...data };
+                    formData = {
+                        ...formData,
+                        ...data
+                    };
                 }
 
-                formData = JSON.stringify( formData );
+                formData = JSON.stringify(formData);
 
-                fetch( API_TIM, {
-                    method: "post",
-                    mode: "cors",
-                    headers : {
-                        "Authorization": API_KEY,
-                        "Content-Type": "application/json"
-                    },
-                    body: formData
-                } )
-                .then( response => response.json() )
-                .then( result => {
-                    $( `button[type="submit"]` ).text( `Submit Data Tim` );
-                    
-                    alert( result.msg );
+                fetch(API_TIM, {
+                        method: "post",
+                        mode: "cors",
+                        headers: {
+                            "Authorization": API_KEY,
+                            "Content-Type": "application/json"
+                        },
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        $(`button[type="submit"]`).text(`Submit Data Tim`);
 
-                    if( result.code == 200 ) {
-                        $( `input[ name="nama_tim" ]` ).val( "" );
-                        $( `input[ name="nama_tim" ]` ).focus();
-                    }
-                } )
-            } )
+                        alert(result.msg);
+
+                        if (result.code == 200) {
+                            $(`input[ name="nama_tim" ]`).val("");
+                            $(`input[ name="nama_tim" ]`).focus();
+                        }
+                    })
+            })
 
             $('b[role="presentation"]').hide();
         });

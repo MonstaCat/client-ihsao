@@ -2,16 +2,16 @@
 $PageTitle = "Input Data Soal";
 $PageFile = "soal";
 
-include_once('templates/header.php');
+include_once('../templates/header.php');
 ?>
 
 <body class="text-blueGray-700 antialiased">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
-        <?php include_once('templates/sidebar.php'); ?>
+        <?php include_once('../templates/sidebar.php'); ?>
         <div class="relative md:ml-64 bg-blueGray-50">
-            <?php include_once('templates/navbar.php'); ?>
-            <?php include_once('templates/header-info.php'); ?>
+            <?php include_once('../templates/navbar.php'); ?>
+            <?php include_once('../templates/header-info.php'); ?>
 
             <!-- Content -->
             <div class="px-4 md:px-10 mx-auto w-full -m-24">
@@ -78,7 +78,7 @@ include_once('templates/header.php');
                     </div>
 
                 </div>
-                <?php include_once('templates/footer.php'); ?>
+                <?php include_once('../templates/footer.php'); ?>
             </div>
         </div>
     </div>

@@ -15,7 +15,7 @@
             <li class="inline-block relative">
                 <a class="text-blueGray-500 block" href="#pablo" onclick="openDropdown(event,'user-responsive-dropdown')">
                     <div class="items-center flex">
-                        <span class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"><img alt="..." class="w-full rounded-full align-middle border-none shadow-lg" src="assets/img/team-1-800x800.jpg" /></span>
+                        <span class="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full"><img alt="..." class="w-full rounded-full align-middle border-none shadow-lg" src="../assets/img/team-1-800x800.jpg" /></span>
                     </div>
                 </a>
                 <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48" id="user-responsive-dropdown">
@@ -49,35 +49,35 @@
             <!-- Navigation -->
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                 <li class="items-center">
-                    <a href="./dpeserta.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "dpeserta" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                    <a href="../peserta/dpeserta.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "dpeserta" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-alt mr-2 text-sm text-blueGray-300"></i>
                         Data Peserta
                     </a>
                 </li>
 
                 <li class="items-center">
-                    <a href="./dsekolah.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "dsekolah" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                    <a href="../sekolah/dsekolah.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "dsekolah" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-alt mr-2 text-sm text-blueGray-300"></i>
                         Data Sekolah
                     </a>
                 </li>
 
                 <li class="items-center">
-                    <a href="./dtim.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "dtim" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                    <a href="../tim/dtim.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "dtim" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-alt mr-2 text-sm text-blueGray-300"></i>
                         Data Tim
                     </a>
                 </li>
 
                 <li class="items-center">
-                    <a href="./mchoice.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "mchoice" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                    <a href="../soal/mchoice.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "mchoice" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-alt mr-2 text-sm text-blueGray-300"></i>
                         Data Multiplechoice
                     </a>
                 </li>
 
                 <li class="items-center">
-                    <a href="./kasus.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "kasus" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                    <a href="../soal/kasus.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "kasus" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-alt mr-2 text-sm text-blueGray-300"></i>
                         Data Soal Kasus
                     </a>
@@ -94,7 +94,7 @@
             <!-- Navigation -->
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                 <li class="items-center">
-                    <a href="./monitoring.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "monitoring" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                    <a href="../monitoring/monitoring.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "monitoring" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-ban mr-2 text-sm text-blueGray-300"></i>
                         Monitoring
                     </a>
@@ -111,28 +111,28 @@
             <!-- Navigation -->
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                 <li class="items-center">
-                    <a href="./soal.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "soal" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                    <a href="../soal/soal.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "soal" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-upload mr-2 text-sm text-blueGray-300"></i>
                         Input Soal Multi
                     </a>
                 </li>
 
                 <li class="items-center">
-                    <a href="./peserta.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "peserta" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                    <a href="../peserta/peserta.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "peserta" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-upload mr-2 text-sm text-blueGray-300"></i>
                         Input data peserta
                     </a>
                 </li>
 
                 <li class="items-center">
-                    <a href="./tim.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "tim" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                    <a href="../tim/tim.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "tim" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-upload mr-2 text-sm text-blueGray-300"></i>
                         Input data tim
                     </a>
                 </li>
 
                 <li class="items-center">
-                    <a href="./sekolah.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "sekolah" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                    <a href="../sekolah/sekolah.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "sekolah" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-upload mr-2 text-sm text-blueGray-300"></i>
                         Input data sekolah
                     </a>
@@ -149,14 +149,14 @@
             <!-- Navigation -->
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                 <li class="items-center">
-                    <a href="./tpeserta.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "tpeserta" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                    <a href="../token/tpeserta.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "tpeserta" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-upload mr-2 text-sm text-blueGray-300"></i>
                         Generate Token Peserta
                     </a>
                 </li>
 
                 <li class="items-center">
-                    <a href="./tpanitia.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "tpanitia" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                    <a href="../token/tpanitia.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "tpanitia" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-file-upload mr-2 text-sm text-blueGray-300"></i>
                         Generate Token Panitia
                     </a>

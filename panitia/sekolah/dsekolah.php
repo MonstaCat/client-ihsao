@@ -2,16 +2,16 @@
 $PageTitle = "Data Sekolah";
 $PageFile = "dsekolah";
 
-include_once('templates/header.php');
+include_once('../templates/header.php');
 ?>
 
 <body class="text-blueGray-700 antialiased">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
-        <?php include_once('templates/sidebar.php'); ?>
+        <?php include_once('../templates/sidebar.php'); ?>
         <div class="relative md:ml-64 bg-blueGray-50">
-            <?php include_once('templates/navbar.php'); ?>
-            <?php include_once('templates/header-info.php'); ?>
+            <?php include_once('../templates/navbar.php'); ?>
+            <?php include_once('../templates/header-info.php'); ?>
 
             <!-- Content -->
             <div class="px-4 md:px-10 mx-auto w-full -m-24">
@@ -52,7 +52,7 @@ include_once('templates/header.php');
                     </div>
 
                 </div>
-                <?php include_once('templates/footer.php'); ?>
+                <?php include_once('../templates/footer.php'); ?>
             </div>
         </div>
     </div>
@@ -83,15 +83,14 @@ include_once('templates/header.php');
                     url: "http-request/datatable.data-sekolah.php",
                     dataType: "JSON"
                 },
-                columnDefs: [
-                    {
-                        "render": ( data, type, row ) => {
-                            return row[ 1 ] 
+                columnDefs: [{
+                        "render": (data, type, row) => {
+                            return row[1]
                         },
                         "targets": 0
                     },
                     {
-                        "render": ( data, type, row ) => {
+                        "render": (data, type, row) => {
                             const element = `<button token="${row[ 0 ]}" class="button-edit bg-yellow-500 text-white active:bg-yellow-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" @click="isDialogOpen = true">
                                                 Edit
                                             </button>
@@ -108,34 +107,36 @@ include_once('templates/header.php');
             /**
              * membuat event hapus sekolah
              */
-            $( document ).on( "click", `.button-hapus`, function( e ){
-                var id = $(this).attr( `token` );
-                var isDelete = confirm( `Yakin ingin menhapus data ini ?` );
+            $(document).on("click", `.button-hapus`, function(e) {
+                var id = $(this).attr(`token`);
+                var isDelete = confirm(`Yakin ingin menhapus data ini ?`);
 
-                if( isDelete ) {
-                    const parent = $( this ).closest( "tr" );
-                    const formData = JSON.stringify( { id: id } );
+                if (isDelete) {
+                    const parent = $(this).closest("tr");
+                    const formData = JSON.stringify({
+                        id: id
+                    });
 
-                    $( this ).text( `Loading...` );
+                    $(this).text(`Loading...`);
 
-                    fetch( API_SEKOLAH, {
-                        method: "delete",
-                        mode: "cors",
-                        headers: {
-                            "Authorization": API_KEY,
-                            "Content-Type": "application/json"
-                        },
-                        body: formData
-                    } )
-                    .then( response => response.json() )
-                    .then( result => {
-                        parent.remove();
-                        table.ajax.reload();
+                    fetch(API_SEKOLAH, {
+                            method: "delete",
+                            mode: "cors",
+                            headers: {
+                                "Authorization": API_KEY,
+                                "Content-Type": "application/json"
+                            },
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(result => {
+                            parent.remove();
+                            table.ajax.reload();
 
-                        alert( result.msg );
-                    } )
+                            alert(result.msg);
+                        })
                 }
-            } )
+            })
         });
     </script>
 </body>

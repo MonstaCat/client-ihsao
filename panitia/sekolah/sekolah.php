@@ -2,16 +2,16 @@
 $PageTitle = "Input Data Sekolah";
 $PageFile = "sekolah";
 
-include_once('templates/header.php');
+include_once('../templates/header.php');
 ?>
 
 <body class="text-blueGray-700 antialiased">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
-        <?php include_once('templates/sidebar.php'); ?>
+        <?php include_once('../templates/sidebar.php'); ?>
         <div class="relative md:ml-64 bg-blueGray-50">
-            <?php include_once('templates/navbar.php'); ?>
-            <?php include_once('templates/header-info.php'); ?>
+            <?php include_once('../templates/navbar.php'); ?>
+            <?php include_once('../templates/header-info.php'); ?>
 
             <!-- Content -->
             <div class="px-4 md:px-10 mx-auto w-full -m-24">
@@ -53,7 +53,7 @@ include_once('templates/header.php');
                     </div>
 
                 </div>
-                <?php include_once('templates/footer.php'); ?>
+                <?php include_once('../templates/footer.php'); ?>
             </div>
         </div>
     </div>
@@ -62,46 +62,50 @@ include_once('templates/header.php');
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../api-routing.js"></script>
     <script type="text/javascript">
-
         // form untuk menambahkan sekolah baru
-        $( `#form-sekolah` ).submit( function( e ){
+        $(`#form-sekolah`).submit(function(e) {
             e.preventDefault();
 
-            $( `button[ type="submit" ]` ).text( `Loading...` );
+            $(`button[ type="submit" ]`).text(`Loading...`);
 
-            let serializeData = $(this).serializeArray() 
+            let serializeData = $(this).serializeArray()
             let formData = {};
 
-            for( let i = 0; i < serializeData.length; i++ ){
-                const data = { [ serializeData[ i ].name ]: serializeData[ i ].value };
+            for (let i = 0; i < serializeData.length; i++) {
+                const data = {
+                    [serializeData[i].name]: serializeData[i].value
+                };
 
-                formData = { ...formData, ...data };
+                formData = {
+                    ...formData,
+                    ...data
+                };
             }
 
 
-            formData = JSON.stringify( formData )
-   
-            fetch( API_SEKOLAH, {
-                method: `POST`,
-                mode: `cors`,
-                headers: {
-                    "Authorization": API_KEY,
-                    "Content-Type": "application/json"
-                },
-                body: formData
-            } )
-            .then( response => response.json() )
-            .then( result => {
-                $( `button[ type="submit" ]` ).text( `Submit Data Sekolah` );
+            formData = JSON.stringify(formData)
 
-                alert( result.msg );
+            fetch(API_SEKOLAH, {
+                    method: `POST`,
+                    mode: `cors`,
+                    headers: {
+                        "Authorization": API_KEY,
+                        "Content-Type": "application/json"
+                    },
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(result => {
+                    $(`button[ type="submit" ]`).text(`Submit Data Sekolah`);
 
-                if( result.code == 200 ) {
-                    $( `input[ name="sekolah" ] ` ).val("");
-                    $( `input[ name="sekolah" ] ` ).focus();
-                }
-            } )
-        } )
+                    alert(result.msg);
+
+                    if (result.code == 200) {
+                        $(`input[ name="sekolah" ] `).val("");
+                        $(`input[ name="sekolah" ] `).focus();
+                    }
+                })
+        })
     </script>
 </body>
 
