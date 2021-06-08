@@ -8,10 +8,10 @@
     <title>IHSAO 21 - <?= isset($PageTitle) ? $PageTitle : "Default Title" ?></title>
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="../src/public/img/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../src/public/img/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../src/public/img/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/src/public/img/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../src/public/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../src/public/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../src/public/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../../src/public/img/favicon/site.webmanifest">
 
     <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" />
     <link rel="stylesheet" href="../assets/styles/tailwind.css" />
