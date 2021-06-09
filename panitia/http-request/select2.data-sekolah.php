@@ -8,7 +8,7 @@ $query = array(
 	"sekolah" => isset( $_GET[ "q" ] ) ? $_GET[ "q" ] : ""
 ); 
 
-$endpoint = BASE_URL . "api/sekolah";
+$endpoint = BASE_URL_API . "api/sekolah";
 $endpoint .= "?";
 $endpoint .= http_build_query( $query );
 

@@ -12,7 +12,7 @@ if( $query[ "page" ] < 1 ) {
 	$query[ "page" ] = 1;
 }
 
-$endpoint = BASE_URL . "api/tim";
+$endpoint = BASE_URL_API . "api/tim";
 $endpoint .= "?";
 $endpoint .= http_build_query( $query );
 

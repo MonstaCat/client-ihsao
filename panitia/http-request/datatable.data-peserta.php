@@ -12,7 +12,7 @@ if( $query[ "page" ] < 1 ) {
 	$query[ "page" ] = 1;
 }
 
-$endpoint = BASE_URL . "api/peserta";
+$endpoint = BASE_URL_API . "api/peserta";
 $endpoint .= "?";
 $endpoint .= http_build_query( $query );
 

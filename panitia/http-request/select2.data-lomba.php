@@ -8,7 +8,7 @@ $query = array(
 	"nama_tim" => isset( $_GET[ "q" ] ) ? $_GET[ "q" ] : "",
 ); 
 
-$endpoint = BASE_URL . "api/lomba";
+$endpoint = BASE_URL_API . "api/lomba";
 $endpoint .= "?";
 $endpoint .= http_build_query( $query );
 
