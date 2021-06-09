@@ -1,4 +1,6 @@
 <?php
+include('../../config.php');
+
 $PageTitle = "Generate Token Panitia";
 $PageFile = "tpanitia";
 

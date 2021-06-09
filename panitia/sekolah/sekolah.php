@@ -1,4 +1,6 @@
 <?php
+include('../../config.php');
+
 $PageTitle = "Input Data Sekolah";
 $PageFile = "sekolah";
 
@@ -60,7 +62,7 @@ include_once('../templates/header.php');
 
     <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="../api-routing.js"></script>
+    <script src="../../api-routing.js"></script>
     <script type="text/javascript">
         // form untuk menambahkan sekolah baru
         $(`#form-sekolah`).submit(function(e) {

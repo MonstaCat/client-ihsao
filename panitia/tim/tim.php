@@ -1,4 +1,6 @@
 <?php
+include('../../config.php');
+
 $PageTitle = "Input Data Tim";
 $PageFile = "tim";
 
@@ -98,7 +100,7 @@ include_once('../templates/header.php');
     <!-- Select 2 Js -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <script src="../api-routing.js"></script>
+    <script src="../../api-routing.js"></script>
 
     <!-- Select 2 Js Integration -->
     <script>
@@ -109,7 +111,7 @@ include_once('../templates/header.php');
              */
             $('#cabang_lomba').select2({
                 ajax: {
-                    url: `http-request/select2.data-lomba.php`,
+                    url: `../http-request/select2.data-lomba.php`,
                     delay: 250,
                     dataType: "json",
                     data: function(params) {

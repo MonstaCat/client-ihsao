@@ -1,4 +1,6 @@
 <?php
+include('../../config.php');
+
 $PageTitle = "Input Data Soal";
 $PageFile = "soal";
 

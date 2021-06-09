@@ -1,4 +1,6 @@
 <?php
+include('../../config.php');
+
 $PageTitle = "Edit Data Peserta";
 $PageFile = "editpeserta";
 

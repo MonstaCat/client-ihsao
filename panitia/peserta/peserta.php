@@ -1,4 +1,6 @@
 <?php
+include('../../config.php');
+
 $PageTitle = "Input Data Peserta";
 $PageFile = "peserta";
 
@@ -96,7 +98,7 @@ include_once('../templates/header.php');
     <!-- Select 2 Js -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <script src="../api-routing.js"></script>
+    <script src="../../api-routing.js"></script>
     <script>
         $(document).ready(function() {
 
@@ -106,7 +108,7 @@ include_once('../templates/header.php');
 
             $('#sekolah').select2({
                     ajax: {
-                        url: `http-request/select2.data-sekolah.php`,
+                        url: `../http-request/select2.data-sekolah.php`,
                         delay: 250,
                         dataType: "json",
                         data: function(params) {

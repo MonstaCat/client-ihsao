@@ -1,4 +1,6 @@
 <?php
+include('../../config.php');
+
 $PageTitle = "Data Multiplechoice";
 $PageFile = "mchoice";
 

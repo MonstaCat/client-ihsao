@@ -1,4 +1,6 @@
 <?php
+include('../../config.php');
+
 $PageTitle = "Data Sekolah";
 $PageFile = "dsekolah";
 
@@ -65,7 +67,7 @@ include_once('../templates/header.php');
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-flash-1.6.4/b-html5-1.6.4/b-print-1.6.4/datatables.min.js"></script>
 
-    <script src="../api-routing.js"></script>
+    <script src="../../api-routing.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -80,7 +82,7 @@ include_once('../templates/header.php');
                     'copy', 'excel', 'pdf'
                 ],
                 ajax: {
-                    url: "http-request/datatable.data-sekolah.php",
+                    url: "../http-request/datatable.data-sekolah.php",
                     dataType: "JSON"
                 },
                 columnDefs: [{
