@@ -39,6 +39,10 @@ include_once('../templates/header.php');
                                                         Pertanyaan Soal
                                                     </label>
                                                     <textarea cols="30" rows="5" placeholder="Pertanyaan..." id="pertanyaan" name="pertanyaan" autocomplete="off" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2"></textarea>
+                                                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mt-4 mb-2" for="soal">
+                                                        Input Gambar
+                                                    </label>
+                                                    <input type="file" accept="image/*">
                                                 </div>
                                             </div>
                                             <div class="md:flex">
@@ -48,23 +52,28 @@ include_once('../templates/header.php');
                                                     </label>
                                                     <div class="flex items-center mb-3">
                                                         <input type="checkbox" id="jawaban1" name="jawaban1" value=""">
-                                                        <input type=" text" placeholder="Jawaban 1" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2" style="margin-left: 10px;">
+                                                        <input type=" text" placeholder="Jawaban 1" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2 mr-2" style="margin-left: 10px;">
+                                                        <input type="file" accept="image/*">
                                                     </div>
                                                     <div class="flex items-center mb-3">
                                                         <input type="checkbox" id="jawaban2" name="jawaban2" value=""">
-                                                        <input type=" text" placeholder="Jawaban 2" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2" style="margin-left: 10px;">
+                                                        <input type=" text" placeholder="Jawaban 2" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2 mr-2" style="margin-left: 10px;">
+                                                        <input type="file" accept="image/*">
                                                     </div>
                                                     <div class="flex items-center mb-3">
                                                         <input type="checkbox" id="jawaban3" name="jawaban3" value=""">
-                                                        <input type=" text" placeholder="Jawaban 3" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2" style="margin-left: 10px;">
+                                                        <input type=" text" placeholder="Jawaban 3" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2 mr-2" style="margin-left: 10px;">
+                                                        <input type="file" accept="image/*">
                                                     </div>
                                                     <div class="flex items-center mb-3">
                                                         <input type="checkbox" id="jawaban4" name="jawaban4" value=""">
-                                                        <input type=" text" placeholder="Jawaban 4" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2" style="margin-left: 10px;">
+                                                        <input type=" text" placeholder="Jawaban 4" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2 mr-2" style="margin-left: 10px;">
+                                                        <input type="file" accept="image/*">
                                                     </div>
                                                     <div class="flex items-center mb-3">
                                                         <input type="checkbox" id="jawaban5" name="jawaban5" value=""">
-                                                        <input type=" text" placeholder="Jawaban 5" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2" style="margin-left: 10px;">
+                                                        <input type=" text" placeholder="Jawaban 5" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2 mr-2" style="margin-left: 10px;">
+                                                        <input type="file" accept="image/*">
                                                     </div>
                                                 </div>
                                             </div>
@@ -87,6 +96,12 @@ include_once('../templates/header.php');
 
     <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <!-- jQuery-TE -->
+    <script type="text/javascript" src="<?= BASE_URL ?>/src/public/plugin/jQuery-TE/jquery-te-1.4.0.min.js"></script>
+    <script>
+        $("textarea").jqte();
+    </script>
 
 </body>
 
