@@ -27,6 +27,9 @@
     <!-- Select 2 Js -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+    <!-- jQuery-TE -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>/src/public/plugin/jQuery-TE/jquery-te-1.4.0.css">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/panitia/assets/styles/custom.css">
 
