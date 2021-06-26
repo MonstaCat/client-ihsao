@@ -32,6 +32,9 @@ include_once('../templates/header.php');
                                         </h2>
 
                                         <!-- Content Body -->
+                                        <form name="form-soal">
+                                            
+                                        
                                         <div class="flex flex-col">
                                             <div class="md:flex">
                                                 <div class="md:w-full mr-3 mb-6 md:mb-0 flex-1">
@@ -42,7 +45,7 @@ include_once('../templates/header.php');
                                                     <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mt-4 mb-2" for="soal">
                                                         Input Gambar
                                                     </label>
-                                                    <input type="file" accept="image/*">
+                                                    <input type="file" name="gambar-soal" accept="image/*">
                                                 </div>
                                             </div>
                                             <div class="md:flex">
@@ -51,29 +54,29 @@ include_once('../templates/header.php');
                                                         Centang Jawaban Benar
                                                     </label>
                                                     <div class="flex items-center mb-3">
-                                                        <input type="checkbox" id="jawaban1" name="jawaban1" value=""">
+                                                        <input type="checkbox" id="jawaban1" name="jawaban1" value="">
                                                         <input type=" text" placeholder="Jawaban 1" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2 mr-2" style="margin-left: 10px;">
-                                                        <input type="file" accept="image/*">
+                                                        <input type="file" name="gambar-jawaban-1" accept="image/*">
                                                     </div>
                                                     <div class="flex items-center mb-3">
-                                                        <input type="checkbox" id="jawaban2" name="jawaban2" value=""">
+                                                        <input type="checkbox" id="jawaban2" name="jawaban2" value="">
                                                         <input type=" text" placeholder="Jawaban 2" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2 mr-2" style="margin-left: 10px;">
-                                                        <input type="file" accept="image/*">
+                                                        <input type="file" name="gambar-jawaban-2" accept="image/*">
                                                     </div>
                                                     <div class="flex items-center mb-3">
-                                                        <input type="checkbox" id="jawaban3" name="jawaban3" value=""">
+                                                        <input type="checkbox" id="jawaban3" name="jawaban3" value="">
                                                         <input type=" text" placeholder="Jawaban 3" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2 mr-2" style="margin-left: 10px;">
-                                                        <input type="file" accept="image/*">
+                                                        <input type="file" name="gambar-jawaban-3" accept="image/*">
                                                     </div>
                                                     <div class="flex items-center mb-3">
-                                                        <input type="checkbox" id="jawaban4" name="jawaban4" value=""">
+                                                        <input type="checkbox" id="jawaban4" name="jawaban4" value="">
                                                         <input type=" text" placeholder="Jawaban 4" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2 mr-2" style="margin-left: 10px;">
-                                                        <input type="file" accept="image/*">
+                                                        <input type="file" name="gambar-jawaban-4" accept="image/*">
                                                     </div>
                                                     <div class="flex items-center mb-3">
-                                                        <input type="checkbox" id="jawaban5" name="jawaban5" value=""">
+                                                        <input type="checkbox" id="jawaban5" name="jawaban5" value="">
                                                         <input type=" text" placeholder="Jawaban 5" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2 mr-2" style="margin-left: 10px;">
-                                                        <input type="file" accept="image/*">
+                                                        <input type="file" name="gambar-jawaban-5" accept="image/*">
                                                     </div>
                                                 </div>
                                             </div>
@@ -81,6 +84,7 @@ include_once('../templates/header.php');
                                         <button type="submit" class="float-right bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                                             Submit Data Soal
                                         </button>
+                                        </form>
                                         <!-- End of content body -->
                                     </div>
                                 </div>
