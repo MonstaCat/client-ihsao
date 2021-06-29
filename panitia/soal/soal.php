@@ -32,7 +32,7 @@ include_once('../templates/header.php');
                                         </h2>
 
                                         <!-- Content Body -->
-                                        <form id="form-soal">
+                                        <form id="form-soal" enctype="multipart/form-data">
                                             
                                         
                                         <div class="flex flex-col">
@@ -118,47 +118,50 @@ include_once('../templates/header.php');
             const MAX_JAWABAN = 5;
             const button = $(`[name="btn-tambah"]`);
 
-            let body = {}  // penyimpanan form field
+            let contentCollection = {}  // penyimpanan form field
 
             // tambahkan data soal
-            formData.append( `soal-gambar`, _this.find( `[name="soal-gambar"]` )[0].files[0] );
-
-            const dataSoal = {
+            const soal = {
                 text: _this.find( `[name="pertanyaan"]` ).val(),
-                image: formData.get( `soal-gambar` )
+                image: _this.find( `[name="soal-gambar"]` )[0].files[0]
             }
+
+            formData.append( `soal_text`, soal.text );
+            formData.append( `soal_image`, soal.image );
 
             // tambahkan data jawaban
-            let jawaban = {};
-            let jawabanCollection = [];
-            let jawabanKey = "a";
 
-            for( let i = 1; i <= MAX_JAWABAN; i++ ) {
-                formData.append( `jawaban${i}-gambar`, _this.find( `[name="jawaban${i}-gambar"]` )[0].files[0] );
-
-                const gambar = formData.get( `jawaban${i}-gambar` );
-                const text = _this.find( `[name="jawaban${i}-text"]` );
-                const checkbox = _this.find( `[name="jawaban${i}-checkbox"]` );
-
-                // mengatur kunci jawaban
-                if( checkbox.prop( `checked` ) ) {
-                    jawabanKey = checkbox.val();
+            for( let i = 1; i <= MAX_JAWABAN; i++ ){
+                const collection = {
+                    checkbox : _this.find( `[name="jawaban${i}-checkbox"]` ),
+                    text : _this.find( `[name="jawaban${i}-text"]` ),
+                    gambar : _this.find( `[name="jawaban${i}-gambar"]` )[0].files[0]
                 }
 
-                const setJawaban = {
-                    text: {
-                        values: text.val(),
-                        key: checkbox.val()
-                    },
-                    image: gambar
+                // tambahkan jawaban benar kedalam variable
+                if( collection.checkbox.prop( `checked` ) ) {
+                    formData.append( `jawaban_key[]`, collection.checkbox.val() );
                 }
 
-                jawabanCollection = [ ...jawabanCollection, setJawaban ];
+                formData.append( `jawaban_text`, collection.text.val() );
+                formData.append( `jawaban_checkbox`, collection.checkbox.val() );
+                formData.append( `jawaban_image`, collection.gambar );
             }
 
-            jawaban = Object.assign( jawaban, { key: jawabanKey } );
-            jawaban = Object.assign( jawaban, { collection: jawabanCollection } );
-            console.log(jawaban)
+            
+            // kirim request melalui ajax
+            fetch( API_SOAL_MULTIPLE, {
+                method : "post",
+                cors: true,
+                body: formData,
+                headers: {
+                    "Authorization": API_KEY,
+                }
+            } )
+            .then( response => response.json() )
+            .then( response => {
+                
+            } )
         } )
     </script>
 
