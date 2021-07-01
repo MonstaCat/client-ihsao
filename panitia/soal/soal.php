@@ -126,10 +126,13 @@ include_once('../templates/header.php');
                 image: _this.find( `[name="soal-gambar"]` )[0].files[0]
             }
 
-            formData.append( `soal_text`, soal.text );
+            formData.append( `soal_text`, JSON.stringify( soal.text ) );
             formData.append( `soal_image`, soal.image );
 
             // tambahkan data jawaban
+            let jawabanKey = [];
+            let jawabanCheckbox = [];
+            let jawabanText = [];
 
             for( let i = 1; i <= MAX_JAWABAN; i++ ){
                 const collection = {
@@ -140,19 +143,24 @@ include_once('../templates/header.php');
 
                 // tambahkan jawaban benar kedalam variable
                 if( collection.checkbox.prop( `checked` ) ) {
-                    formData.append( `jawaban_key[]`, collection.checkbox.val() );
+                    jawabanKey = [ ...jawabanKey, collection.checkbox.val() ]
                 }
 
-                formData.append( `jawaban_text`, collection.text.val() );
-                formData.append( `jawaban_checkbox`, collection.checkbox.val() );
+                jawabanCheckbox = [ ...jawabanCheckbox, collection.checkbox.val() ];
+                jawabanText = [ ...jawabanText, collection.text.val() ];
+
+
                 formData.append( `jawaban_image`, collection.gambar );
             }
 
+            formData.append( `jawaban_checkbox`, JSON.stringify( jawabanCheckbox ) );
+            formData.append( `jawaban_text`, JSON.stringify( jawabanText ) );
+            formData.append( `jawaban_key`, JSON.stringify(jawabanKey) );
             
             // kirim request melalui ajax
             fetch( API_SOAL_MULTIPLE, {
                 method : "post",
-                cors: true,
+                cors: true, 
                 body: formData,
                 headers: {
                     "Authorization": API_KEY,
@@ -160,7 +168,14 @@ include_once('../templates/header.php');
             } )
             .then( response => response.json() )
             .then( response => {
-                
+                if(response.success) {
+                    alert( `berhasil menambahkan soal` );
+                    window.location = `http://localhost/ihsao/panitia/soal/mchoice.php`
+                }
+                else {
+                    alert( `Terjadi kesalahan` );
+                    console.log(response.msg);
+                }
             } )
         } )
     </script>
