@@ -34,27 +34,12 @@ include_once('../templates/header.php');
                                         <table id="data-mchoice">
                                             <thead>
                                                 <tr>
-                                                    <th data-priority="1">ID</th>
+                                                    <!-- <th data-priority="1">ID</th> -->
                                                     <th data-priority="2">Pertanyaan</th>
                                                     <th data-priority="3">Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>M001</td>
-                                                    <td>Lorem ipsum dolor sit amet</td>
-                                                    <td>
-                                                        <button class="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" @click="isDialogOpen = true">
-                                                            Detail
-                                                        </button>
-                                                        <button class="bg-yellow-500 text-white active:bg-yellow-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" @click="isDialogOpen = true">
-                                                            Edit
-                                                        </button>
-                                                        <button class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" @click="isDialogOpen = true">
-                                                            Hapus
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                            <!-- <tbody>
                                                 <tr>
                                                     <td>M002</td>
                                                     <td>Lorem ipsum dolor sit amet</td>
@@ -70,10 +55,10 @@ include_once('../templates/header.php');
                                                         </button>
                                                     </td>
                                                 </tr>
-                                            </tbody>
+                                            </tbody> -->
                                             <tfoot>
                                                 <tr>
-                                                    <th data-priority="1">ID</th>
+                                                    <!-- <th data-priority="1">ID</th> -->
                                                     <th data-priority="2">Jawaban</th>
                                                     <th data-priority="3">Action</th>
                                                 </tr>
@@ -100,16 +85,42 @@ include_once('../templates/header.php');
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-flash-1.6.4/b-html5-1.6.4/b-print-1.6.4/datatables.min.js"></script>
 
     <script>
-        $(document).ready(function() {
-            let table = $('#data-mchoice').DataTable({
-                responsive: true,
-                dom: 'Blfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ]
-            }).columns.adjust().responsive.recalc();
-        });
+        /**
+         * Integrasikan datatable ke table sekolah
+         */
+        var table = $('#data-mchoice').DataTable({
+            responsive: true,
+            dom: 'Blfrtip',
+            serverSide: true,
+            buttons: [
+                'copy', 'excel', 'pdf'
+            ],
+            ajax: {
+                url: "../http-request/datatable.data-mchoice.php",
+                dataType: "JSON"
+            },
+            columnDefs: [{
+                    "render": (data, type, row) => {
+                        return row[1]
+                    },
+                    "targets": 0
+                },
+                {
+                    "render": (data, type, row) => {
+                        const element = `<button id="${row[ 0 ]}" class="button-edit bg-yellow-500 text-white active:bg-yellow-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" @click="isDialogOpen = true">
+                                            Edit
+                                        </button>
+                                        <button id="${row[ 0 ]}"  class=" button-hapus bg-red-500 text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                                            Hapus
+                                        </button>`;
+                        return element;
+                    },
+                    targets: 1
+                }
+            ]
+        })
     </script>
+
 </body>
 
 </html>
