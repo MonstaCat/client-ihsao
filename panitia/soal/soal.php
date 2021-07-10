@@ -133,6 +133,7 @@ include_once('../templates/header.php');
             let jawabanKey = [];
             let jawabanCheckbox = [];
             let jawabanText = [];
+            let jawabanGambarName = [];
 
             for( let i = 1; i <= MAX_JAWABAN; i++ ){
                 const collection = {
@@ -149,10 +150,16 @@ include_once('../templates/header.php');
                 jawabanCheckbox = [ ...jawabanCheckbox, collection.checkbox.val() ];
                 jawabanText = [ ...jawabanText, collection.text.val() ];
 
-
-                formData.append( `jawaban_image`, collection.gambar );
+                if( collection.gambar != undefined ) {
+                    jawabanGambarName = [ ...jawabanGambarName, collection.gambar.name ]
+                    formData.append( `jawaban_image`, collection.gambar );
+                }
+                else {
+                    jawabanGambarName = [ ...jawabanGambarName, false ]
+                }
             }
 
+            formData.append( `jawaban_gambar_name`, JSON.stringify( jawabanGambarName ) );
             formData.append( `jawaban_checkbox`, JSON.stringify( jawabanCheckbox ) );
             formData.append( `jawaban_text`, JSON.stringify( jawabanText ) );
             formData.append( `jawaban_key`, JSON.stringify(jawabanKey) );
@@ -170,7 +177,7 @@ include_once('../templates/header.php');
             .then( response => {
                 if(response.success) {
                     alert( `berhasil menambahkan soal` );
-                    window.location = `http://localhost/ihsao/panitia/soal/mchoice.php`
+                    // window.location = `http://localhost/ihsao/panitia/soal/mchoice.php`
                 }
                 else {
                     alert( `Terjadi kesalahan` );
