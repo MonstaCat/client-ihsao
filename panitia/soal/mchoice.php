@@ -84,6 +84,8 @@ include_once('../templates/header.php');
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-flash-1.6.4/b-html5-1.6.4/b-print-1.6.4/datatables.min.js"></script>
 
+    <script src="../../api-routing.js"></script>
+
     <script>
         /**
          * Integrasikan datatable ke table sekolah
@@ -119,6 +121,14 @@ include_once('../templates/header.php');
                 }
             ]
         })
+
+        $(document).on( "click", ".button-edit", function(){
+            const id = $(this).attr( "id" );
+            const redirectPath = `${BASE_URL}/panitia/soal/editmchoice.php?id=${id}`;
+            
+            window.location = redirectPath;
+            
+        } )
     </script>
 
 </body>
