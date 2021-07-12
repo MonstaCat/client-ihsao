@@ -177,7 +177,7 @@ include_once('../templates/header.php');
             .then( response => {
                 if(response.success) {
                     alert( `berhasil menambahkan soal` );
-                    // window.location = `http://localhost/ihsao/panitia/soal/mchoice.php`
+                    window.location = `http://localhost/ihsao/panitia/soal/mchoice.php`
                 }
                 else {
                     alert( `Terjadi kesalahan` );
