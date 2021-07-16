@@ -108,7 +108,7 @@ include_once('../templates/header.php');
 
             $('#sekolah').select2({
                     ajax: {
-                        url: `../http-request/select2.data-sekolah.php`,
+                        url: `../../http-request/select2.data-sekolah.php`,
                         delay: 250,
                         dataType: "json",
                         data: function(params) {
