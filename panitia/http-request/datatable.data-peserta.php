@@ -36,7 +36,8 @@ foreach( $output->data as $data ){
 		$data->kelompok->nama_tim,
 		$data->is_used,
 		$data->is_banned,
-		$data->token
+		$data->token,
+		$data->nama,
 	);
 }
 
