@@ -31,18 +31,16 @@ include_once('../templates/header.php');
                                         </h2>
 
                                         <!-- DataTables For Data Peserta -->
-                                        <table id="data-peserta">
+                                        <table id="data-peserta" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th data-priority="1">ID</th>
-                                                    <th data-priority="2">Nama Peserta</th>
-                                                    <th data-priority="3">Email</th>
-                                                    <th data-priority="4">Asal Sekolah</th>
-                                                    <th data-priority="5">Nama Tim</th>
-                                                    <th data-priority="6">Action</th>
+                                                    <th>Peserta</th>
+                                                    <th>Tim</th>
+                                                    <th>Token</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <!-- <tbody>
                                                 <tr>
                                                     <td>PES001</td>
                                                     <td>Peserta A</td>
@@ -73,15 +71,13 @@ include_once('../templates/header.php');
                                                         </button>
                                                     </td>
                                                 </tr>
-                                            </tbody>
+                                            </tbody> -->
                                             <tfoot>
                                                 <tr>
-                                                    <th data-priority="1">ID</th>
-                                                    <th data-priority="2">Nama Peserta</th>
-                                                    <th data-priority="3">Email</th>
-                                                    <th data-priority="4">Asal Sekolah</th>
-                                                    <th data-priority="5">Nama Tim</th>
-                                                    <th data-priority="6">Action</th>
+                                                    <th>Peserta</th>
+                                                    <th>Tim</th>
+                                                    <th>Token</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -105,6 +101,8 @@ include_once('../templates/header.php');
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-flash-1.6.4/b-html5-1.6.4/b-print-1.6.4/datatables.min.js"></script>
 
+    <script type="text/javascript" src="<?php echo BASE_URL ?>/api-routing.js"></script>
+
     <script>
         $(document).ready(function() {
             let table = $('#data-peserta').DataTable({
@@ -112,8 +110,70 @@ include_once('../templates/header.php');
                 dom: 'Blfrtip',
                 buttons: [
                     'copy', 'excel', 'pdf'
+                ],
+                serverSide: true,
+                ajax: {
+                    url: `${BASE_URL}/panitia/http-request/datatable.data-peserta.php`,
+                    dataType: "JSON"
+                },
+                columnDefs: [
+                    {
+                        "render": (data, type, row) => {
+                            return row[5]
+                        },
+                        "targets": 0
+                    },
+                    {
+                        "render": (data, type, row) => {
+                            return row[1]
+                        },
+                        "targets": 1
+                    },
+                    {
+                        "render": (data, type, row) => {
+                            return row[4]
+                        },
+                        "targets": 2
+                    },
+                    {
+                        "render": (data, type, row) => {
+                            const element = `<button token="${row[ 4 ]}" class="button-edit bg-yellow-500 text-white active:bg-yellow-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" @click="isDialogOpen = true">
+                                                Edit
+                                            </button>
+                                            <button token="${row[ 4 ]}"  class=" button-hapus bg-red-500 text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
+                                                Hapus
+                                            </button>`;
+                            return element;
+                        },
+                        targets: 3
+                    }
                 ]
-            }).columns.adjust().responsive.recalc();
+            })
+
+            $( document ).on( `click`, `.button-hapus`, function( e ) {
+                const alrt  = confirm( `Hapus data ini ?` );
+                const id    = $( this ).attr( `token` );
+                const _this = $( this ); 
+
+                if( alrt ) {
+                    fetch( API_PESERTA, {
+                        mode    : "cors",
+                        method  : "delete",
+                        body    : JSON.stringify( { id: id } ),
+                        headers : {
+                            "Authorization" : API_KEY,
+                            "Content-Type"  : "application/json"
+                        }
+                    } )
+                    .then( response => response.json() )
+                    .then( response => {
+                        if( response.code == 200 ) {
+                            _this.closest( `tr` ).remove();
+                            alert( `Data berhasil di hapus` );
+                        }
+                    } )
+                }
+            } )
         });
     </script>
 </body>
