@@ -123,11 +123,12 @@ include_once('../templates/header.php');
             // tambahkan data soal
             const soal = {
                 text: _this.find( `[name="pertanyaan"]` ).val(),
-                image: _this.find( `[name="soal-gambar"]` )[0].files[0]
+                image: _this.find( `[name="soal-gambar"]` )[0].files[0],
             }
 
             formData.append( `soal_text`, JSON.stringify( soal.text ) );
             formData.append( `soal_image`, soal.image );
+            formData.append( `soal_image_name`, soal.image?.name );
 
             // tambahkan data jawaban
             let jawabanKey = [];
