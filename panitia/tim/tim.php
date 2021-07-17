@@ -41,6 +41,10 @@ include_once('../templates/header.php');
                                                         </label>
                                                         <select id="cabang_lomba" name="lomba" style="width: 100%;">
                                                             <option value="">Cabang Lomba</option>
+                                                            <option value="olimpiade">Olimpiade</option>
+                                                            <option value="karya_ilmiah">Karya Ilmiah</option>
+                                                            <option value="essai">Essai</option>
+                                                            <option value="poster_animasi">Poster & Animasi</option>
                                                         </select>
                                                     </div>
                                                     <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
