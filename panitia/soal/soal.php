@@ -165,6 +165,7 @@ include_once('../templates/header.php');
             formData.append( `jawaban_key`, JSON.stringify(jawabanKey) );
             
             // kirim request melalui ajax
+            $(`[name="btn-tambah"]`).text( `Loading...` )
             fetch( API_SOAL_MULTIPLE, {
                 method : "post",
                 cors: true, 
@@ -175,9 +176,10 @@ include_once('../templates/header.php');
             } )
             .then( response => response.json() )
             .then( response => {
+                $(`[name="btn-tambah"]`).text( `Submit Data Soal` )
                 if(response.success) {
                     alert( `berhasil menambahkan soal` );
-                    window.location = `http://localhost/ihsao/panitia/soal/mchoice.php`
+                    window.location = `${BASE_URL}/panitia/soal/mchoice.php`
                 }
                 else {
                     alert( `Terjadi kesalahan` );

@@ -97,7 +97,7 @@ include_once('../templates/header.php');
                 ],
                 serverSide: true,
                 ajax: {
-                    url: "../http-request/datatable.data-tim.php",
+                    url: `${BASE_URL}/panitia/http-request/datatable.data-tim.php`,
                     dataType: "JSON"
                 },
                 columnDefs: [{

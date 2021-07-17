@@ -98,7 +98,7 @@ include_once('../templates/header.php');
                 'copy', 'excel', 'pdf'
             ],
             ajax: {
-                url: "../http-request/datatable.data-mchoice.php",
+                url: `${BASE_URL}/panitia/http-request/datatable.data-mchoice.php`,
                 dataType: "JSON"
             },
             columnDefs: [{

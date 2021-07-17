@@ -84,7 +84,7 @@ include_once('../templates/header.php');
                 serverSide: true,
                 destroy: true,
                 ajax: {
-                    url: "../http-request/datatable.data-peserta.php",
+                    url: `${BASE_URL}/panitia/http-request/datatable.data-peserta.php`,
                     dataType: "JSON"
                 },
                 columnDefs: [{

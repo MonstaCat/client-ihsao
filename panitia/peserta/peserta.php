@@ -108,7 +108,7 @@ include_once('../templates/header.php');
 
             $('#sekolah').select2({
                     ajax: {
-                        url: `../../http-request/select2.data-sekolah.php`,
+                        url: `${BASE_URL}/panitia/http-request/select2.data-sekolah.php`,
                         delay: 250,
                         dataType: "json",
                         data: function(params) {
@@ -147,7 +147,7 @@ include_once('../templates/header.php');
                 $('#tim').select2({
 
                     ajax: {
-                        url: "http-request/select2.data-tim.php",
+                        url: `${BASE_URL}/panitia/http-request/select2.data-tim.php`,
                         dataType: "json",
                         delay: 250,
                         cache: true,

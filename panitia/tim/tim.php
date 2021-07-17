@@ -111,7 +111,7 @@ include_once('../templates/header.php');
              */
             $('#cabang_lomba').select2({
                 ajax: {
-                    url: `../http-request/select2.data-lomba.php`,
+                    url: `${BASE_URL}/panitia/http-request/select2.data-lomba.php`,
                     delay: 250,
                     dataType: "json",
                     data: function(params) {
@@ -140,7 +140,7 @@ include_once('../templates/header.php');
              */
             $('#sekolah').select2({
                 ajax: {
-                    url: `http-request/select2.data-sekolah.php`,
+                    url: `${BASE_URL}/panitia/http-request/select2.data-sekolah.php`,
                     delay: 250,
                     dataType: "json",
                     data: function(params) {
