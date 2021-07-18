@@ -90,6 +90,14 @@ include_once('../templates/header.php');
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="md:w-full mr-3 mb-6 md:mb-0 flex-1">
+                                                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="sekolah">
+                                                        Jenis Soal
+                                                    </label>
+                                                    <select id="jenis_soal" name="jenis_soal" style="width: 100%;">
+                                                        <option value="">Jenis Soal</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <button type="submit" class="float-right bg-yellow-500 text-white active:bg-yellow-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                                                 Edit Data Soal
@@ -112,10 +120,14 @@ include_once('../templates/header.php');
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- jQuery-TE -->
     <script type="text/javascript" src="<?= BASE_URL ?>/src/public/plugin/jQuery-TE/jquery-te-1.4.0.min.js"></script>
+    <!-- Select 2 Js -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script type="text/javascript" src="../../api-routing.js"></script>
 
     <script type="text/javascript">
         $("textarea").jqte();
+
+        $('#jenis_soal').select2();
 
         const currentQueryString = new URLSearchParams(window.location.search);
         const soalId = currentQueryString.get("id");

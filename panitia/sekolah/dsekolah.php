@@ -36,14 +36,16 @@ include_once('../templates/header.php');
                                                 <tr>
                                                     <!-- <th data-priority="1">ID</th> -->
                                                     <th data-priority="2">Nama Sekolah</th>
-                                                    <th data-priority="3">Action</th>
+                                                    <th data-priority="3">Jenis Sekolah</th>
+                                                    <th data-priority="4">Action</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
                                                 <tr>
                                                     <!-- <th data-priority="1">ID</th> -->
                                                     <th data-priority="2">Nama Sekolah</th>
-                                                    <th data-priority="3">Action</th>
+                                                    <th data-priority="3">Jenis Sekolah</th>
+                                                    <th data-priority="4">Action</th>
                                                 </tr>
                                             </tfoot>
                                         </table>

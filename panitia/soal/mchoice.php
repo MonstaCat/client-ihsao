@@ -36,7 +36,8 @@ include_once('../templates/header.php');
                                                 <tr>
                                                     <!-- <th data-priority="1">ID</th> -->
                                                     <th data-priority="2">Pertanyaan</th>
-                                                    <th data-priority="3">Action</th>
+                                                    <th data-priority="3">Jenis Soal</th>
+                                                    <th data-priority="4">Action</th>
                                                 </tr>
                                             </thead>
                                             <!-- <tbody>
@@ -60,7 +61,8 @@ include_once('../templates/header.php');
                                                 <tr>
                                                     <!-- <th data-priority="1">ID</th> -->
                                                     <th data-priority="2">Jawaban</th>
-                                                    <th data-priority="3">Action</th>
+                                                    <th data-priority="3">Jenis Soal</th>
+                                                    <th data-priority="4">Action</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
@@ -122,13 +124,13 @@ include_once('../templates/header.php');
             ]
         })
 
-        $(document).on( "click", ".button-edit", function(){
-            const id = $(this).attr( "id" );
+        $(document).on("click", ".button-edit", function() {
+            const id = $(this).attr("id");
             const redirectPath = `${BASE_URL}/panitia/soal/editmchoice.php?id=${id}`;
-            
+
             window.location = redirectPath;
-            
-        } )
+
+        })
     </script>
 
 </body>

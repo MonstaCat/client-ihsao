@@ -41,6 +41,14 @@ include_once('../templates/header.php');
                                                         </label>
                                                         <input type="text" placeholder="Nama Sekolah" id="sekolah" name="sekolah" autocomplete="off" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2">
                                                     </div>
+                                                    <div class="md:w-full mr-3 mb-6 md:mb-0 flex-1">
+                                                        <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="sekolah">
+                                                            Jenis Sekolah
+                                                        </label>
+                                                        <select id="jenis_sekolah" name="jenis_sekolah" style="width: 100%;">
+                                                            <option value="">Jenis Sekolah</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <button type="submit" class="float-right bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
@@ -62,8 +70,14 @@ include_once('../templates/header.php');
 
     <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <!-- Select 2 Js -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script src="../../api-routing.js"></script>
     <script type="text/javascript">
+        $('#jenis_sekolah').select2();
+
         // form untuk menambahkan sekolah baru
         $(`#form-sekolah`).submit(function(e) {
             e.preventDefault();
