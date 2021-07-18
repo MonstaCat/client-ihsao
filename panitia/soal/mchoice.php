@@ -60,7 +60,7 @@ include_once('../templates/header.php');
                                             <tfoot>
                                                 <tr>
                                                     <!-- <th data-priority="1">ID</th> -->
-                                                    <th data-priority="2">Jawaban</th>
+                                                    <th data-priority="2">Pertanyaan</th>
                                                     <th data-priority="3">Jenis Soal</th>
                                                     <th data-priority="4">Action</th>
                                                 </tr>
