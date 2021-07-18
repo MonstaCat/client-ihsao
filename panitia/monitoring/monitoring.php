@@ -35,7 +35,7 @@ include_once('../templates/header.php');
                                             <thead>
                                                 <tr>
                                                     <th>Nama Peserta</th>
-                                                    <th>Nama Kelompok</th>
+                                                    <th>Nama Tim</th>
                                                     <th>Status</th>
                                                     <th>Diskualifikasi</th>
                                                     <th>Action</th>
@@ -44,7 +44,7 @@ include_once('../templates/header.php');
                                             <tfoot>
                                                 <tr>
                                                     <th>Nama Peserta</th>
-                                                    <th>Nama Kelompok</th>
+                                                    <th>Nama Tim</th>
                                                     <th>Status</th>
                                                     <th>Diskualifikasi</th>
                                                     <th>Action</th>
