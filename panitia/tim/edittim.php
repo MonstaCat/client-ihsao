@@ -32,14 +32,14 @@ include_once('../templates/header.php');
                                         </h2>
 
                                         <!-- Content Body -->
-                                        <form id="form-tambah-tim">
+                                        <form id="form-edit-tim">
                                             <div class="flex flex-col">
                                                 <div class="md:flex">
                                                     <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
                                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="pembina">
                                                             Cabang Lomba
                                                         </label>
-                                                        <select id="cabang_lomba" name="lomba" style="width: 100%;">
+                                                        <select required id="cabang_lomba" name="lomba" style="width: 100%;">
                                                             <option value="">Cabang Lomba</option>
                                                         </select>
                                                     </div>
@@ -71,7 +71,7 @@ include_once('../templates/header.php');
                                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="sekolah">
                                                             Sekolah
                                                         </label>
-                                                        <select id="sekolah" name="sekolah" style="width: 100%;">
+                                                        <select required="" id="sekolah" name="sekolah" style="width: 100%;">
                                                             <option value="">Sekolah</option>
                                                         </select>
                                                     </div>
@@ -100,6 +100,148 @@ include_once('../templates/header.php');
     <!-- Select 2 Js -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+    <script src="<?php echo BASE_URL ?>/api-routing.js"></script>
+
+    <!-- Select 2 Js Integration -->
+    <script>
+        $(document).ready(function() {
+            /**
+             * mengintegrasikan select2 ke element select
+             * cabang lomba
+             */
+            $('#cabang_lomba').select2({
+                ajax: {
+                    url: `${BASE_URL}/panitia/http-request/select2.data-lomba.php`,
+                    delay: 250,
+                    dataType: "json",
+                    data: function(params) {
+                        return {
+                            q: params.term,
+                            page: params.page || 1,
+                            limit: 10
+                        }
+                    },
+                    processResults: function(data, params) {
+                        params.page = params.page || 1;
+
+                        return {
+                            results: data.items,
+                            pagination: {
+                                more: (params.page * 10) < data.total_count
+                            }
+                        }
+                    }
+                }
+            });
+
+            /**
+             * mengintegrasikan select2 ke element select
+             * sekolah
+             */
+            $('#sekolah').select2({
+                ajax: {
+                    url: `${BASE_URL}/panitia/http-request/select2.data-sekolah.php`,
+                    delay: 250,
+                    dataType: "json",
+                    data: function(params) {
+                        return {
+                            q: params.term,
+                            page: params.page || 1,
+                            limit: 30
+                        }
+                    },
+                    cache: true,
+
+                    processResults: function(data, params) {
+                        params.page = params.page || 1;
+
+                        sekolahIsExist = Boolean(data.items.length)
+
+                        return {
+                            results: data.items,
+                            pagination: {
+                                more: (params.page * 30) < data.total_count
+                            }
+                        }
+                    }
+                }
+            })
+
+            /**
+             * mengambil data tim
+             */
+            const currentQueryString = new URLSearchParams(window.location.search);
+            const timId = currentQueryString.get("id");
+            const endpoint = `${API_TIM}?id=${timId}`;
+            const fetchConfig = {
+                mode : "cors",
+                method : "get",
+                headers : {
+                    Authorization : API_KEY
+                }
+            }
+
+            fetch( endpoint, fetchConfig )
+            .then( response => response.json() )
+            .then( response => {
+                const dataset = response.data[0];
+
+                $( `[name="nama_tim"]` ).val( dataset.nama_tim );
+                $( `[name="nama_pembina"]` ).val( dataset.nama_pembina );
+                $( `[name="hp_pembina"]` ).val( dataset.hp_pembina );
+            } )
+
+            /**
+             * menambahkan data kedalam database
+             */
+            $(`#form-edit-tim`).submit(function(e) {
+                e.preventDefault();
+
+                $(`button[type="submit"]`).text(`Loading...`);
+
+                let formData = {};
+                let dataSerialize = $(this).serializeArray();
+
+                Object.assign( formData, { id : timId } );
+                for (let i = 0; i < dataSerialize.length; i++) {
+                    const data = {
+                        [dataSerialize[i].name]: dataSerialize[i].value
+                    };
+
+                    formData = {
+                        ...formData,
+                        ...data
+                    };
+                }
+
+                formData = JSON.stringify(formData);
+
+                fetch(API_TIM, {
+                        method: "put",
+                        mode: "cors",
+                        headers: {
+                            "Authorization": API_KEY,
+                            "Content-Type": "application/json"
+                        },
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        $(`button[type="submit"]`).text(`Submit Data Tim`);
+
+                        alert(result.msg);
+
+                        if( result.code == 200 ) {
+                            const redirectPath = `${BASE_URL}/panitia/tim/dtim.php`;
+
+                            window.location = redirectPath
+                        }
+                    })
+            })
+
+            $('b[role="presentation"]').hide();
+        });
+    </script>
 </body>
 
 </html>

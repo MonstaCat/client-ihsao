@@ -154,6 +154,16 @@ include_once('../templates/header.php');
                         })
                 }
             })
+
+            /**
+             * fungsi untuk mengedit item didalam table
+             */
+            $(document).on("click", `.button-edit`, function(e){
+                const id = $(this).attr(`token`);
+                const redirectPath = `${BASE_URL}/panitia/tim/edittim.php?id=${id}`;
+
+                window.location = redirectPath;
+            })
         });
     </script>
 </body>
