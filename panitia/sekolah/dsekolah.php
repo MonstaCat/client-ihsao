@@ -150,6 +150,16 @@ include_once('../templates/header.php');
                         })
                 }
             })
+
+            /**
+             * membuat event update sekolah
+             */
+             $( document ).on( `click`, `.button-edit`, function( e ) {
+                const id = $(this).attr( `token` );
+                const redirectPath = `${BASE_URL}/panitia/sekolah/editsekolah.php?id=${id}`;
+
+                window.location = redirectPath;
+             } )
         });
     </script>
 </body>

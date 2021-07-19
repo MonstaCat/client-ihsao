@@ -43,10 +43,11 @@ include_once('../templates/header.php');
                                                     </div>
                                                     <div class="md:w-full mr-3 mb-6 md:mb-0 flex-1">
                                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="sekolah">
-                                                            Jenis Sekolah
+                                                            Jenis sekolah
                                                         </label>
-                                                        <select id="jenis_sekolah" name="jenis_sekolah" style="width: 100%;">
-                                                            <option value="">Jenis Sekolah</option>
+                                                        <select id="jenis_sekolah" name="is_smk" style="width: 100%;">
+                                                            <option value="0">SMA</option>
+                                                            <option value="1">SMK</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -74,8 +75,87 @@ include_once('../templates/header.php');
     <!-- Select 2 Js -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+    <script src="<?php echo BASE_URL ?>/api-routing.js"></script>
+
     <script type="text/javascript">
-        $('#jenis_sekolah').select2();
+        $('#jenis_sekolah').select2({
+            placeholder : "Jenis sekolah"
+        });
+
+        // get data sekolah
+        const currentQueryString = new URLSearchParams(window.location.search);
+        const sekolahId = currentQueryString.get("id");
+        const endpoint = `${API_SEKOLAH}?id=${sekolahId}`;
+        const fetchConfig = {
+            mode : "cors",
+            method : 'get',
+            headers : {
+                "Authorization" : API_KEY
+            }
+        }
+
+        fetch( endpoint, fetchConfig )
+        .then( response => response.json() )
+        .then( response => {
+            fillForm( response.data[0] );
+        } )
+
+        /**
+         * fungsi yang digunakan untuk mengisi data
+         * kedalam form yang telah dibuat
+         */
+        function fillForm( dataset ) {
+            $( `[name="sekolah"]` ).val( dataset.sekolah );
+        }
+
+        /**
+         * fungsi saat form disubmit
+         */
+        $(`#form-sekolah`).submit(function(e) {
+            e.preventDefault();
+
+            $(`button[ type="submit" ]`).text(`Loading...`);
+
+            let serializeData = $(this).serializeArray()
+            let formData = {};
+
+            for (let i = 0; i < serializeData.length; i++) {
+                const data = {
+                    [serializeData[i].name]: serializeData[i].value
+                };
+
+                formData = {
+                    ...formData,
+                    ...data
+                };
+            }
+
+
+            formData = JSON.stringify(formData)
+
+            fetch(API_SEKOLAH, {
+                    method: `put`,
+                    mode: `cors`,
+                    headers: {
+                        "Authorization": API_KEY,
+                        "Content-Type": "application/json"
+                    },
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(result => {
+                    $(`button[ type="submit" ]`).text(`Submit Data Sekolah`);
+
+                    alert(result.msg);
+
+                    if (result.code == 200) {
+                        $(`input[ name="sekolah" ] `).val("");
+                        $(`input[ name="sekolah" ] `).focus();
+
+                        window.location = `${BASE_URL}/panitia/sekolah/dsekolah.php`;
+                    }
+                })
+        })
     </script>
 </body>
 
