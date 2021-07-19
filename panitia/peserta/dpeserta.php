@@ -158,6 +158,9 @@ include_once('../templates/header.php');
                 ]
             })
 
+            /**
+             * hapus data
+             */
             $( document ).on( `click`, `.button-hapus`, function( e ) {
                 const alrt  = confirm( `Hapus data ini ?` );
                 const id    = $( this ).attr( `token` );
@@ -181,6 +184,16 @@ include_once('../templates/header.php');
                         }
                     } )
                 }
+            } )
+
+            /**
+             * update data
+             */
+            $( document ).on( `click`, `.button-edit`, function( e ) {
+                const id    = $( this ).attr( `token` );
+                const redirectPath = `${BASE_URL}/panitia/peserta/editpeserta.php?token=${id}`
+
+                window.location = redirectPath;
             } )
         });
     </script>

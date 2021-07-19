@@ -32,7 +32,7 @@ include_once('../templates/header.php');
                                         </h2>
 
                                         <!-- Content Body -->
-                                        <form id="form-tambah-peserta">
+                                        <form id="form-edit-peserta">
                                             <div class="flex flex-col">
                                                 <div class="md:flex">
                                                     <div class="md:w-1/2 mr-3 mb-6 md:mb-0 flex-1">
@@ -61,7 +61,7 @@ include_once('../templates/header.php');
                                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="sekolah">
                                                             Asal Sekolah
                                                         </label>
-                                                        <select id="sekolah" name="sekolah" style="width: 100%;">
+                                                        <select required id="sekolah" name="sekolah" style="width: 100%;">
                                                             <option value="">Asal Sekolah</option>
                                                         </select>
                                                     </div>
@@ -69,7 +69,7 @@ include_once('../templates/header.php');
                                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="tim">
                                                             Nama Tim
                                                         </label>
-                                                        <select id="tim" name="tim" style="width: 100%;">
+                                                        <select required id="tim" name="tim" style="width: 100%;">
                                                             <option value="">Nama Tim</option>
                                                         </select>
                                                     </div>
@@ -98,7 +98,7 @@ include_once('../templates/header.php');
     <!-- Select 2 Js -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <script src="../api-routing.js"></script>
+    <script src="<?php echo BASE_URL ?>/api-routing.js"></script>
     <script>
         $(document).ready(function() {
 
@@ -176,15 +176,40 @@ include_once('../templates/header.php');
             $('b[role="presentation"]').hide();
 
             /**
-             * ketika form tambah peserta di submit
+             * getting peserta data
              */
-            $(`form#form-tambah-peserta`).submit(function(e) {
+            const currentQueryString = new URLSearchParams(window.location.search);
+            const tokenPeserta = currentQueryString.get("token");
+            const endpoint = `${API_PESERTA}?token=${tokenPeserta}`;
+            const fetchConfig = {
+                mode: 'cors',
+                method : "get",
+                headers : {
+                    Authorization : API_KEY
+                }
+            }
+
+            fetch( endpoint, fetchConfig )
+            .then( response => response.json() )
+            .then( response => {
+                const dataset = response.data[0];
+
+                $( `[name="email"]` ).val( dataset.email );
+                $( `[name="password"]` ).val( dataset.password );
+                $( `[name="nama"]` ).val( dataset.nama );
+            } )
+
+            /**
+             * ketika form edit peserta di submit
+             */
+            $(`form#form-edit-peserta`).submit(function(e) {
                 e.preventDefault();
 
                 let form = this;
                 let serialize = $(this).serializeArray();
                 let formData = {};
 
+                Object.assign( formData, { token : tokenPeserta } )
                 for (let i = 0; i < serialize.length; i++) {
 
                     const data = {
@@ -199,7 +224,7 @@ include_once('../templates/header.php');
 
                 $(`button[type="submit"]`).text(`Loading...`);
                 fetch(`${API_PESERTA}`, {
-                        method: "POST",
+                        method: "put",
                         mode: `cors`,
                         headers: {
                             "Content-Type": "application/json",
@@ -213,11 +238,10 @@ include_once('../templates/header.php');
 
                         alert(result.msg);
 
-                        if (result.code == 200) {
-                            form.querySelector(`input[name="nama"]`).value = "";
-                            form.querySelector(`input[name="email"]`).value = "";
-                            form.querySelector(`input[name="password"]`).value = "";
-                            form.querySelector(`input[name="email"]`).focus();
+                        if( result.code == 200 ) {
+                            const redirectPath = `${BASE_URL}/panitia/peserta/dpeserta.php`;
+
+                            window.location = redirectPath;
                         }
                     })
             })
