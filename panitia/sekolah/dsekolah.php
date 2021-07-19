@@ -87,11 +87,20 @@ include_once('../templates/header.php');
                     url: `${BASE_URL}/panitia/http-request/datatable.data-sekolah.php`,
                     dataType: "JSON"
                 },
-                columnDefs: [{
+                columnDefs: [
+                    {
                         "render": (data, type, row) => {
                             return row[1]
                         },
                         "targets": 0
+                    },
+                    {
+                        "render": (data, type, row) => {
+                            const jenis = ( row[2] ) ? "SMK" : "SMA";
+
+                            return jenis;
+                        },
+                        "targets": 1
                     },
                     {
                         "render": (data, type, row) => {
@@ -103,7 +112,7 @@ include_once('../templates/header.php');
                                             </button>`;
                             return element;
                         },
-                        targets: 1
+                        targets: 2
                     }
                 ]
             })

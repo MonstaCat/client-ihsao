@@ -45,8 +45,10 @@ include_once('../templates/header.php');
                                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="sekolah">
                                                             Jenis Sekolah
                                                         </label>
-                                                        <select id="jenis_sekolah" name="jenis_sekolah" style="width: 100%;">
+                                                        <select id="jenis_sekolah" name="is_smk" style="width: 100%;">
                                                             <option value="">Jenis Sekolah</option>
+                                                            <option value="0">SMA</option>
+                                                            <option value="1">SMK</option>
                                                         </select>
                                                     </div>
                                                 </div>

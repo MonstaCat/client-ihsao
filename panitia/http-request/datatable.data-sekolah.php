@@ -33,7 +33,8 @@ $dataset = [];
 foreach( $output->data as $data ){
 	$dataset[] = array(
 		$data->id,
-		$data->sekolah
+		$data->sekolah,
+		$data->is_smk
 	);
 }
 
