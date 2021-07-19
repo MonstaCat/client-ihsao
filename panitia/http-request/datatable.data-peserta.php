@@ -28,8 +28,6 @@ curl_setopt_array($ch, array(
 
 $output = json_decode( curl_exec( $ch ) );
 
-$dataset = [];
-
 foreach( $output->data as $data ){
 	$dataset[] = array(
 		$data->email,
@@ -38,6 +36,7 @@ foreach( $output->data as $data ){
 		$data->is_banned,
 		$data->token,
 		$data->nama,
+		$data->Sekolah->sekolah
 	);
 }
 

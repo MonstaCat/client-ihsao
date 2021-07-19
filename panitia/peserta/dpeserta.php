@@ -35,6 +35,7 @@ include_once('../templates/header.php');
                                             <thead>
                                                 <tr>
                                                     <th>Peserta</th>
+                                                    <th>Sekolah</th>
                                                     <th>Tim</th>
                                                     <th>Token</th>
                                                     <th>Action</th>
@@ -75,6 +76,7 @@ include_once('../templates/header.php');
                                             <tfoot>
                                                 <tr>
                                                     <th>Peserta</th>
+                                                    <th>Sekolah</th>
                                                     <th>Tim</th>
                                                     <th>Token</th>
                                                     <th>Action</th>
@@ -125,15 +127,21 @@ include_once('../templates/header.php');
                     },
                     {
                         "render": (data, type, row) => {
-                            return row[1]
+                            return row[6]
                         },
                         "targets": 1
                     },
                     {
                         "render": (data, type, row) => {
-                            return row[4]
+                            return row[1]
                         },
                         "targets": 2
+                    },
+                    {
+                        "render": (data, type, row) => {
+                            return row[4]
+                        },
+                        "targets": 3
                     },
                     {
                         "render": (data, type, row) => {
@@ -145,7 +153,7 @@ include_once('../templates/header.php');
                                             </button>`;
                             return element;
                         },
-                        targets: 3
+                        targets: 4
                     }
                 ]
             })
