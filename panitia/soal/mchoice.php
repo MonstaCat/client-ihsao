@@ -88,51 +88,6 @@ include_once('../templates/header.php');
 
     <script src="../../api-routing.js"></script>
 
-    <script>
-        /**
-         * Integrasikan datatable ke table sekolah
-         */
-        var table = $('#data-mchoice').DataTable({
-            responsive: true,
-            dom: 'Blfrtip',
-            serverSide: true,
-            buttons: [
-                'copy', 'excel', 'pdf'
-            ],
-            ajax: {
-                url: `${BASE_URL}/panitia/http-request/datatable.data-mchoice.php`,
-                dataType: "JSON"
-            },
-            columnDefs: [{
-                    "render": (data, type, row) => {
-                        return row[1]
-                    },
-                    "targets": 0
-                },
-                {
-                    "render": (data, type, row) => {
-                        const element = `<button id="${row[ 0 ]}" class="button-edit bg-yellow-500 text-white active:bg-yellow-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" @click="isDialogOpen = true">
-                                            Edit
-                                        </button>
-                                        <button id="${row[ 0 ]}"  class=" button-hapus bg-red-500 text-white active:bg-red-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-                                            Hapus
-                                        </button>`;
-                        return element;
-                    },
-                    targets: 1
-                }
-            ]
-        })
-
-        $(document).on("click", ".button-edit", function() {
-            const id = $(this).attr("id");
-            const redirectPath = `${BASE_URL}/panitia/soal/editmchoice.php?id=${id}`;
-
-            window.location = redirectPath;
-
-        })
-    </script>
-
 </body>
 
 </html>
