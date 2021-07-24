@@ -153,6 +153,7 @@ include_once('../templates/header.php');
             }
 
             // kirim request ke server
+            $(`[name="btn-tambah"]`).text( `Loading...` );
             fetch( API_SOAL_MULTIPLE, {
                 mode : `cors`,
                 method : "post",
@@ -163,7 +164,14 @@ include_once('../templates/header.php');
             } )
             .then( response => response.json() )
             .then( response => {
-                console.log(response);
+                alert( response.msg );
+
+                $(`[name="btn-tambah"]`).text(`Submit Data Soal`);
+
+                if( response.code == 200 ) {
+                    $(`[name="soal"]`).val("");
+                    $(`[name="soal"]`).focus();
+                }
             } )
         } )
     </script>
