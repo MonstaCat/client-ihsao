@@ -48,6 +48,14 @@ include_once('templates/header.php');
                                                             <td class="px-2 py-2 font-bold">Belum Dikerjakan</td>
                                                         </tr>
                                                         <tr>
+                                                            <td class="px-2 py-2 text-gray-500 font-semibold flex">Token</td>
+                                                            <td class="px-2 py-2 font-bold">
+                                                                <form action="">
+                                                                    <input type="text" placeholder="Masukkan Token" class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:shadow-outline w-full">
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
                                                             <td colspan="2">
                                                                 <button type="submit" class="float-right bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 mt-5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                                                                     Mulai Ujian
