@@ -70,7 +70,7 @@
                 </li>
 
                 <li class="items-center">
-                    <a href="<?php echo BASE_URL; ?>/peserta/ledearboard.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "ledearboard" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                    <a href="<?php echo BASE_URL; ?>/peserta/leaderboard.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "leaderboard" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-trophy w-5 mr-2 text-sm text-blueGray-300"></i>
                         Leaderboard
                     </a>
