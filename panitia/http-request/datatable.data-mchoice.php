@@ -33,7 +33,8 @@ $dataset = [];
 foreach( $output->data as $data ){
 	$dataset[] = array(
 		$data->id,
-		$data->soal
+		$data->soal,
+		$data->is_smk
 	);
 }
 
