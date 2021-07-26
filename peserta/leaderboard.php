@@ -48,9 +48,6 @@ include_once('templates/header.php');
                                             Status
                                         </th>
                                         <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
-                                            Peserta
-                                        </th>
-                                        <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                             Total Score
                                         </th>
                                     </tr>
@@ -73,13 +70,6 @@ include_once('templates/header.php');
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             <i class="fas fa-circle text-emerald-500 mr-2"></i>
                                             completed
-                                        </td>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <div class="flex">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-1-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-2-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-3-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4">
-                                            </div>
                                         </td>
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             <div class="flex items-center">
@@ -106,13 +96,6 @@ include_once('templates/header.php');
                                             pending
                                         </td>
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <div class="flex">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-1-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-2-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-3-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4">
-                                            </div>
-                                        </td>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             <div class="flex items-center">
                                                 <p class="mr-2"><b>220</b></p>
                                             </div>
@@ -135,13 +118,6 @@ include_once('templates/header.php');
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             <i class="fas fa-circle text-emerald-500 mr-2"></i>
                                             completed
-                                        </td>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <div class="flex">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-1-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-2-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-3-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4">
-                                            </div>
                                         </td>
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             <div class="flex items-center">
@@ -168,13 +144,6 @@ include_once('templates/header.php');
                                             completed
                                         </td>
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <div class="flex">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-1-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-2-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-3-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4">
-                                            </div>
-                                        </td>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             <div class="flex items-center">
                                                 <p class="mr-2"><b>200</b></p>
                                             </div>
@@ -197,13 +166,6 @@ include_once('templates/header.php');
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             <i class="fas fa-circle text-emerald-500 mr-2"></i>
                                             completed
-                                        </td>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <div class="flex">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-1-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-2-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-3-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4">
-                                            </div>
                                         </td>
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             <div class="flex items-center">
@@ -230,13 +192,6 @@ include_once('templates/header.php');
                                             completed
                                         </td>
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <div class="flex">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-1-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-2-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-3-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4">
-                                            </div>
-                                        </td>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             <div class="flex items-center">
                                                 <p class="mr-2"><b>180</b></p>
                                             </div>
@@ -261,13 +216,6 @@ include_once('templates/header.php');
                                             completed
                                         </td>
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <div class="flex">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-1-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-2-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-3-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4">
-                                            </div>
-                                        </td>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             <div class="flex items-center">
                                                 <p class="mr-2"><b>170</b></p>
                                             </div>
@@ -290,13 +238,6 @@ include_once('templates/header.php');
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             <i class="fas fa-circle text-emerald-500 mr-2"></i>
                                             completed
-                                        </td>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <div class="flex">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-1-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-2-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4">
-                                                <img src="<?php echo BASE_URL; ?>/peserta/assets/img/team-3-800x800.jpg" alt="..." class="w-10 h-10 rounded-full border-2 border-blueGray-50 shadow -ml-4">
-                                            </div>
                                         </td>
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             <div class="flex items-center">
