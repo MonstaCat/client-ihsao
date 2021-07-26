@@ -142,6 +142,40 @@ include_once('../templates/header.php');
 
                 window.location = redirectPath;
              } )
+
+             /**
+             * membuat event hapus soal
+             */
+            $(document).on("click", `.button-hapus`, function(e) {
+                var id = $(this).attr(`token`);
+                var isDelete = confirm(`Yakin ingin menghapus data ini ?`);
+
+                if (isDelete) {
+                    const parent = $(this).closest("tr");
+                    const formData = JSON.stringify({
+                        id: id
+                    });
+
+                    $(this).text(`Loading...`);
+
+                    fetch(API_SOAL_MULTIPLE, {
+                        method: "delete",
+                        mode: "cors",
+                        headers: {
+                            "Authorization": API_KEY,
+                            "Content-Type": "application/json"
+                        },
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        parent.remove();
+                        table.ajax.reload();
+
+                        alert(result.msg);
+                    })
+                }
+            })
         } )
     </script>
 </body>
