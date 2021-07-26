@@ -29,9 +29,6 @@ include_once('templates/header.php');
 										<!-- Content Body -->
 										<div class="w-72 mt-5 mb-5 ml-3">
 											<div class="bg-white shadow-lg rounded-lg py-3">
-												<div class="photo-wrapper p-2">
-													<img class="w-24 h-24 rounded-full mx-auto" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
-												</div>
 												<div class="p-2">
 													<h3 class="text-center text-xl text-gray-900 font-medium leading-8">Andika Rizki Pradana</h3>
 													<div class="text-center text-gray-400 text-xs font-semibold mb-5">
@@ -82,9 +79,6 @@ include_once('templates/header.php');
 										<div class="flex">
 											<div class="w-72 mt-5 mb-5 ml-3">
 												<div class="bg-white shadow-lg rounded-lg py-3">
-													<div class="photo-wrapper p-2">
-														<img class="w-24 h-24 rounded-full mx-auto" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
-													</div>
 													<div class="p-2">
 														<h3 class="text-center text-xl text-gray-900 font-medium leading-8">Andika Rizki Pradana</h3>
 														<div class="text-center text-gray-400 text-xs font-semibold mb-5">
@@ -117,9 +111,6 @@ include_once('templates/header.php');
 
 											<div class="w-72 mt-5 mb-5 ml-3">
 												<div class="bg-white shadow-lg rounded-lg py-3">
-													<div class="photo-wrapper p-2">
-														<img class="w-24 h-24 rounded-full mx-auto" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
-													</div>
 													<div class="p-2">
 														<h3 class="text-center text-xl text-gray-900 font-medium leading-8">Andika Rizki Pradana</h3>
 														<div class="text-center text-gray-400 text-xs font-semibold mb-5">
@@ -152,9 +143,6 @@ include_once('templates/header.php');
 
 											<div class="w-72 mt-5 mb-5 ml-3">
 												<div class="bg-white shadow-lg rounded-lg py-3">
-													<div class="photo-wrapper p-2">
-														<img class="w-24 h-24 rounded-full mx-auto" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
-													</div>
 													<div class="p-2">
 														<h3 class="text-center text-xl text-gray-900 font-medium leading-8">Andika Rizki Pradana</h3>
 														<div class="text-center text-gray-400 text-xs font-semibold mb-5">
