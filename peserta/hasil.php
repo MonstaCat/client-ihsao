@@ -20,59 +20,113 @@ include_once('templates/header.php');
                     <h2 class="text-2xl font-semibold mb-6">
                         Hasil Peserta
                     </h2>
-                    <div class="w-full mb-12 xl:mb-0">
-                        <div class="relative flex flex-col min-w-0 break-words w-full mb-6 rounded shadow-lg bg-white">
-                            <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-                                <div class="flex flex-wrap items-center">
-                                    <div class="relative w-full max-w-full flex-grow flex-1">
-
-                                        <!-- Content Body -->
-                                        <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-                                            <div class="flex flex-wrap items-center">
-                                                <div class="relative w-full max-w-full flex-grow flex-1">
-                                                    <h6 class="uppercase mb-1 text-xs font-semibold">
-                                                        Hasil Score Peserta
-                                                    </h6>
-                                                    <h2 class="text-xl font-semibold">
-                                                        Data Score Tim Labor A
-                                                    </h2>
-
-                                                    <!-- DataTables For Data Score Peserta -->
-                                                    <table id="data-score-peserta">
-                                                        <thead>
-                                                            <tr>
-                                                                <th data-priority="1">Nama Peserta</th>
-                                                                <th data-priority="2">Nama Tim</th>
-                                                                <th data-priority="3">Hasil Score</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Andika Rizki Pradana</td>
-                                                                <td>Tim Labor A</td>
-                                                                <td><b>80</b></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Raga Mulia Kusuma</td>
-                                                                <td>Tim Labor A</td>
-                                                                <td><b>80</b></td>
-                                                            </tr>
-                                                        </tbody>
-                                                        <tfoot>
-                                                            <tr>
-                                                                <th data-priority="1">Nama Peserta</th>
-                                                                <th data-priority="2">Nama Tim</th>
-                                                                <th data-priority="3">Hasil Score</th>
-                                                            </tr>
-                                                        </tfoot>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End of content body -->
-                                    </div>
+                    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
+                        <div class="rounded-t mb-0 px-4 py-3 border-0">
+                            <div class="flex flex-wrap items-center">
+                                <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                                    <h3 class="font-semibold text-lg text-blueGray-700">
+                                        Tim Bersyukur Kepada Allah
+                                    </h3>
                                 </div>
                             </div>
+                        </div>
+                        <div class="block w-full overflow-x-auto">
+                            <!-- Leaderboard table -->
+                            <table class="items-center w-full bg-transparent border-collapse">
+                                <thead>
+                                    <tr>
+                                        <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                            No
+                                        </th>
+                                        <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                            Nama Peserta
+                                        </th>
+                                        <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                            Asal Sekolah
+                                        </th>
+                                        <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                            Status
+                                        </th>
+                                        <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                            Score
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                            <p class="ml-3 font-bold text-blueGray-600">
+                                                1
+                                            </p>
+                                        </td>
+                                        <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                                            <p class="font-bold text-blueGray-600">
+                                                Andika Rizki Pradana
+                                            </p>
+                                        </th>
+                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                            SMKS Labor Binaan FKIP UR Pekanbaru
+                                        </td>
+                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                            <i class="fas fa-circle text-emerald-500 mr-2"></i>
+                                            completed
+                                        </td>
+                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                            <div class="flex items-center">
+                                                <p class="mr-2"><b>80</b></p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                            <p class="ml-3 font-bold text-blueGray-600">
+                                                2
+                                            </p>
+                                        </td>
+                                        <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                                            <p class="font-bold text-blueGray-600">
+                                                Raga Mulia Kusuma
+                                            </p>
+                                        </th>
+                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                            SMKS Labor Binaan FKIP UR Pekanbaru
+                                        </td>
+                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                            <i class="fas fa-circle text-orange-500 mr-2"></i>
+                                            pending
+                                        </td>
+                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                            <div class="flex items-center">
+                                                <p class="mr-2"><b></b></p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                            <p class="ml-3 font-bold text-blueGray-600">
+                                                3
+                                            </p>
+                                        </td>
+                                        <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                                            <p class="font-bold text-blueGray-600">
+                                                John Doe
+                                            </p>
+                                        </th>
+                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                            SMKS Labor Binaan FKIP UR Pekanbaru
+                                        </td>
+                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                            <i class="fas fa-circle text-emerald-500 mr-2"></i>
+                                            completed
+                                        </td>
+                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                            <div class="flex items-center">
+                                                <p class="mr-2"><b>95</b></p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
@@ -84,19 +138,6 @@ include_once('templates/header.php');
 
     <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
-    <!--Datatables -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.22/b-1.6.4/b-flash-1.6.4/b-html5-1.6.4/b-print-1.6.4/datatables.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            let table = $('#data-score-peserta').DataTable({
-                responsive: true,
-            }).columns.adjust().responsive.recalc();
-        });
-    </script>
 
 </body>
 
