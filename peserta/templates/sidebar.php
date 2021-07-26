@@ -28,11 +28,6 @@
             <hr class="my-2 md:min-w-full" />
 
             <div class="flex flex-col pt-2 pb-4">
-                <div class="items-center mx-auto">
-                    <div class="photo-wrapper pt-2 pb-2">
-                        <img class="w-16 h-16 rounded-full" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
-                    </div>
-                </div>
                 <div class="items-center">
                     <div class="mt-1">
                         <h3 class="text-center text-base text-gray-900 font-semibold leading-8">Andika Rizki Pradana</h3>
