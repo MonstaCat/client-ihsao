@@ -186,19 +186,21 @@ include('../config.php');
         }
 
         setUserData = data => {
-            console.log(data);
-
             if (data.code == 200) {
                 socket.emit(`bind-peserta`, data.data.token);
 
                 localStorage.setItem(`email`, data.data.email);
                 localStorage.setItem(`token`, data.data.token);
-                // sementara
-                window.location = `http://localhost/ihsao/peserta/home.php`;
-            } else {
+
+                window.location = `${BASE_URL}/peserta/home.php`;
+            } 
+            else if( data.code == 403 ){
+                localStorage.setItem( `isBanned`, true )
+                window.location = `${BASE_URL}/peserta/home.php`;
+            } 
+            else {
                 alert(data.msg);
             }
-
         }
 
 
