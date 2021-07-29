@@ -146,6 +146,7 @@ include_once('templates/header.php');
 			$( `#user-sekolah` ).text( user.Sekolah.sekolah );
 			$( `#user-email` ).text( user.email );
 			$( `#user-pembimbing` ).text( user.kelompok.nama_pembina );
+			localStorage.setItem( `isSmk`, user.Sekolah.is_smk )
 
 			const TId = user.kelompok.id
 
