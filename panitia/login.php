@@ -188,9 +188,7 @@ include('../config.php');
         setUserData = data => {
             console.log(data);
 
-            if (data.code == 401) {
-                return alert(data.msg);
-            } else {
+            if (data.code == 200) {
                 socket.emit(`bind-peserta`, data.data.token);
 
                 localStorage.setItem(`email`, data.data.email);
@@ -198,6 +196,8 @@ include('../config.php');
                 // sementara
 
                 window.location = `${BASE_URL}/panitia`;
+            } else {
+                alert(data.msg);
             }
 
         }
