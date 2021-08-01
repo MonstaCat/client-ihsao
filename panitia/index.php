@@ -207,7 +207,7 @@ include('../config.php');
                 localStorage.setItem(`token`, data.data.token);
                 // sementara
 
-                window.location = `${BASE_URL}/panitia`;
+                window.location = `${BASE_URL}/panitia/peserta/dpeserta.php`;
             } else {
                 alert(data.msg);
             }
@@ -327,4 +327,3 @@ include('../config.php');
 </body>
 
 </html>
-<script src="<?php echo BASE_URL ?>/panitia/templates/footer.js"></script>

@@ -41,7 +41,7 @@ echo json_encode( array(
 	"draw" => $_GET[ "draw" ],
 	"recordsTotal" => intval( $output->total ),
 	"recordsFiltered" => $output->filtered,
-	"data" => $dataset
+	"data" => $dataset ?? null
 ) );
 
 curl_close($ch);
