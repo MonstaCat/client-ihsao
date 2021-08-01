@@ -317,7 +317,7 @@ include('config.php');
                         <p class="text-sm md:text-base text-gray-50 mb-4">
                             Unduh panduan dan booklet event IHSAO 2021. Klik tombol dibawah untuk memulai mengunduh.
                         </p>
-                        <a href="#" class="bg-transparent mr-auto hover:bg-yellow-300 text-yellow-300 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent">
+                        <a href="src/public/PANDUAN_IHSAO_2021.pdf" target="_blank" class="bg-transparent mr-auto hover:bg-yellow-300 text-yellow-300 hover:text-white rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent">
                             Unduh Panduan
                         </a>
                     </div>
