@@ -92,7 +92,19 @@ include('../config.php');
 
         <main class="container mx-auto my-auto mb-auto flex justify-between">
             <div class="text-white invisible w-0 m-0 p-0 md:visible md:w-1/2">
-                Space for content
+                <div class="flex justify-center text-2xl text-yellow-500 text-center mb-6">
+                    <h1>Organizers & Sponsors&nbsp;|&nbsp;<span class="font-bold">IHSAO 2021<span></h1>
+                </div>
+                <div class="container text-white flex flex-col justify-center">
+                    <div class="mb-10">
+                        <h2 class="text-md text-center text-yellow-500">Hosted By :</h2>
+                        <img class="h-20 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/himaksi-fix.png" alt="logo himaksi">
+                    </div>
+                    <div class="mb-10">
+                        <h2 class="text-md text-center text-yellow-500">Supported By :</h2>
+                        <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/politeknik_caltex_riau.png" alt="politeknik caltex riau">
+                    </div>
+                </div>
             </div>
 
             <div class="w-full h-auto border-2 border-black bg-yellow-500 box-shadow-black mx-6 md:w-1/2">
@@ -193,12 +205,10 @@ include('../config.php');
                 localStorage.setItem(`token`, data.data.token);
 
                 window.location = `${BASE_URL}/peserta/home.php`;
-            } 
-            else if( data.code == 403 ){
-                localStorage.setItem( `isBanned`, true )
+            } else if (data.code == 403) {
+                localStorage.setItem(`isBanned`, true)
                 window.location = `${BASE_URL}/peserta/home.php`;
-            } 
-            else {
+            } else {
                 alert(data.msg);
             }
         }

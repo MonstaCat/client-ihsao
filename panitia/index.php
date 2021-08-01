@@ -1,325 +1,329 @@
 <?php
 include('../config.php');
-
-$PageTitle = "Panitia Dashboard";
-$PageFile = "index";
-
-include_once('templates/header.php');
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<body class="text-blueGray-700 antialiased">
-	<noscript>You need to enable JavaScript to run this app.</noscript>
-	<div id="root">
-		<?php include_once('templates/sidebar.php'); ?>
-		<div class="relative md:ml-64 bg-blueGray-50">
-			<?php include_once('templates/navbar.php'); ?>
-			<?php include_once('templates/header-info.php'); ?>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IHSAO 2021 - Login</title>
 
-			<!-- Content -->
-			<div class="px-4 md:px-10 mx-auto w-full -m-24">
-				<div class="flex flex-wrap">
-					<div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-						<div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
-							<div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-								<div class="flex flex-wrap items-center">
-									<div class="relative w-full max-w-full flex-grow flex-1">
-										<h6 class="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
-											Overview
-										</h6>
-										<h2 class="text-white text-xl font-semibold">
-											Sales value
-										</h2>
-									</div>
-								</div>
-							</div>
-							<div class="p-4 flex-auto">
-								<!-- Chart -->
-								<div class="relative h-350-px">
-									<canvas id="line-chart"></canvas>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="w-full xl:w-4/12 px-4">
-						<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-							<div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-								<div class="flex flex-wrap items-center">
-									<div class="relative w-full max-w-full flex-grow flex-1">
-										<h6 class="uppercase text-blueGray-400 mb-1 text-xs font-semibold">
-											Performance
-										</h6>
-										<h2 class="text-blueGray-700 text-xl font-semibold">
-											Total orders
-										</h2>
-									</div>
-								</div>
-							</div>
-							<div class="p-4 flex-auto">
-								<!-- Chart -->
-								<div class="relative h-350-px">
-									<canvas id="bar-chart"></canvas>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="flex flex-wrap mt-4">
-					<div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4">
-						<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-							<div class="rounded-t mb-0 px-4 py-3 border-0">
-								<div class="flex flex-wrap items-center">
-									<div class="relative w-full px-4 max-w-full flex-grow flex-1">
-										<h3 class="font-semibold text-base text-blueGray-700">
-											Page visits
-										</h3>
-									</div>
-									<div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-										<button class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-											See all
-										</button>
-									</div>
-								</div>
-							</div>
-							<div class="block w-full overflow-x-auto">
-								<!-- Projects table -->
-								<table class="items-center w-full bg-transparent border-collapse">
-									<thead>
-										<tr>
-											<th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-												Page name
-											</th>
-											<th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-												Visitors
-											</th>
-											<th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-												Unique users
-											</th>
-											<th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-												Bounce rate
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-												/argon/
-											</th>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												4,569
-											</td>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												340
-											</td>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												<i class="fas fa-arrow-up text-emerald-500 mr-4"></i>
-												46,53%
-											</td>
-										</tr>
-										<tr>
-											<th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-												/argon/index.html
-											</th>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												3,985
-											</td>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												319
-											</td>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												<i class="fas fa-arrow-down text-orange-500 mr-4"></i>
-												46,53%
-											</td>
-										</tr>
-										<tr>
-											<th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-												/argon/charts.html
-											</th>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												3,513
-											</td>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												294
-											</td>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												<i class="fas fa-arrow-down text-orange-500 mr-4"></i>
-												36,49%
-											</td>
-										</tr>
-										<tr>
-											<th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-												/argon/tables.html
-											</th>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												2,050
-											</td>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												147
-											</td>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												<i class="fas fa-arrow-up text-emerald-500 mr-4"></i>
-												50,87%
-											</td>
-										</tr>
-										<tr>
-											<th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-												/argon/profile.html
-											</th>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												1,795
-											</td>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												190
-											</td>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												<i class="fas fa-arrow-down text-red-500 mr-4"></i>
-												46,53%
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-					<div class="w-full xl:w-4/12 px-4">
-						<div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-							<div class="rounded-t mb-0 px-4 py-3 border-0">
-								<div class="flex flex-wrap items-center">
-									<div class="relative w-full px-4 max-w-full flex-grow flex-1">
-										<h3 class="font-semibold text-base text-blueGray-700">
-											Social traffic
-										</h3>
-									</div>
-									<div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-										<button class="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
-											See all
-										</button>
-									</div>
-								</div>
-							</div>
-							<div class="block w-full overflow-x-auto">
-								<!-- Projects table -->
-								<table class="items-center w-full bg-transparent border-collapse">
-									<thead class="thead-light">
-										<tr>
-											<th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-												Referral
-											</th>
-											<th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-												Visitors
-											</th>
-											<th class="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left min-w-140-px">
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-												Facebook
-											</th>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												1,480
-											</td>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												<div class="flex items-center">
-													<span class="mr-2">60%</span>
-													<div class="relative w-full">
-														<div class="overflow-hidden h-2 text-xs flex rounded bg-red-200">
-															<div style="width: 60%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500">
-															</div>
-														</div>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-												Facebook
-											</th>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												5,480
-											</td>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												<div class="flex items-center">
-													<span class="mr-2">70%</span>
-													<div class="relative w-full">
-														<div class="overflow-hidden h-2 text-xs flex rounded bg-emerald-200">
-															<div style="width: 70%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500">
-															</div>
-														</div>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-												Google
-											</th>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												4,807
-											</td>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												<div class="flex items-center">
-													<span class="mr-2">80%</span>
-													<div class="relative w-full">
-														<div class="overflow-hidden h-2 text-xs flex rounded bg-purple-200">
-															<div style="width: 80%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-purple-500">
-															</div>
-														</div>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-												Instagram
-											</th>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												3,678
-											</td>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												<div class="flex items-center">
-													<span class="mr-2">75%</span>
-													<div class="relative w-full">
-														<div class="overflow-hidden h-2 text-xs flex rounded bg-lightBlue-200">
-															<div style="width: 75%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-lightBlue-500">
-															</div>
-														</div>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-												twitter
-											</th>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												2,645
-											</td>
-											<td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-												<div class="flex items-center">
-													<span class="mr-2">30%</span>
-													<div class="relative w-full">
-														<div class="overflow-hidden h-2 text-xs flex rounded bg-orange-200">
-															<div style="width: 30%" class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500">
-															</div>
-														</div>
-													</div>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-				<?php include_once('templates/footer.php'); ?>
-			</div>
-		</div>
-	</div>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
-	<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
-	<script src="assets/js/main.js"></script>
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo BASE_URL; ?>/src/public/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo BASE_URL; ?>/src/public/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo BASE_URL; ?>/src/public/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="<?php echo BASE_URL; ?>/src/public/img/favicon/site.webmanifest">
+    <!-- Tailwind Css -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/src/public/css/tailwind.css">
+    <!-- Preloader Css -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/src/public/css/preloader.css">
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/src/public/css/custom.css">
+</head>
+
+<body class="bg-ihsao-primary overflow-x-hidden lg:overflow-x-auto">
+    <!-- <div class="flex flex-col justify-center items-center preloader-wrapper">
+        <div class="flex-1 text-center preloader">
+            <div class="preloader-text">
+                <p>IHSAO 2021</p>
+            </div>
+            <div class="windows8">
+                <div class="wBall" id="wBall_1">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_2">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_3">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_4">
+                    <div class="wInnerBall"></div>
+                </div>
+                <div class="wBall" id="wBall_5">
+                    <div class="wInnerBall"></div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="flex flex-col h-screen">
+
+        <header class="w-full text-white text-base bg-transparent z-50 md:fixed" id="nav">
+            <div x-data="{ open: false }" class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
+                <div class="p-4 flex flex-row items-center justify-between">
+                    <div class="flex left-0">
+                        <a href="" class="flex items-center">
+                            <div class="text-3xl header-text tracking-widest" id="header-title">
+                                <p class="ml-1 -m-2">IHSAO</p>
+                                <p class="ml-1 -m-2">2021</p>
+                            </div>
+                            <img class="h-14 ml-3" src="<?php echo BASE_URL; ?>/src/public/img/ihsao png.png" alt="" id="header-icon">
+                        </a>
+                    </div>
+                    <button class="md:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
+                        <svg fill="currentColor" viewBox="0 0 20 20" class="fill-current text-yellow-400 w-6 h-6">
+                            <path x-show="!open" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                            <path x-show="open" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+                <nav :class="{'flex': open, 'hidden': !open}" class="flex-col flex-grow pb-4 md:pb-0 hidden md:flex md:justify-end md:flex-row" id="navigation">
+                    <div class="uppercase text-sm ml-5 flex items-center font-mono tracking-wide font-bold text-yellow-400">
+                        <a href="<?php echo BASE_URL; ?>#beranda" id="section-1">Beranda</a>
+                    </div>
+                    <div class="uppercase text-sm ml-5 flex items-center font-mono tracking-wide hover:text-gray-300">
+                        <a href="<?php echo BASE_URL; ?>#tentang" id="section-2">Tentang IHSAO</a>
+                    </div>
+                    <div class="uppercase text-sm ml-5 flex items-center font-mono tracking-wide hover:text-gray-300">
+                        <a href="<?php echo BASE_URL; ?>#kategori" id="section-3">Kategori Perlombaan</a>
+                    </div>
+                    <div class="uppercase text-sm ml-5 mr-9 flex items-center font-mono tracking-wide hover:text-gray-300">
+                        <a href="<?php echo BASE_URL; ?>#timeline">Timeline</a>
+                    </div>
+                    <div>
+                        <a href="../peserta/login.php" class="ml-5 mt-4 mb-4 flex items-center w-32 h-10 justify-center font-mono tracking-widest bg-ihsao-yellow text-black border-2 border-black box-shadow-black hover:bg-ihsao-purple hover:text-white">Masuk!</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="container mx-auto my-auto mb-auto flex justify-between">
+            <div class="text-white invisible w-0 m-0 p-0 md:visible md:w-1/2">
+                <div class="flex justify-center text-2xl text-yellow-500 text-center mb-6">
+                    <h1>Organizers & Sponsors&nbsp;|&nbsp;<span class="font-bold">IHSAO 2021<span></h1>
+                </div>
+                <div class="container text-white flex flex-col justify-center">
+                    <div class="mb-10">
+                        <h2 class="text-md text-center text-yellow-500">Hosted By :</h2>
+                        <img class="h-20 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/himaksi-fix.png" alt="logo himaksi">
+                    </div>
+                    <div class="mb-10">
+                        <h2 class="text-md text-center text-yellow-500">Supported By :</h2>
+                        <img class="h-16 mx-auto opacity-50 hover:opacity-100 transition" src="<?php echo BASE_URL; ?>/src/public/img/politeknik_caltex_riau.png" alt="politeknik caltex riau">
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full h-auto border-2 border-black bg-yellow-500 box-shadow-black mx-6 md:w-1/2">
+                <div class="flex justify-between">
+                    <div class="flex mx-4 my-2 left-0">
+                        <div class="border-2 border-black rounded-full bg-red-600" style="height: 20px; width: 20px;">
+                        </div>
+                        <div class="ml-2 border-2 border-black rounded-full bg-yellow-400" style="height: 20px; width: 20px;">
+                        </div>
+                        <div class="ml-2 border-2 border-black rounded-full bg-green-800" style="height: 20px; width: 20px;">
+                        </div>
+                    </div>
+                </div>
+
+                <form action="#" id="form-login" class="text-left my-6 mx-4">
+                    <div class="bg-ihsao-purple p-1 px-2 mb-5 border-2 border-black box-shadow-black">
+                        <label class="block text-white" for="email">Email:</label>
+                        <input class="bg-transparent w-full text-xl focus:outline-none text-white mt-1" type="email" id="email" autocomplete="off">
+                    </div>
+                    <div class="bg-ihsao-purple p-1 px-2 mb-6 border-2 border-black box-shadow-black">
+                        <label class="block text-white" for="password">Password:</label>
+                        <input class="bg-transparent w-full text-xl focus:outline-none text-white mt-1" type="password" id="password">
+                    </div>
+                    <button type="submit" class="flex items-center w-full h-10 mb-9 justify-center font-mono tracking-widest bg-ihsao-yellow text-black border-2 border-black box-shadow-black">Masuk!</button>
+                </form>
+            </div>
+        </main>
+
+        <footer class=" flex flex-col text-sm font-light font-mono items-center bg-black md:justify-between md:h-7 md:flex-row">
+            <div class="mt-5 mb-1 flex md:ml-5 md:mt-5 md:mb-5 text-white">
+                &copy;2021&nbsp;<a href="https://www.instagram.com/ihsao2021/" target="_blank" class="text-pink-800 hover:text-pink-900 font-bold">Inter High School Accounting Olympiad (IHSAO)</a>
+            </div>
+            <div class="mb-5 mt-1 flex md:mr-5 md:mb-5 md:mt-5 text-white">
+                Design by&nbsp;<a href="https://www.instagram.com/andikarizkipradana/" target="_blank" class="text-pink-800 hover:text-pink-900 font-bold">Andika Rizki Pradana</a>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Jquery Js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Preloader Js -->
+    <script src="/src/public/js/preloader.js"></script>
+
+    <!-- Alphine Js -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+    <script src="<?php echo BASE_URL ?>/api-routing.js"></script>
+    <script>
+        const socket = io(API_ORIGIN);
+        // const API_PESERTA = `http://localhost:3000/api/peserta`;
+
+        /**
+         * jalankan semua fungsi jika socket sudah terhubung
+         */
+        socket.on(`connect`, () => {
+            authenticaion();
+        })
+
+        /**
+         * fungsi untuk melakukan login
+         */
+        authenticaion = () => {
+            $(`#form-login`).submit(e => {
+                e.preventDefault();
+
+                $(`button[type='submit']`).text(`Loading...`);
+
+                const request = JSON.stringify({
+                    email: $(`#email`).val(),
+                    password: $(`#password`).val(),
+                })
+
+                fetch(`${API_ADMIN}/login`, {
+                        mode: `cors`,
+                        method: "POST",
+                        body: request,
+                        headers: {
+                            "Content-Type": `application/json`
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        setUserData(data)
+                        $(`button[type='submit']`).text(`Masuk!`);
+                    });
+
+            })
+        }
+
+        setUserData = data => {
+            console.log(data);
+
+            if (data.code == 200) {
+                socket.emit(`bind-peserta`, data.data.token);
+
+                localStorage.setItem(`email`, data.data.email);
+                localStorage.setItem(`token`, data.data.token);
+                // sementara
+
+                window.location = `${BASE_URL}/panitia`;
+            } else {
+                alert(data.msg);
+            }
+
+        }
+
+
+
+
+
+
+
+
+        // Smooth scrolling for browsers that don't support CSS smooth scrolling
+        if (window.getComputedStyle(document.documentElement).scrollBehavior !== 'smooth') {
+            document.querySelectorAll('a[href^="#"]').forEach(internalLink => {
+                const targetElement = document.querySelector(internalLink.getAttribute('href'));
+                if (targetElement) {
+                    internalLink.addEventListener('click', (e) => {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                        });
+                        e.preventDefault();
+                    });
+                }
+            });
+        }
+
+        $(window).scroll(function() {
+            var scroll = $(window).scrollTop();
+
+            // add some class if scroll
+            if (scroll >= 50) {
+                $("#nav").addClass("bg-ihsao-primary");
+                $("#nav").addClass("shadow-2xl");
+                $("#nav").addClass("transition-all");
+
+                $("#header-title").removeClass("text-3xl")
+                $("#header-title").addClass("text-2xl")
+                $("#header-title").addClass("transition-all")
+
+                $("#header-icon").removeClass("h-14");
+                $("#header-icon").addClass("h-12");
+                $("#header-icon").addClass("transition-all")
+            } else {
+                $("#header-title").addClass("text-3xl");
+                $("#header-icon").addClass("h-14");
+                $("#nav").removeClass("bg-ihsao-primary");
+                $("#nav").removeClass("shadow-2xl");
+            }
+
+            // add active class when clicked
+            $("a").click(function() {
+                $(this).siblings().removeClass("active");
+                $(this).addClass("active");
+            });
+
+        });
+
+        // ScrollSpy
+        // Cache selectors
+        var lastId,
+            topMenu = $("#navigation"),
+            topMenuHeight = topMenu.outerHeight() + -1,
+            // All list items
+            menuItems = topMenu.find("a"),
+            // Anchors corresponding to menu items
+            scrollItems = menuItems.map(function() {
+                var item = $($(this).attr("href"));
+                if (item.length) {
+                    return item;
+                }
+            });
+
+        // Bind click handler to menu items
+        // so we can get a fancy scroll animation
+        menuItems.click(function(e) {
+            var href = $(this).attr("href"),
+                offsetTop = href === "#" ? 0 : $(href).offset().top - topMenuHeight + 1;
+            $('html, body').stop().animate({
+                scrollTop: offsetTop
+            }, 300);
+            e.preventDefault();
+        });
+
+        // Bind to scroll
+        $(window).scroll(function() {
+            // Get container scroll position
+            var fromTop = $(this).scrollTop() + topMenuHeight;
+
+            // Get id of current scroll item
+            var cur = scrollItems.map(function() {
+                if ($(this).offset().top < fromTop)
+                    return this;
+            });
+            // Get the id of the current element
+            cur = cur[cur.length - 1];
+            var id = cur && cur.length ? cur[0].id : "";
+
+            if (lastId !== id) {
+                lastId = id;
+                // Set/remove active class
+                menuItems
+                    .parent().removeClass("font-bold text-yellow-400").addClass("hover:text-gray-300")
+                    .end().filter("[href='#" + id + "']").parent().addClass("font-bold text-yellow-400").removeClass("hover:text-gray-300");
+            }
+
+            if (id == 'sec-4') {
+                $("#nav").removeClass("bg-ihsao-primary");
+                $("#nav").addClass("bg-black");
+            } else {
+                $("#nav").removeClass("bg-black");
+                $("#nav").addClass("bg-ihsao-primary");
+            }
+        });
+    </script>
 </body>
 
 </html>

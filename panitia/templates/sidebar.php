@@ -3,7 +3,7 @@
         <button class="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent" type="button" onclick="toggleNavbar('example-collapse-sidebar')">
             <i class="fas fa-bars"></i>
         </button>
-        <a class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0" href="index.html">
+        <a class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0" href="#">
             Admin Panel IHSAO 2021
         </a>
         <ul class="md:hidden items-center flex flex-wrap list-none">
@@ -27,7 +27,7 @@
             <div class="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200">
                 <div class="flex flex-wrap">
                     <div class="w-6/12">
-                        <a class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0" href="index.html">
+                        <a class="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0" href="#">
                             Admin Panel IHSAO 2021
                         </a>
                     </div>
@@ -187,7 +187,7 @@
             <!-- Navigation -->
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                 <li class="items-center">
-                    <a href="<?php echo BASE_URL; ?>/panitia/beginexam/beginexam.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "beginexam" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                    <a href="<?php echo BASE_URL; ?>/panitia/begin_exam/beginexam.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "beginexam" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-tv mr-2 text-sm text-blueGray-300"></i>
                         Mulai Ujian
                     </a>
