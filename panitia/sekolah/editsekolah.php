@@ -35,6 +35,7 @@ include_once('../templates/header.php');
                                         <form id="form-sekolah">
                                             <div class="flex flex-col">
                                                 <div class="md:flex">
+                                                    <input type="hidden" name="id">
                                                     <div class="md:w-full mr-3 mb-6 md:mb-0 flex-1">
                                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="sekolah">
                                                             Nama Sekolah
@@ -105,6 +106,7 @@ include_once('../templates/header.php');
          * kedalam form yang telah dibuat
          */
         function fillForm( dataset ) {
+            $( `[name="id"]` ).val( dataset.id );
             $( `[name="sekolah"]` ).val( dataset.sekolah );
         }
 
