@@ -147,9 +147,6 @@ include('../config.php');
     <!-- Jquery Js -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Preloader Js -->
-    <script src="/src/public/js/preloader.js"></script>
-
     <!-- Alphine Js -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
