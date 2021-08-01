@@ -96,3 +96,4 @@ include_once('../templates/header.php');
 </body>
 
 </html>
+<script src="<?php echo BASE_URL ?>/panitia/templates/footer.js"></script>
