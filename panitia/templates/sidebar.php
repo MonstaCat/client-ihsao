@@ -187,7 +187,7 @@
             <!-- Navigation -->
             <ul class="md:flex-col md:min-w-full flex flex-col list-none">
                 <li class="items-center">
-                    <a href="<?php echo BASE_URL; ?>/panitia/beginexam/beginexam.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "beginexam" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                    <a href="<?php echo BASE_URL; ?>/panitia/begin_exam/beginexam.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "beginexam" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-tv mr-2 text-sm text-blueGray-300"></i>
                         Mulai Ujian
                     </a>
