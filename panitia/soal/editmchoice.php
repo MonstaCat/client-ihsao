@@ -54,31 +54,31 @@ include_once('../templates/header.php');
                                                             Centang Jawaban Benar
                                                         </label>
                                                         <div class="flex items-center mb-3">
-                                                            <input type="hidden" name="jawaban_id">
+                                                            <input type="hidden" name="jawaban_id[]">
                                                             <input type="checkbox" id="jawaban1" id="jawaban1_is_key" name="jawaban_key[]" value="a">
                                                             <input type=" text" placeholder="Jawaban 1" name="jawaban[]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2 mr-2" style="margin-left: 10px;">
                                                             <input type="file" name="jawaban_image[]" accept="image/*">
                                                         </div>
                                                         <div class="flex items-center mb-3">
-                                                            <input type="hidden" name="jawaban_id">
+                                                            <input type="hidden" name="jawaban_id[]">
                                                             <input type="checkbox" id="jawaban2" name="jawaban_key[]" value="b">
                                                             <input type=" text" placeholder="Jawaban 2" name="jawaban[]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2 mr-2" style="margin-left: 10px;">
                                                             <input type="file" name="jawaban_image[]" accept="image/*">
                                                         </div>
                                                         <div class="flex items-center mb-3">
-                                                            <input type="hidden" name="jawaban_id">
+                                                            <input type="hidden" name="jawaban_id[]">
                                                             <input type="checkbox" id="jawaban3" name="jawaban_key[]" value="c">
                                                             <input type=" text" placeholder="Jawaban 3" name="jawaban[]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2 mr-2" style="margin-left: 10px;">
                                                             <input type="file" name="jawaban_image[]" accept="image/*">
                                                         </div>
                                                         <div class="flex items-center mb-3">
-                                                            <input type="hidden" name="jawaban_id">
+                                                            <input type="hidden" name="jawaban_id[]">
                                                             <input type="checkbox" id="jawaban4" name="jawaban_key[]" value="d">
                                                             <input type=" text" placeholder="Jawaban 4" name="jawaban[]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2 mr-2" style="margin-left: 10px;">
                                                             <input type="file" name="jawaban_image[]" accept="image/*">
                                                         </div>
                                                         <div class="flex items-center mb-3">
-                                                            <input type="hidden" name="jawaban_id">
+                                                            <input type="hidden" name="jawaban_id[]">
                                                             <input type="checkbox" id="jawaban5" name="jawaban_key[]" value="e">
                                                             <input type=" text" placeholder="Jawaban 5" name="jawaban[]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2 mr-2" style="margin-left: 10px;">
                                                             <input type="file" name="jawaban_image[]" accept="image/*">
@@ -135,7 +135,7 @@ include_once('../templates/header.php');
 
         const currentQueryString = new URLSearchParams(window.location.search);
         const soalId    = currentQueryString.get("id");
-        const endpoint  = `${API_SOAL_MULTIPLE}?id=${soalId}`;
+        const endpoint  = `${API_SOAL_MULTIPLE}?id=${soalId}&with_assoc=true`;
         
         /**
          * mengisi tiap form
@@ -150,7 +150,7 @@ include_once('../templates/header.php');
             for( let i = 0; i < MAX_JAWABAN; i++ ) {
                 const dataJawaban = data.jawaban[i];
 
-                $( `[name="jawaban_id"]` )[i].value = dataJawaban.id;
+                $( `[name="jawaban_id[]"]` )[i].value = dataJawaban.id;
                 $( `[name="jawaban[]"]` )[i].value = dataJawaban.jawaban;
                 $( `[name="jawaban_key[]"]` )[i].checked = dataJawaban.is_key;
 
@@ -190,7 +190,7 @@ include_once('../templates/header.php');
             // tambahkan data jawaban kedalam formdata
             for( let i = 0; i < $(`[name="jawaban[]"]`).length; i++ ) {
                 const jawaban = {
-                    id          : $(`[name="jawaban_id"]`)[i].value,
+                    id          : $(`[name="jawaban_id[]"]`)[i].value,
                     key         : $(`[name="jawaban_key[]"]`)[i].value,
                     jawaban     : $(`[name="jawaban[]"]`)[i].value,
                     is_key      : $(`[name="jawaban_key[]"]`)[i].checked,
