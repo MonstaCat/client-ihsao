@@ -108,35 +108,40 @@ include_once('../templates/header.php');
          * memuat soal mc
          */
         function loadMC( page = 1, offset = 0 ) {
-            let total = 0;
-            let currentOffset = offset;
-            let cluster = page;
-            let limit   = 30;
-            let endpoint = `${API_SOAL_MULTIPLE}/cache?page=${cluster}&limit=${limit}`;
+            return new Promise( PromiseResponse => { 
+                let total = 0;
+                let currentOffset = offset;
+                let cluster = page;
+                let limit   = 30;
+                let endpoint = `${API_SOAL_MULTIPLE}/cache?page=${cluster}&limit=${limit}`;
 
-            loadingIndicator.attr( `x-data`, `{ width : ${20} }` )
+                loadingIndicator.attr( `x-data`, `{ width : ${20} }` )
 
-            fetch( endpoint, { headers : { Authorization : API_KEY } } )
-            .then( response => response.json() )
-            .then( response => {
-                total = response.total;
-                currentOffset += response.data.length;
-                
-                
-                loadingIndicator.attr( `x-data`, `{ width : ${40} }` )
-                
-                if( currentOffset >= total ) {
-                    currentOffset = total;
-                }
+                fetch( endpoint, { headers : { Authorization : API_KEY } } )
+                .then( response => response.json() )
+                .then( response => {
+                    total = response.total;
+                    currentOffset += response.data.length;
+                    
+                    
+                    loadingIndicator.attr( `x-data`, `{ width : ${40} }` )
+                    
+                    if( currentOffset >= total ) {
+                        currentOffset = total;
+                    }
 
-                const loadMcMsg  = `Memuat soal mc (${currentOffset} / ${total})`
-                const loadMcCond = `(width >= 1 && width < 50) ? '${loadMcMsg}' : ''` 
-                
-                loadingDescription.attr( `x-text`,  loadMcCond);
-                if( currentOffset < total ) {
-                    cluster++;
-                    loadMC( cluster, currentOffset );
-                }
+                    const loadMcMsg  = `Memuat soal mc (${currentOffset} / ${total})`
+                    const loadMcCond = `(width >= 1 && width < 50) ? '${loadMcMsg}' : ''` 
+                    
+                    loadingDescription.attr( `x-text`,  loadMcCond);
+                    if( currentOffset < total ) {
+                        cluster++;
+                        loadMC( cluster, currentOffset );
+                    }
+                    else {
+                        PromiseResponse( true )
+                    }
+                } )
             } )
         }
     </script>
