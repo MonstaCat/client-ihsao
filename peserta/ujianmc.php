@@ -7,7 +7,7 @@ $PageFile = "ujianmc";
 include_once('templates/header.php');
 ?>
 
-<body class="text-blueGray-700 antialiased bg-blueGray-50">
+<body oncontextmenu="return false" class="text-blueGray-700 antialiased bg-blueGray-50">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root">
         <div class="mx-20 mt-4">
@@ -196,6 +196,27 @@ include_once('templates/header.php');
 
     <!-- Alpine.js -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+    <!-- Disable dev tools -->
+    <script>
+        document.onkeydown = function(e) {
+            if (event.keyCode == 123) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+                return false;
+            }
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+                return false;
+            }
+        }
+    </script>
 
     <script>
         //declare start time
