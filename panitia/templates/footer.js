@@ -31,6 +31,4 @@ function logout( destroy ) {
 	})
 }
 
-$( document ).ready( function() {
-	logout( CHECK_CREDENTIAL );
-} )
+logout( CHECK_CREDENTIAL );
