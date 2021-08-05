@@ -35,6 +35,9 @@ include_once('../templates/header.php');
                                         <button id="button-ujian" class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-full" type="button">
                                             Mulai Ujian
                                         </button>
+                                        <button class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-full" type="button">
+                                            Reset Ujian
+                                        </button>
 
                                         <div class="my-12" id="loading-indicator" x-data="{ width: '0' }" x-init="
                                         $watch('width', value => { 
@@ -67,11 +70,17 @@ include_once('../templates/header.php');
                                         <ul id="countdown" hidden="">
                                             <!-- <li><span class="days"></span><p class="days_text">Days</p></li>
                                             <li class="seperator">:</li> -->
-                                            <li><span class="hours"></span><p class="hours_text">Hours</p></li>
+                                            <li><span class="hours"></span>
+                                                <p class="hours_text">Hours</p>
+                                            </li>
                                             <li class="seperator">:</li>
-                                            <li><span class="minutes"></span><p class="minutes_text">Minutes</p></li>
+                                            <li><span class="minutes"></span>
+                                                <p class="minutes_text">Minutes</p>
+                                            </li>
                                             <li class="seperator">:</li>
-                                            <li><span class="seconds"></span><p class="seconds_text">Seconds</p></li>
+                                            <li><span class="seconds"></span>
+                                                <p class="seconds_text">Seconds</p>
+                                            </li>
                                         </ul>
 
 
@@ -102,22 +111,21 @@ include_once('../templates/header.php');
         var finishLoading = false;
         var loadingBar = document.getElementById("loading-bar");
         var buttonText = document.getElementById("button-ujian");
-        var loadingIndicator = $( "#loading-indicator" );
-        var loadingDescription = $( `#loading-description` );
-        
+        var loadingIndicator = $("#loading-indicator");
+        var loadingDescription = $(`#loading-description`);
+
         buttonText.onclick = function() {
             loadingBar.style.display = "block";
-            
+
             loadCache();
         }
 
         /**
          * load semua cache dan konfigurasi disini
          */
-        async function loadCache()
-        {
-            buttonText.setAttribute( `disabled`, true );
-            buttonText.classList.add( `disabled:opacity-80` )
+        async function loadCache() {
+            buttonText.setAttribute(`disabled`, true);
+            buttonText.classList.add(`disabled:opacity-80`)
 
             loadMC()
         }
@@ -125,62 +133,67 @@ include_once('../templates/header.php');
         /**
          * memuat soal mc
          */
-        function loadMC( page = 1, offset = 0 ) {
+        function loadMC(page = 1, offset = 0) {
             let total = 0;
             let currentOffset = offset;
             let cluster = page;
-            let limit   = 30;
+            let limit = 30;
             let endpoint = `${API_SOAL_MULTIPLE}/cache?page=${cluster}&limit=${limit}`;
 
-            loadingIndicator.attr( `x-data`, `{ width : ${20} }` )
+            loadingIndicator.attr(`x-data`, `{ width : ${20} }`)
 
-            fetch( endpoint, { headers : { Authorization : API_KEY } } )
-            .then( response => response.json() )
-            .then( response => {
-                total = response.total;
-                currentOffset += response.data.length;
-                
-                loadingIndicator.attr( `x-data`, `{ width : ${40} }` )
-                
-                if( currentOffset >= total ) {
-                    currentOffset = total;
-                }
+            fetch(endpoint, {
+                    headers: {
+                        Authorization: API_KEY
+                    }
+                })
+                .then(response => response.json())
+                .then(response => {
+                    total = response.total;
+                    currentOffset += response.data.length;
 
-                if( currentOffset < total ) {
-                    cluster++;
-                    loadMC( cluster, currentOffset );
-                }
-                else {
-                    loadMCConf();
-                }
-            } )
+                    loadingIndicator.attr(`x-data`, `{ width : ${40} }`)
+
+                    if (currentOffset >= total) {
+                        currentOffset = total;
+                    }
+
+                    if (currentOffset < total) {
+                        cluster++;
+                        loadMC(cluster, currentOffset);
+                    } else {
+                        loadMCConf();
+                    }
+                })
         }
 
         /**
          * memuat konfigurasi mc
          */
-        function loadMCConf()
-        {
+        function loadMCConf() {
 
-            loadingIndicator.attr( `x-data`, `{ width : ${60} }` )
+            loadingIndicator.attr(`x-data`, `{ width : ${60} }`)
 
-            const conf = { headers : { Authorization : API_KEY } };
+            const conf = {
+                headers: {
+                    Authorization: API_KEY
+                }
+            };
 
-            fetch( `${API_SOAL_MULTIPLE}/start`, conf )
-            .then( response => response.json() )
-            .then( response => {
-                loadingIndicator.attr( `x-data`, `{ width : ${79} }` )
+            fetch(`${API_SOAL_MULTIPLE}/start`, conf)
+                .then(response => response.json())
+                .then(response => {
+                    loadingIndicator.attr(`x-data`, `{ width : ${79} }`)
 
-                finishing( JSON.parse( response.data ) );
-            })
+                    finishing(JSON.parse(response.data));
+                })
         }
 
-        function finishing( deadline )
-        {
-            const dt  = new Date( deadline );
+        function finishing(deadline) {
+            const dt = new Date(deadline);
             const dtd = `${dt.getMonth()+1}/${dt.getDate()}/${dt.getFullYear()}`;
             const dth = `${dt.getHours()}:${dt.getMinutes()}:${dt.getSeconds()}`;
-            const shutdown = dtd + " " + dth; 
+            const shutdown = dtd + " " + dth;
 
             $('#countdown').show();
             $('#countdown').countdown({
@@ -193,11 +206,11 @@ include_once('../templates/header.php');
                 alert('Done!');
             });
 
-            loadingIndicator.attr( `x-data`, `{ width : ${100} }` )
-            window.setTimeout( function(){
+            loadingIndicator.attr(`x-data`, `{ width : ${100} }`)
+            window.setTimeout(function() {
                 loadingBar.style.display = `none`;
-            }, 3000 )
-        }   
+            }, 3000)
+        }
     </script>
 
 </body>
