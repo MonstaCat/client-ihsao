@@ -6,6 +6,7 @@ $query = array(
 	"page" => isset( $_GET[ "page" ] ) ? $_GET[ "page" ] : 1,
 	"limit" => isset( $_GET[ "limit" ] ) ? intval($_GET[ "limit" ]) : 30,
 	"nama_tim" => isset( $_GET[ "q" ] ) ? $_GET[ "q" ] : "",
+	"token" => $_GET[ "token" ],
 ); 
 
 $endpoint = BASE_URL_API . "api/lomba";
@@ -18,7 +19,7 @@ curl_setopt_array($ch, array(
 	CURLOPT_URL => $endpoint,
 	CURLOPT_RETURNTRANSFER => 1,
 	CURLOPT_HTTPHEADER => array(
-		"Authorization: d033e22ae348aeb5660fc2140aec35850c4da997"
+		"Authorization: {$query['token']}"
 	)
 ));
 

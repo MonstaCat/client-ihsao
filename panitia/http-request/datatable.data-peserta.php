@@ -5,7 +5,8 @@ require '../../config.php';
 $query = array(
 	"page" => ceil( $_GET[ "start" ] / $_GET[ "length" ] ) + 1,
 	"limit" => intval($_GET[ "length" ]),
-	"peserta" => $_GET[ "search" ][ "value" ]
+	"peserta" => $_GET[ "search" ][ "value" ],
+	"token" => $_GET[ "token" ],
 );
 
 if( $query[ "page" ] < 1 ) {
@@ -22,7 +23,7 @@ curl_setopt_array($ch, array(
 	CURLOPT_URL => $endpoint,
 	CURLOPT_RETURNTRANSFER => 1,
 	CURLOPT_HTTPHEADER => array(
-		"Authorization: d033e22ae348aeb5660fc2140aec35850c4da997"
+		"Authorization: {$query['token']}"
 	)
 ));
 
@@ -44,7 +45,7 @@ echo json_encode( array(
 	"draw" => $_GET[ "draw" ],
 	"recordsTotal" => intval( $output->total ),
 	"recordsFiltered" => $output->filtered,
-	"data" => $dataset ?? null
+	"data" => $dataset ?? []
 ) );
 
 curl_close($ch);
