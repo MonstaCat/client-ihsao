@@ -33,26 +33,25 @@ include_once('templates/header.php');
                                                     <tbody>
                                                         <tr>
                                                             <td class="px-2 py-2 text-gray-500 font-semibold flex">Jenis Soal</td>
-                                                            <td class="px-2 py-2">Multiplechoice SMK</td>
+                                                            <td class="px-2 py-2" id="ujian-sekolah"></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="px-2 py-2 text-gray-500 font-semibold flex">Jumlah Soal</td>
-                                                            <td class="px-2 py-2">40 Soal</td>
+                                                            <td class="px-2 py-2">50 Soal</td>
                                                         </tr>
                                                         <tr>
                                                             <td class="px-2 py-2 text-gray-500 font-semibold flex">Waktu</td>
-                                                            <td class="px-2 py-2">120 Menit</td>
+                                                            <td class="px-2 py-2">75 Menit</td>
                                                         </tr>
                                                         <tr>
                                                             <td class="px-2 py-2 text-gray-500 font-semibold flex">Status</td>
-                                                            <td class="px-2 py-2 font-bold">Belum Dikerjakan</td>
+                                                            <td class="px-2 py-2 font-bold" id="ujian-status">Belum Dikerjakan</td>
                                                         </tr>
                                                         <tr>
                                                             <td class="px-2 py-2 text-gray-500 font-semibold flex">Token</td>
                                                             <td class="px-2 py-2 font-bold">
-                                                                <form action="">
-                                                                    <input type="text" placeholder="Masukkan Token" class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:shadow-outline w-full">
-                                                                </form>
+                                                                <form id="form-token">
+                                                                    <input type="text" name="token" placeholder="Masukkan Token" class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:shadow-outline w-full">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -60,6 +59,7 @@ include_once('templates/header.php');
                                                                 <button type="submit" class="float-right bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 mt-5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                                                                     Mulai Ujian
                                                                 </button>
+                                                                </form>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -85,3 +85,41 @@ include_once('templates/header.php');
 </body>
 
 </html>
+
+<script type="text/javascript">
+    var statusText  = $( `#ujian-status` );
+    var sekolahText = $( `#ujian-sekolah` );
+    const isBan = localStorage.getItem( `isBanned` ) != null;
+    const isSmk = JSON.parse( localStorage.getItem( `isSmk` ) ) == true;
+
+    sekolahText.text( (isSmk) ? "Multiplechoice SMK" : "Multiplechoice SMA" );
+
+    if( isBan ) {
+        statusText.html( `Anda didiskualifikasi` )
+    }
+
+    $( `#form-token` ).submit( function( e ){
+        e.preventDefault();
+
+        const currentToken = $(this).find( `[name="token"]` ).val();
+        const token = localStorage.getItem( `token` );
+        const sekolah = ( isSmk ) ? 1 : 0;
+
+        if( token != currentToken ) {
+            return alert( `Token tidak benar` )
+        }
+
+        return configure( token, sekolah );
+    } )
+
+    /**
+     * memuat konfigurasi untuk memulai lomba
+     */
+    function configure( token, sekolah ) {
+        fetch( `${API_SOAL_MULTIPLE}/start/${token}/${sekolah}` )
+        .then( response => response.json() )
+        .then( response => {
+            console.log(response)
+        } )
+    }
+</script>
