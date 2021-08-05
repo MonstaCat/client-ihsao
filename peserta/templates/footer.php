@@ -14,6 +14,6 @@
 	} )	
 
 	socket.on( `banned`, token => {
-		window.location = `${BASE_URL}/peserta/login.php`;
+		window.location = `${BASE_URL}/peserta`;
 	} )
 </script>
