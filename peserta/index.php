@@ -206,6 +206,7 @@ include('../config.php');
 
                 window.location = `${BASE_URL}/peserta/home.php`;
             } else if (data.code == 403) {
+                localStorage.setItem(`token`, data.data.token);
                 localStorage.setItem(`isBanned`, true)
                 window.location = `${BASE_URL}/peserta/home.php`;
             } else {
