@@ -85,7 +85,10 @@ include_once('../templates/header.php');
                 ],
                 ajax: {
                     url: `${BASE_URL}/panitia/http-request/datatable.data-sekolah.php`,
-                    dataType: "JSON"
+                    dataType: "JSON",
+                    data : {
+                        token : API_KEY
+                    }
                 },
                 columnDefs: [
                     {

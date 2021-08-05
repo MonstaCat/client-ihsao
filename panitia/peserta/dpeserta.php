@@ -116,7 +116,10 @@ include_once('../templates/header.php');
                 serverSide: true,
                 ajax: {
                     url: `${BASE_URL}/panitia/http-request/datatable.data-peserta.php`,
-                    dataType: "JSON"
+                    dataType: "JSON",
+                    data : {
+                        token : API_KEY
+                    }
                 },
                 columnDefs: [
                     {

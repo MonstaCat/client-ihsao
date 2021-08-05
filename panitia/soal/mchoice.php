@@ -101,7 +101,10 @@ include_once('../templates/header.php');
                 ],
                 ajax: {
                     url: `${BASE_URL}/panitia/http-request/datatable.data-mchoice.php`,
-                    dataType: "JSON"
+                    dataType: "JSON",
+                    data : {
+                        token : API_KEY
+                    }
                 },
                 columnDefs: [
                     {
