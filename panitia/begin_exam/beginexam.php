@@ -53,7 +53,7 @@ include_once('../templates/header.php');
                                                 <div class="bg-orange-500 rounded h-6 text-center text-white text-sm transition mb-2" :style="`width: ${width}%; transition: width 2s;`" x-text="`${width}%`">
                                                 </div>
                                                 <p class="justify-center flex" x-text="(width >= 0 && width < 40) ? 'Memuat soal mc' : ''"></p>
-                                                <p class="justify-center flex" x-text="(width >= 40 && width < 80) ? 'Inisialisasi...' : ''"></p>
+                                                <p class="justify-center flex" x-text="(width > 40 && width < 80) ? 'Inisialisasi...' : ''"></p>
                                                 <p class="justify-center flex" x-text="(width >= 80) ? 'Finishing...' : ''"></p>
                                             </div>
                                             <!-- End Regular with text version -->
@@ -137,7 +137,7 @@ include_once('../templates/header.php');
             let total = 0;
             let currentOffset = offset;
             let cluster = page;
-            let limit = 30;
+            let limit = 100;
             let endpoint = `${API_SOAL_MULTIPLE}/cache?page=${cluster}&limit=${limit}`;
 
             loadingIndicator.attr(`x-data`, `{ width : ${20} }`)
@@ -162,7 +162,7 @@ include_once('../templates/header.php');
                         window.setTimeout( function(){
                             cluster++;
                             loadMC(cluster, currentOffset);
-                        }, 200 )
+                        }, 1000 )
                     } else {
                         loadMCConf();
                     }
