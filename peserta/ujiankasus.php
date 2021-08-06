@@ -23,7 +23,17 @@ include_once('templates/header.php');
                         </form>
                     </div>
                     <div class="float-right">
-                        <h3 class="text-lg font-bold">SISA WAKTU: <span class="countdown"></span></h3>
+                        <h3 class="flex text-lg font-bold">SISA WAKTU :
+                            <span class="countdown">
+                                <ul class="flex ml-3" id="batas-waktu">
+                                    <li><span class="hours countdown-text">00</span></li>
+                                    <li class="seperator countdown-text">:</li>
+                                    <li><span class="minutes countdown-text">00</span></li>
+                                    <li class="seperator countdown-text">:</li>
+                                    <li><span class="seconds countdown-text">00</span></li>
+                                </ul>
+                            </span>
+                        </h3>
                     </div>
                 </div>
             </div>
@@ -84,36 +94,22 @@ include_once('templates/header.php');
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
     <script>
-        //declare start time
-        var timer2 = "1:40:00";
+        // initialize countdown
+        var now = new Date();
+        var day = now.getDate();
+        var month = now.getMonth() + 1;
+        var year = now.getFullYear() + 1;
 
-        //intercal for seconds
-        var interval = setInterval(function() {
-            //timer will be [hour, minute, second]
-            var timer = timer2.split(':');
-            var hours = parseInt(timer[0], 10);
-            var minutes = parseInt(timer[1], 10);
-            var seconds = parseInt(timer[2], 10);
-            //reduce second by one
-            --seconds;
-            //calculate new minute and hours
-            minutes = (seconds < 0) ? --minutes : minutes;
-            hours = minutes < 0 ? --hours : hours;
-
-            if (hours < 0) {
-                clearInterval(interval);
-                return;
-            }
-
-            seconds = (seconds < 0) ? 59 : seconds;
-            seconds = (seconds < 10) ? '0' + seconds : seconds;
-            minutes = (minutes < 0) ? 59 : minutes;
-            minutes = (minutes < 10) ? '0' + minutes : minutes;
-
-            timer2 = hours + ':' + minutes + ':' + seconds;
-            $('.countdown').html(timer2);
-
-        }, 1000);
+        $('#batas-waktu').countdown({
+            date: '08/06/2021 23:59:00', // TODO Date format: 07/27/2017 17:00:00
+            offset: +7, // TODO Your Timezone Offset
+            day: 'Day',
+            days: 'Days',
+            hideOnComplete: false
+        }, function(container) {
+            // alert('Done!');
+            // Jika countdown selesai, tampilkan aksi disini
+        });
     </script>
 
 </body>

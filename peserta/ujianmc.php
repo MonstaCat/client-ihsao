@@ -20,7 +20,17 @@ include_once('templates/header.php');
                         </button>
                     </div>
                     <div class="float-right">
-                        <h3 class="text-lg font-bold">SISA WAKTU: <span class="countdown"></span></h3>
+                        <h3 class="flex text-lg font-bold">SISA WAKTU :
+                            <span class="countdown">
+                                <ul class="flex ml-3" id="batas-waktu">
+                                    <li><span class="hours countdown-text">00</span></li>
+                                    <li class="seperator countdown-text">:</li>
+                                    <li><span class="minutes countdown-text">00</span></li>
+                                    <li class="seperator countdown-text">:</li>
+                                    <li><span class="seconds countdown-text">00</span></li>
+                                </ul>
+                            </span>
+                        </h3>
                     </div>
                 </div>
             </div>
@@ -193,7 +203,8 @@ include_once('templates/header.php');
 
     <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+    <!-- Countdown Js -->
+    <script src="<?php echo BASE_URL; ?>/src/public/js/jquery.countdown.min.js"></script>
     <!-- Alpine.js -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
@@ -216,30 +227,47 @@ include_once('templates/header.php');
                 return false;
             }
         }
+
+        // initialize countdown
+        var now = new Date();
+        var day = now.getDate();
+        var month = now.getMonth() + 1;
+        var year = now.getFullYear() + 1;
+
+        $('#batas-waktu').countdown({
+            date: '08/06/2021 23:59:00', // TODO Date format: 07/27/2017 17:00:00
+            offset: +7, // TODO Your Timezone Offset
+            day: 'Day',
+            days: 'Days',
+            hideOnComplete: false
+        }, function(container) {
+            // alert('Done!');
+            // Jika countdown selesai, tampilkan aksi disini
+        });
     </script>
 
     <script>
-        var MC_TOTAL = localStorage.getItem( `mc-total` );
+        var MC_TOTAL = localStorage.getItem(`mc-total`);
         var currentPage = 1;
 
         async function run() {
             const conf = await getConf();
-            
-            setDeadline( conf.data );
-            setSoalSlider( conf.data );
+
+            setDeadline(conf.data);
+            setSoalSlider(conf.data);
         }
         run();
 
         /**
          * mengambil konfigurasi dari redis
          */
-        async function getConf()
-        {
-            const f = await fetch( `${API_SOAL_MULTIPLE}/conf` )
-           
+        async function getConf() {
+            const f = await fetch(`${API_SOAL_MULTIPLE}/conf`)
+
             return f.json();
         }
 
+<<<<<<< HEAD
         /**
          * membuat slider pindah halaman
          */
@@ -252,6 +280,9 @@ include_once('templates/header.php');
                 container.append( element );
 
             }
+=======
+        function setSoalSlider(conf) {
+>>>>>>> origin/main
 
             $( document ).on( `click`, `.mc-soal-button`, function(){
                 fetchSoal( Number( $(this).attr("page") ) );
@@ -274,13 +305,12 @@ include_once('templates/header.php');
         /**
          * hitung mundur waktu
          */
-        function setDeadline( conf )
-        {  
+        function setDeadline(conf) {
 
-            const d = new Date( JSON.parse( conf.deadline ) );
-            
+            const d = new Date(JSON.parse(conf.deadline));
+
             const time = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
-            
+
             //declare start time
             var timer2 = time;
 
@@ -312,7 +342,6 @@ include_once('templates/header.php');
 
             }, 1000);
         }
-
     </script>
 
 </body>

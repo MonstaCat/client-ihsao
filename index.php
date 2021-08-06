@@ -483,13 +483,13 @@ include('config.php');
         var year = now.getFullYear() + 1;
 
         $('#event-countdown').countdown({
-            date: '08/11/2021 00:00:00', // TODO Date format: 07/27/2017 17:00:00
+            date: '08/14/2021 00:00:00', // TODO Date format: 07/27/2017 17:00:00
             offset: +7, // TODO Your Timezone Offset
             day: 'Day',
             days: 'Days',
-            hideOnComplete: true
+            hideOnComplete: false
         }, function(container) {
-            alert('Done!');
+            // alert('Done!');
         });
 
         // Smooth scrolling for browsers that don't support CSS smooth scrolling
