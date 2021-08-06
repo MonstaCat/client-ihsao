@@ -7,11 +7,13 @@ $query = array(
 	"limit" => isset( $_GET[ "limit" ] ) ? intval($_GET[ "limit" ]) : 30,
 	"nama_tim" => isset( $_GET[ "q" ] ) ? $_GET[ "q" ] : "",
 	"sekolah" => isset( $_GET[ "sekolah" ] ) ? $_GET[ "sekolah" ] : "",
+	
 ); 
 
 $endpoint = BASE_URL_API . "api/tim";
 $endpoint .= "?";
 $endpoint .= http_build_query( $query );
+$admin_token = $_GET["token"];
 
 $ch = curl_init();
 
@@ -19,7 +21,7 @@ curl_setopt_array($ch, array(
 	CURLOPT_URL => $endpoint,
 	CURLOPT_RETURNTRANSFER => 1,
 	CURLOPT_HTTPHEADER => array(
-		"Authorization: d033e22ae348aeb5660fc2140aec35850c4da997"
+		"Authorization: {$admin_token}"
 	)
 ));
 

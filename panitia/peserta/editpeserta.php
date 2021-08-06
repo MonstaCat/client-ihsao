@@ -113,6 +113,7 @@ include_once('../templates/header.php');
                         dataType: "json",
                         data: function(params) {
                             return {
+                            token : API_KEY,
                                 q: params.term,
                                 page: params.page || 1,
                                 limit: 30
@@ -153,6 +154,7 @@ include_once('../templates/header.php');
                         cache: true,
                         data: function(params) {
                             return {
+                            token : API_KEY,
                                 q: params.term,
                                 page: params.page || 1,
                                 sekolah: data.id,

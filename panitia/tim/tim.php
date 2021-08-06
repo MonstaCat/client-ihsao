@@ -120,6 +120,7 @@ include_once('../templates/header.php');
                     dataType: "json",
                     data: function(params) {
                         return {
+                            token : API_KEY,
                             q: params.term,
                             page: params.page || 1,
                             limit: 10
@@ -149,6 +150,7 @@ include_once('../templates/header.php');
                     dataType: "json",
                     data: function(params) {
                         return {
+                            token : API_KEY,
                             q: params.term,
                             page: params.page || 1,
                             limit: 30
