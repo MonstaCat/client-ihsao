@@ -219,36 +219,73 @@ include_once('templates/header.php');
     </script>
 
     <script>
-        //declare start time
-        var timer2 = "1:15:00";
+        var MC_TOTAL = localStorage.getItem( `mc-total` );
+        var currentPage = 1;
 
-        //intercal for seconds
-        var interval = setInterval(function() {
-            //timer will be [hour, minute, second]
-            var timer = timer2.split(':');
-            var hours = parseInt(timer[0], 10);
-            var minutes = parseInt(timer[1], 10);
-            var seconds = parseInt(timer[2], 10);
-            //reduce second by one
-            --seconds;
-            //calculate new minute and hours
-            minutes = (seconds < 0) ? --minutes : minutes;
-            hours = minutes < 0 ? --hours : hours;
+        async function run() {
+            const conf = await getConf();
+            
+            setDeadline( conf.data );
+            setSoalSlider( conf.data );
+        }
+        run();
 
-            if (hours < 0) {
-                clearInterval(interval);
-                return;
-            }
+        /**
+         * mengambil konfigurasi dari redis
+         */
+        async function getConf()
+        {
+            const f = await fetch( `${API_SOAL_MULTIPLE}/conf` )
+           
+            return f.json();
+        }
 
-            seconds = (seconds < 0) ? 59 : seconds;
-            seconds = (seconds < 10) ? '0' + seconds : seconds;
-            minutes = (minutes < 0) ? 59 : minutes;
-            minutes = (minutes < 10) ? '0' + minutes : minutes;
+        function setSoalSlider( conf ) {
 
-            timer2 = hours + ':' + minutes + ':' + seconds;
-            $('.countdown').html(timer2);
+        }
 
-        }, 1000);
+        /**
+         * hitung mundur waktu
+         */
+        function setDeadline( conf )
+        {  
+
+            const d = new Date( JSON.parse( conf.deadline ) );
+            
+            const time = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+            
+            //declare start time
+            var timer2 = time;
+
+            //intercal for seconds
+            var interval = setInterval(function() {
+                //timer will be [hour, minute, second]
+                var timer = timer2.split(':');
+                var hours = parseInt(timer[0], 10);
+                var minutes = parseInt(timer[1], 10);
+                var seconds = parseInt(timer[2], 10);
+                //reduce second by one
+                --seconds;
+                //calculate new minute and hours
+                minutes = (seconds < 0) ? --minutes : minutes;
+                hours = minutes < 0 ? --hours : hours;
+
+                if (hours < 0) {
+                    clearInterval(interval);
+                    return;
+                }
+
+                seconds = (seconds < 0) ? 59 : seconds;
+                seconds = (seconds < 10) ? '0' + seconds : seconds;
+                minutes = (minutes < 0) ? 59 : minutes;
+                minutes = (minutes < 10) ? '0' + minutes : minutes;
+
+                timer2 = hours + ':' + minutes + ':' + seconds;
+                $('.countdown').html(timer2);
+
+            }, 1000);
+        }
+
     </script>
 
 </body>
