@@ -119,7 +119,15 @@ include_once('templates/header.php');
         fetch( `${API_SOAL_MULTIPLE}/start/${token}/${sekolah}` )
         .then( response => response.json() )
         .then( response => {
-            console.log(response)
+            if( ! response.start ) {
+                return alert( response.msg );
+            }
+
+            localStorage.setItem( `mc-total`, response.data.total );
+
+            const redirPath = `${BASE_URL}/peserta/ujianmc.php`;
+
+            window.location = redirPath;
         } )
     }
 </script>
