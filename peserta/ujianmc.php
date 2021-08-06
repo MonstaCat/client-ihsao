@@ -63,132 +63,33 @@ include_once('templates/header.php');
                 <!-- Content Soal -->
                 <div class="mb-auto h-auto soal-content">
                     <div x-show="openTab === 1">
-                        <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
-                        <p class="text-sm font-semibold mb-5">[[[[Ini adalah contoh soal 1]]]] Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dolores laborum modi perspiciatis id impedit aut suscipit, quo necessitatibus culpa magni inventore a eius molestias autem, libero ullam officiis porro.</p>
+                        <img class="max-h-72 mb-4" id="soal_gambar">
+                        <p class="text-sm font-semibold mb-5" id="soal"></p>
 
                         <!-- Objective -->
                         <div class="flex flex-col">
-                            <div class="items-center mb-3">
+                            <div class="items-center mb-3 set-jawaban">
                                 <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanA">
                                 <label class="text-sm font-semibold" for="jawabanA">Jawaban A</label>
                             </div>
-                            <div class="items-center mb-3">
+                            <div class="items-center mb-3 set-jawaban">
                                 <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanB">
                                 <label class="text-sm font-semibold" for="jawabanB">Jawaban B</label>
                             </div>
-                            <div class="items-center mb-3">
+                            <div class="items-center mb-3 set-jawaban">
                                 <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanC">
                                 <label class="text-sm font-semibold" for="jawabanC">Jawaban C</label>
                             </div>
-                            <div class="items-center mb-3">
+                            <div class="items-center mb-3 set-jawaban">
                                 <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanD">
                                 <label class="text-sm font-semibold" for="jawabanD">
-                                    <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
+                                    <!-- <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png"> -->
                                 </label>
                             </div>
-                            <div class="items-center mb-3">
+                            <div class="items-center mb-3 set-jawaban">
                                 <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanE">
                                 <label class="text-sm font-semibold" for="jawabanE">
-                                    <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div x-show="openTab === 2">
-                        <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
-                        <p class="text-sm font-semibold mb-5">[[[[Ini adalah contoh soal 2]]]] Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dolores laborum modi perspiciatis id impedit aut suscipit, quo necessitatibus culpa magni inventore a eius molestias autem, libero ullam officiis porro.</p>
-
-                        <!-- Objective -->
-                        <div class="flex flex-col">
-                            <div class="items-center mb-3">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanA">
-                                <label class="text-sm font-semibold" for="jawabanA">Jawaban A</label>
-                            </div>
-                            <div class="items-center mb-3">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanB">
-                                <label class="text-sm font-semibold" for="jawabanB">Jawaban B</label>
-                            </div>
-                            <div class="items-center mb-3">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanC">
-                                <label class="text-sm font-semibold" for="jawabanC">Jawaban C</label>
-                            </div>
-                            <div class="items-center mb-3">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanD">
-                                <label class="text-sm font-semibold" for="jawabanD">
-                                    <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
-                                </label>
-                            </div>
-                            <div class="items-center mb-3">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanE">
-                                <label class="text-sm font-semibold" for="jawabanE">
-                                    <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div x-show="openTab === 3">
-                        <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
-                        <p class="text-sm font-semibold mb-5">[[[[Ini adalah contoh soal 3]]]] Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dolores laborum modi perspiciatis id impedit aut suscipit, quo necessitatibus culpa magni inventore a eius molestias autem, libero ullam officiis porro.</p>
-
-                        <!-- Objective -->
-                        <div class="flex flex-col">
-                            <div class="items-center mb-3">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanA">
-                                <label class="text-sm font-semibold" for="jawabanA">Jawaban A</label>
-                            </div>
-                            <div class="items-center mb-3">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanB">
-                                <label class="text-sm font-semibold" for="jawabanB">Jawaban B</label>
-                            </div>
-                            <div class="items-center mb-3">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanC">
-                                <label class="text-sm font-semibold" for="jawabanC">Jawaban C</label>
-                            </div>
-                            <div class="items-center mb-3">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanD">
-                                <label class="text-sm font-semibold" for="jawabanD">
-                                    <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
-                                </label>
-                            </div>
-                            <div class="items-center mb-3">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanE">
-                                <label class="text-sm font-semibold" for="jawabanE">
-                                    <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div x-show="openTab === 4">
-                        <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
-                        <p class="text-sm font-semibold mb-5">[[[[Ini adalah contoh soal 4]]]] Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dolores laborum modi perspiciatis id impedit aut suscipit, quo necessitatibus culpa magni inventore a eius molestias autem, libero ullam officiis porro.</p>
-
-                        <!-- Objective -->
-                        <div class="flex flex-col">
-                            <div class="items-center mb-3">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanA">
-                                <label class="text-sm font-semibold" for="jawabanA">Jawaban A</label>
-                            </div>
-                            <div class="items-center mb-3">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanB">
-                                <label class="text-sm font-semibold" for="jawabanB">Jawaban B</label>
-                            </div>
-                            <div class="items-center mb-3">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanC">
-                                <label class="text-sm font-semibold" for="jawabanC">Jawaban C</label>
-                            </div>
-                            <div class="items-center mb-3">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanD">
-                                <label class="text-sm font-semibold" for="jawabanD">
-                                    <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
-                                </label>
-                            </div>
-                            <div class="items-center mb-3">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanE">
-                                <label class="text-sm font-semibold" for="jawabanE">
-                                    <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png">
+                                    <!-- <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png"> -->
                                 </label>
                             </div>
                         </div>
@@ -227,23 +128,6 @@ include_once('templates/header.php');
                 return false;
             }
         }
-
-        // initialize countdown
-        var now = new Date();
-        var day = now.getDate();
-        var month = now.getMonth() + 1;
-        var year = now.getFullYear() + 1;
-
-        $('#batas-waktu').countdown({
-            date: '08/06/2021 23:59:00', // TODO Date format: 07/27/2017 17:00:00
-            offset: +7, // TODO Your Timezone Offset
-            day: 'Day',
-            days: 'Days',
-            hideOnComplete: false
-        }, function(container) {
-            // alert('Done!');
-            // Jika countdown selesai, tampilkan aksi disini
-        });
     </script>
 
     <script>
@@ -267,22 +151,21 @@ include_once('templates/header.php');
             return f.json();
         }
 
-<<<<<<< HEAD
         /**
          * membuat slider pindah halaman
          */
         function setSoalSlider( conf ) {
             const container = $( `#button-soal` );
-            
+
+            // initial soal
+            fetchSoal( 1 );
+
             for( let i = 1; i<=MC_TOTAL; i++ ) {
-                const element   = `<li page="${i}" @click="openTab = ${i}" :class="{ 'border-4': openTab === ${i} }" class="mc-soal-button cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 border border-solid border-emerald-500">
+                const element   = `<li page="${i}" @click="openTab = 1" :class="{ 'border-4': openTab === ${i} }" class="mc-soal-button cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 border border-solid border-emerald-500">
                                <a href="#"></a></li>`;
                 container.append( element );
 
             }
-=======
-        function setSoalSlider(conf) {
->>>>>>> origin/main
 
             $( document ).on( `click`, `.mc-soal-button`, function(){
                 fetchSoal( Number( $(this).attr("page") ) );
@@ -295,10 +178,34 @@ include_once('templates/header.php');
         function fetchSoal( no ) 
         {
             const sekolah = Number( JSON.parse( localStorage.getItem( `isSmk` ) ) );
+            const storage = `${API_ORIGIN}/storages/images/soal-multiple`;
+
             fetch( `${API_SOAL_MULTIPLE}/unit/${token}/${sekolah}/${no}` )
             .then( response => response.json() )
             .then( response => {
-                console.log(response);
+                console.log(response.data);
+                if( response.data.soal_gambar == "" ) {
+                    $( `#soal` ).text( response.data.soal );
+                }
+                else {
+                    const image = `<img src="${storage}/${response.data.soal_gambar}" alt="">`
+                    $("#soal_gambar").html(image);
+                }
+
+                const setJawaban = $( `.set-jawaban` );
+
+                for( let i = 0; i < setJawaban.length; i++ ) {
+                    const jawaban = response.data.jawaban[i];
+                    const label   = setJawaban[i].children[1];
+
+                    if( jawaban.jawaban_gambar == "" ) {
+                        label.innerHTML = jawaban.jawaban;
+                    }
+                    else {
+                        const image = `<img src="${storage}/${jawaban.jawaban_gambar}" alt="">`
+                        label.innerHTML = image;
+                    }
+                }
             } )
         }
 
@@ -309,38 +216,20 @@ include_once('templates/header.php');
 
             const d = new Date(JSON.parse(conf.deadline));
 
+            const date = `${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}` 
             const time = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+            const dt = date + " " + time;
 
-            //declare start time
-            var timer2 = time;
-
-            //intercal for seconds
-            var interval = setInterval(function() {
-                //timer will be [hour, minute, second]
-                var timer = timer2.split(':');
-                var hours = parseInt(timer[0], 10);
-                var minutes = parseInt(timer[1], 10);
-                var seconds = parseInt(timer[2], 10);
-                //reduce second by one
-                --seconds;
-                //calculate new minute and hours
-                minutes = (seconds < 0) ? --minutes : minutes;
-                hours = minutes < 0 ? --hours : hours;
-
-                if (hours < 0) {
-                    clearInterval(interval);
-                    return;
-                }
-
-                seconds = (seconds < 0) ? 59 : seconds;
-                seconds = (seconds < 10) ? '0' + seconds : seconds;
-                minutes = (minutes < 0) ? 59 : minutes;
-                minutes = (minutes < 10) ? '0' + minutes : minutes;
-
-                timer2 = hours + ':' + minutes + ':' + seconds;
-                $('.countdown').html(timer2);
-
-            }, 1000);
+            $('#batas-waktu').countdown({
+                date: dt, // TODO Date format: 07/27/2017 17:00:00
+                offset: +7, // TODO Your Timezone Offset
+                day: 'Day',
+                days: 'Days',
+                hideOnComplete: false
+            }, function(container) {
+                // alert('Done!');
+                // Jika countdown selesai, tampilkan aksi disini
+            });     
         }
     </script>
 
