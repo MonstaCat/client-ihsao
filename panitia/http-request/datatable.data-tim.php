@@ -6,7 +6,7 @@ $query = array(
 	"page" => ceil( $_GET[ "start" ] / $_GET[ "length" ] ) + 1,
 	"limit" => intval($_GET[ "length" ]),
 	"tim" => $_GET[ "search" ][ "value" ],
-	"token" => $_GET[ "token" ],
+	
 );
 
 if( $query[ "page" ] < 1 ) {
@@ -16,6 +16,7 @@ if( $query[ "page" ] < 1 ) {
 $endpoint = BASE_URL_API . "api/tim";
 $endpoint .= "?";
 $endpoint .= http_build_query( $query );
+$admin_token = $_GET["token"];
 
 $ch = curl_init();
 
@@ -23,7 +24,7 @@ curl_setopt_array($ch, array(
 	CURLOPT_URL => $endpoint,
 	CURLOPT_RETURNTRANSFER => 1,
 	CURLOPT_HTTPHEADER => array(
-		"Authorization: {$query['token']}"
+		"Authorization: {$admin_token}"
 	)
 ));
 
