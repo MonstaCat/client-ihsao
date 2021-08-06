@@ -159,8 +159,10 @@ include_once('../templates/header.php');
                     }
 
                     if (currentOffset < total) {
-                        cluster++;
-                        loadMC(cluster, currentOffset);
+                        window.setTimeout( function(){
+                            cluster++;
+                            loadMC(cluster, currentOffset);
+                        }, 200 )
                     } else {
                         loadMCConf();
                     }
