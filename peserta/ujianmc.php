@@ -35,7 +35,7 @@ include_once('templates/header.php');
 
                     Jika belum diisi maka class nya:
                     cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 border border-solid border-emerald-500 -->
-                        <li @click="openTab = 1" :class="{ 'border-4': openTab === 1 }" class="cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 bg-emerald-500 bg-opacity-25">
+                        <!-- <li @click="openTab = 1" :class="{ 'border-4': openTab === 1 }" class="cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 bg-emerald-500 bg-opacity-25">
                             <a href="#"></a>
                         </li>
                         <li @click=" openTab=2" :class="{ 'border-4': openTab === 2 }" class="cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 bg-emerald-500 bg-opacity-25">
@@ -46,7 +46,7 @@ include_once('templates/header.php');
                         </li>
                         <li @click="openTab = 4" :class="{ 'border-4': openTab === 4 }" class="cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 border border-solid border-emerald-500">
                             <a href="#"></a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
 
@@ -240,8 +240,35 @@ include_once('templates/header.php');
             return f.json();
         }
 
+        /**
+         * membuat slider pindah halaman
+         */
         function setSoalSlider( conf ) {
+            const container = $( `#button-soal` );
+            
+            for( let i = 1; i<=MC_TOTAL; i++ ) {
+                const element   = `<li page="${i}" @click="openTab = ${i}" :class="{ 'border-4': openTab === ${i} }" class="mc-soal-button cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 border border-solid border-emerald-500">
+                               <a href="#"></a></li>`;
+                container.append( element );
 
+            }
+
+            $( document ).on( `click`, `.mc-soal-button`, function(){
+                fetchSoal( Number( $(this).attr("page") ) );
+            } )
+        }
+
+        /**
+         * mengambil data soal di db
+         */
+        function fetchSoal( no ) 
+        {
+            const sekolah = Number( JSON.parse( localStorage.getItem( `isSmk` ) ) );
+            fetch( `${API_SOAL_MULTIPLE}/unit/${token}/${sekolah}/${no}` )
+            .then( response => response.json() )
+            .then( response => {
+                console.log(response);
+            } )
         }
 
         /**
