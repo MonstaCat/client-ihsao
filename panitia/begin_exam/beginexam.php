@@ -35,7 +35,7 @@ include_once('../templates/header.php');
                                         <button id="button-ujian" class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-full" type="button">
                                             Mulai Ujian
                                         </button>
-                                        <button class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-full" type="button">
+                                        <button id="button-reset-ujian" class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-full" type="button">
                                             Reset Ujian
                                         </button>
 
@@ -118,6 +118,46 @@ include_once('../templates/header.php');
             loadingBar.style.display = "block";
 
             loadCache();
+        }
+
+        $( `#button-reset-ujian` ).click( function() {
+            resetUjian();
+        } )
+
+        /**
+         * menghapus semua konfigurasi mc di db
+         */
+        function resetUjian()
+        {
+            const endpoint = `${API_SOAL_MULTIPLE}/reset`;
+            const conf = {
+                mode : `cors`,
+                method : 'get',
+                headers : {
+                    Authorization : API_KEY
+                }
+            }
+
+            fetch( endpoint, conf )
+            .then( response => response.json() )
+            .then( response => {
+                if( response.OK ) {
+                    shutdownSystem();
+                    alert( response.msg );
+                    window.setTimeout( function(){
+                        window.location.reload();
+                    },500 )
+                }
+            } )
+        }
+
+        /**
+         * matikan ujian yang sedang berlangsung
+         */
+        function shutdownSystem()
+        {
+            const socket = io( API_ORIGIN );
+            socket.emit( `shutdown`, true );
         }
 
         /**

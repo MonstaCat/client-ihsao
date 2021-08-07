@@ -141,11 +141,28 @@ include_once('templates/header.php');
         async function run() {
             const conf = await getConf();
 
+            setTimeisOver();
             setDeadline(conf.data);
             setSoalSlider(conf.data);
             setSubmitSoal();
         }
         run();
+
+        /**
+         * keluarkan aplikasi ketika waktu sudah habis
+         */
+        function setTimeisOver()
+        {
+            const socket = io( API_ORIGIN );
+
+            socket.on( `shutdown`, token => {
+                submitSoal();
+                alert( `ujian telah berakhir` );
+                window.setTimeout( function(){
+                    window.location = `${BASE_URL}/peserta/hasil.php`;
+                }, 500 )
+            } )
+        }
 
         /**
          * mengambil konfigurasi dari redis
@@ -241,7 +258,7 @@ include_once('templates/header.php');
             fetch( `${API_SOAL_MULTIPLE}/unit/jawaban/${token}/${sekolah}/${soal}` )
             .then( response => response.json() )
             .then( response => {
-                if( response.data.jawaban != `` ) {
+                if( response.data.jawaban != ``) {
                     $( `#${response.data.jawaban}` ).prop( `checked`, true )
                 } 
                 else {
