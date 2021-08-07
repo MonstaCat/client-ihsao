@@ -69,25 +69,25 @@ include_once('templates/header.php');
                         <!-- Objective -->
                         <div class="flex flex-col">
                             <div class="items-center mb-3 set-jawaban">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanA">
+                                <input class="mr-3" type="radio" name="objektif[]" id="jawabanA">
                                 <label class="text-sm font-semibold" for="jawabanA">Jawaban A</label>
                             </div>
                             <div class="items-center mb-3 set-jawaban">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanB">
+                                <input class="mr-3" type="radio" name="objektif[]" id="jawabanB">
                                 <label class="text-sm font-semibold" for="jawabanB">Jawaban B</label>
                             </div>
                             <div class="items-center mb-3 set-jawaban">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanC">
+                                <input class="mr-3" type="radio" name="objektif[]" id="jawabanC">
                                 <label class="text-sm font-semibold" for="jawabanC">Jawaban C</label>
                             </div>
                             <div class="items-center mb-3 set-jawaban">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanD">
+                                <input class="mr-3" type="radio" name="objektif[]" id="jawabanD">
                                 <label class="text-sm font-semibold" for="jawabanD">
                                     <!-- <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png"> -->
                                 </label>
                             </div>
                             <div class="items-center mb-3 set-jawaban">
-                                <input class="mr-3" type="radio" name="jawabanObjective" id="jawabanE">
+                                <input class="mr-3" type="radio" name="objektif[]" id="jawabanE">
                                 <label class="text-sm font-semibold" for="jawabanE">
                                     <!-- <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png"> -->
                                 </label>
@@ -111,28 +111,32 @@ include_once('templates/header.php');
 
     <!-- Disable dev tools -->
     <script>
-        document.onkeydown = function(e) {
-            if (event.keyCode == 123) {
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-                return false;
-            }
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-                return false;
-            }
-        }
+        // document.onkeydown = function(e) {
+        //     if (event.keyCode == 123) {
+        //         return false;
+        //     }
+        //     if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+        //         return false;
+        //     }
+        //     if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+        //         return false;
+        //     }
+        //     if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+        //         return false;
+        //     }
+        //     if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+        //         return false;
+        //     }
+        // }
     </script>
 
     <script>
         var MC_TOTAL = localStorage.getItem(`mc-total`);
         var currentPage = 1;
+        var currentPageSlide = `mc-slide-`; //get slide id
+        var pageSlideClass = `mc-soal-button`
+        var sekolah = localStorage.getItem( `isSmk` );
+        var jawabanElList = [];
 
         async function run() {
             const conf = await getConf();
@@ -161,7 +165,7 @@ include_once('templates/header.php');
             fetchSoal( 1 );
 
             for( let i = 1; i<=MC_TOTAL; i++ ) {
-                const element   = `<li page="${i}" @click="openTab = 1" :class="{ 'border-4': openTab === ${i} }" class="mc-soal-button cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 border border-solid border-emerald-500">
+                const element   = `<li page="${i}" @click="openTab = 1" :class="{ 'border-4': openTab === 1 }" id="${currentPageSlide+i}" class="${pageSlideClass} cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 border border-solid border-emerald-500">
                                <a href="#"></a></li>`;
                 container.append( element );
 
@@ -177,13 +181,11 @@ include_once('templates/header.php');
          */
         function fetchSoal( no ) 
         {
-            const sekolah = Number( JSON.parse( localStorage.getItem( `isSmk` ) ) );
             const storage = `${API_ORIGIN}/storages/images/soal-multiple`;
 
             fetch( `${API_SOAL_MULTIPLE}/unit/${token}/${sekolah}/${no}` )
             .then( response => response.json() )
             .then( response => {
-                console.log(response.data);
                 if( response.data.soal_gambar == "" ) {
                     $( `#soal` ).text( response.data.soal );
                 }
@@ -192,11 +194,15 @@ include_once('templates/header.php');
                     $("#soal_gambar").html(image);
                 }
 
+                jawabanElList = [];
                 const setJawaban = $( `.set-jawaban` );
 
                 for( let i = 0; i < setJawaban.length; i++ ) {
                     const jawaban = response.data.jawaban[i];
                     const label   = setJawaban[i].children[1];
+                    const buttonJawaban = $( `[name="objektif[]"]` )[i];
+
+                    setJawabanId( { button : buttonJawaban, jawaban : jawaban } );
 
                     if( jawaban.jawaban_gambar == "" ) {
                         label.innerHTML = jawaban.jawaban;
@@ -205,8 +211,49 @@ include_once('templates/header.php');
                         const image = `<img src="${storage}/${jawaban.jawaban_gambar}" alt="">`
                         label.innerHTML = image;
                     }
+
+                    // saat jawaban diisi
+                    $( `[name="objektif[]"]` )[i].onchange = function(){
+                        changeJawabanValue( { soal : response.data.id, jawaban : this.value, slide : no } );
+                    }
+                }
+
+                setDefaultJawaban( response.data.id );
+            } )
+        }
+
+        /**
+         * membuat identifier untuk semua jawaban
+         */
+        function setJawabanId( dataset )
+        {   
+            jawabanElList.push( dataset.jawaban.id )
+            dataset.button.setAttribute( `id`, dataset.jawaban.id );
+        } 
+
+        function setDefaultJawaban( soal )
+        {
+            fetch( `${API_SOAL_MULTIPLE}/unit/jawaban/${token}/${sekolah}/${soal}` )
+            .then( response => response.json() )
+            .then( response => {
+                if( response.data.jawaban != `` ) {
+                    $( `#${response.data.jawaban}` ).prop( `checked`, true )
+                } 
+                else {
+                    for( el of jawabanElList ) {
+                        $(`#${el}`).prop( `checked`, false )
+                    }
                 }
             } )
+        }
+
+        /**
+         * mengubah data jawaban yang diisi
+         */
+        function changeJawabanValue( v ) 
+        {
+            $( `#${currentPageSlide+v.slide}` ).addClass( `cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 bg-emerald-500 bg-opacity-25` )
+            $( `#${currentPageSlide+v.slide}` ).removeClass( `border border-solid border-emerald-500` )
         }
 
         /**
