@@ -56,7 +56,7 @@ include_once('templates/header.php');
                                                         </tr>
                                                         <tr>
                                                             <td colspan="2">
-                                                                <button type="submit" class="float-right bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 mt-5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                                                                <button type="submit" id="ujian-button" class="float-right bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 mt-5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                                                                     Mulai Ujian
                                                                 </button>
                                                                 </form>
@@ -116,9 +116,15 @@ include_once('templates/header.php');
      * memuat konfigurasi untuk memulai lomba
      */
     function configure( token, sekolah ) {
+
+        $(`#ujian-button`).text( "Loading..." )
+
         fetch( `${API_SOAL_MULTIPLE}/start/${token}/${sekolah}` )
         .then( response => response.json() )
         .then( response => {
+
+            $(`#ujian-button`).text( "Mulai Ujian" );
+
             if( ! response.start ) {
                 return alert( response.msg );
             }
