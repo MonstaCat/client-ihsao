@@ -190,6 +190,7 @@ include_once('templates/header.php');
             }
 
             $( document ).on( `click`, `.mc-soal-button`, function(){
+                $(this).addClass( `bg-lightblue-500` )
                 fetchSoal( Number( $(this).attr("page") ) );
             } )
         }
