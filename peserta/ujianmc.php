@@ -15,7 +15,7 @@ include_once('templates/header.php');
             <div class="flex flex-col">
                 <div class="mb-6 items-center">
                     <div class="float-left">
-                        <button type="submit" class="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
+                        <button type="submit" id="submit-soal" class="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                             Submit
                         </button>
                     </div>
@@ -143,6 +143,7 @@ include_once('templates/header.php');
 
             setDeadline(conf.data);
             setSoalSlider(conf.data);
+            setSubmitSoal();
         }
         run();
 
@@ -301,6 +302,45 @@ include_once('templates/header.php');
                 // alert('Done!');
                 // Jika countdown selesai, tampilkan aksi disini
             });     
+        }
+
+        /**
+         * mengaktifkan tombol submit
+         */
+        function setSubmitSoal()
+        {
+            $( `#submit-soal` ).click( function(e) {
+                e.preventDefault();
+
+                const msg = confirm( `Yakin ingin melakukan submit soal ?` );
+
+                if( msg  ) return submitSoal();
+            } )
+        }
+
+        function submitSoal()
+        {
+            const endpoint = `${API_SOAL_MULTIPLE}/jawaban/submit/${token}/${sekolah}`
+            const conf = {
+                mode : `cors`,
+                method : "post",
+                headers : {
+                    "Content-Type" : `application/json`
+                }
+            }
+
+            $( `#submit-soal` ).text( `Loading...` )
+
+            fetch( endpoint, conf )
+            .then( response => response.json() )
+            .then( response => {
+                $( `#submit-soal` ).text("Submit")
+                const msg = `Soal telah disubmit score = ${response.data.score}`;
+                const redirPath = `${BASE_URL}/peserta/home.php`
+
+                alert( msg );
+                window.location = redirPath;
+            } )
         }
     </script>
 
