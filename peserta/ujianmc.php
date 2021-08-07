@@ -190,6 +190,7 @@ include_once('templates/header.php');
             }
 
             $( document ).on( `click`, `.mc-soal-button`, function(){
+                $(this).addClass( `bg-lightblue-500` )
                 fetchSoal( Number( $(this).attr("page") ) );
             } )
         }
@@ -290,11 +291,11 @@ include_once('templates/header.php');
             fetch( endpoint, conf )
             .then( response => response.json() )
             .then( response => {
-                if( response.data.OK ) {
-                    v.slide++;
+                // if( response.data.OK ) {
+                //     v.slide++;
 
-                    return fetchSoal( v.slide );
-                }
+                //     return fetchSoal( v.slide );
+                // }
             } )
         }
 
