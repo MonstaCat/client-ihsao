@@ -1,20 +1,20 @@
-<?php  
+<?php
 
 require '../../config.php';
 
 $query = array(
-	"page" => ceil( $_GET[ "start" ] / $_GET[ "length" ] ) + 1,
-	"limit" => intval($_GET[ "length" ]),
-	"peserta" => $_GET[ "search" ][ "value" ]
+	"page" => ceil($_GET["start"] / $_GET["length"]) + 1,
+	"limit" => intval($_GET["length"]),
+	"peserta" => $_GET["search"]["value"]
 );
 
-if( $query[ "page" ] < 1 ) {
-	$query[ "page" ] = 1;
+if ($query["page"] < 1) {
+	$query["page"] = 1;
 }
 
 $endpoint = BASE_URL_API . "api/peserta";
 $endpoint .= "?";
-$endpoint .= http_build_query( $query );
+$endpoint .= http_build_query($query);
 $admin_token = $_GET["token"];
 
 $ch = curl_init();
@@ -27,9 +27,8 @@ curl_setopt_array($ch, array(
 	)
 ));
 
-$output = json_decode( curl_exec( $ch ) );
-
-foreach( $output->data as $data ){
+$output = json_decode(curl_exec($ch));
+foreach ($output->data as $data) {
 	$dataset[] = array(
 		$data->email,
 		$data->kelompok->nama_tim,
@@ -41,13 +40,11 @@ foreach( $output->data as $data ){
 	);
 }
 
-echo json_encode( array(
-	"draw" => $_GET[ "draw" ],
-	"recordsTotal" => intval( $output->total ),
+echo json_encode(array(
+	"draw" => $_GET["draw"],
+	"recordsTotal" => intval($output->total),
 	"recordsFiltered" => $output->filtered,
 	"data" => $dataset ?? []
-) );
+));
 
 curl_close($ch);
-
-?>
