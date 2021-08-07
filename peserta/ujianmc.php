@@ -229,8 +229,12 @@ include_once('templates/header.php');
         {   
             jawabanElList.push( dataset.jawaban.id )
             dataset.button.setAttribute( `id`, dataset.jawaban.id );
+            dataset.button.value = dataset.jawaban.id;
         } 
 
+        /**
+         * menampilkan default jawaban
+         */
         function setDefaultJawaban( soal )
         {
             fetch( `${API_SOAL_MULTIPLE}/unit/jawaban/${token}/${sekolah}/${soal}` )
@@ -254,6 +258,26 @@ include_once('templates/header.php');
         {
             $( `#${currentPageSlide+v.slide}` ).addClass( `cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 bg-emerald-500 bg-opacity-25` )
             $( `#${currentPageSlide+v.slide}` ).removeClass( `border border-solid border-emerald-500` )
+            
+            const endpoint = `${API_SOAL_MULTIPLE}/unit/jawaban/${token}/${sekolah}/${v.soal}`
+            const conf = {
+                mode : `cors`,
+                method : `PUT`,
+                body : JSON.stringify( { jawaban : v.jawaban } ),
+                headers : {
+                    "Content-Type" : "application/json"
+                }
+            }
+
+            fetch( endpoint, conf )
+            .then( response => response.json() )
+            .then( response => {
+                if( response.data.OK ) {
+                    v.slide++;
+
+                    return fetchSoal( v.slide );
+                }
+            } )
         }
 
         /**
