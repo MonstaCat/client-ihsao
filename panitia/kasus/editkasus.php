@@ -42,6 +42,7 @@ include_once('../templates/header.php');
                                                             Pertanyaan Soal
                                                         </label>
                                                         <textarea cols="30" rows="5" placeholder="Pertanyaan..." id="pertanyaan" name="pertanyaan" autocomplete="off" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-1 px-2"></textarea>
+                                                        <div id="gambar"></div>  
                                                         <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mt-4 mb-2" for="soal">
                                                             Input Gambar
                                                         </label>
@@ -75,8 +76,84 @@ include_once('../templates/header.php');
     <!-- jQuery-TE -->
     <script type="text/javascript" src="<?= BASE_URL ?>/src/public/plugin/jQuery-TE/jquery-te-1.4.0.min.js"></script>
 
+    <script type="text/javascript" src="<?php echo BASE_URL ?>/api-routing.js"></script>
+
     <script>
         $("textarea").jqte();
+
+        async function UCDataset( url, apiKey )
+        {
+            const f = await fetch( url, {
+                mode    : "cors",
+                method  : "get",
+                headers : {
+                    "Authorization" : apiKey
+                }
+            } )
+            return f.json();
+        }
+
+        const currentQueryString = new URLSearchParams(window.location.search);
+        const soalId    = currentQueryString.get("id");
+        const endpoint  = `${API_SOAL_KASUS}?id=${soalId}`;
+
+        /**
+         * mengisi tiap form
+         */
+        UCDataset( endpoint, API_KEY )
+        .then( response => {
+            const data = response.data[0];
+            const serverImagePath = `${API_ORIGIN}/storages/images/uc/panitia/`;
+
+            $( `#gambar` ).html( `<img src="${serverImagePath+data.gambar}" alt="${data.gambar}">` )
+
+            $("textarea").jqteVal( data.soal );
+        } )
+
+        /**
+         * kirim data request ke server
+         */
+        $( `#form-soal` ).submit( e => {
+            e.preventDefault();
+
+            const formData = new FormData;
+
+            formData.append( `id`, soalId );
+
+            // tambahkan data soal kedalam form data
+            const soal = {
+                soal  : $(`[name="pertanyaan"]`),
+                image : $( `[name="soal-gambar"]` )[0].files[0],
+            }
+
+            formData.append( `soal`, soal.soal.val() );
+            formData.append( `soal_image`, soal.image );
+            formData.append( `soal_image_name`, soal.image?.name );
+
+
+            // kirim request ke server
+            $(`[name="btn-tambah"]`).text( `Loading...` );
+            fetch( API_SOAL_KASUS, {
+                mode : `cors`,
+                method : "put",
+                body : formData,
+                headers : {
+                    "Authorization" : API_KEY,
+                }
+            } )
+            .then( response => response.json() )
+            .then( response => {
+                alert( response.msg );
+
+                $(`[name="btn-tambah"]`).text(`Submit Data Soal`);
+
+                if( response.code == 200 ) {
+                    const redirectPage = `${BASE_URL}/panitia/kasus/dkasus.php`;
+
+                    window.location = redirectPage;
+                }
+            } )
+        } )
     </script>
 
 </body>
