@@ -8,5 +8,6 @@ var API_LOMBA 			= `${BASE_API}/lomba`;
 var API_TIM 			= `${BASE_API}/tim`;
 var API_SEKOLAH 		= `${BASE_API}/sekolah`;
 var API_SOAL_MULTIPLE 	= `${BASE_API}/soal/multiple`;
+var API_SOAL_KASUS 		= `${BASE_API}/soal/kasus`;
 
 var API_KEY = localStorage.getItem( `token` ) ?? null;
