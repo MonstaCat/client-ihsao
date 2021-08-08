@@ -34,3 +34,15 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>/peserta/assets/styles/custom.css">
 
 </head>
+<script src="<?php echo BASE_URL ?>/api-routing.js"></script>
+<script type="text/javascript">
+    // get user detail
+    async function getUserDetail(endpoint, queryString) {
+        const user = await fetch( `${endpoint}?${queryString}`, {
+            mode   : "cors",
+            method : "get"
+        } )
+
+        return await user.json(); 
+    }
+</script>

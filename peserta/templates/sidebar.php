@@ -30,9 +30,9 @@
             <div class="flex flex-col pt-2 pb-4">
                 <div class="items-center">
                     <div class="mt-1">
-                        <h3 class="text-center text-base text-gray-900 font-semibold leading-8">Andika Rizki Pradana</h3>
+                        <h3 class="text-center text-base text-gray-900 font-semibold leading-8" id="user-name"></h3>
                         <div class="text-center text-gray-400 text-xs font-semibold">
-                            <p>SMKS Labor Binaan FKIP UR Pekanbaru</p>
+                            <p class="user-sekolah"></p>
                         </div>
                     </div>
                 </div>
@@ -85,3 +85,13 @@
         </div>
     </div>
 </nav>
+<script defer="" type="text/javascript">
+    const UToken = localStorage.getItem( `token` );
+
+    getUserDetail( API_PESERTA, `token=${UToken}` )
+    .then( response => {
+        $( `#user-name` ).text( response.data[0].nama )
+        $( `.user-sekolah` ).text( response.data[0].Sekolah.sekolah );
+        console.log(response.data[0].Sekolah.sekolah);
+    } )
+</script>

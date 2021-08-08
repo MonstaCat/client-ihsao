@@ -30,7 +30,7 @@ include_once('templates/header.php');
 										<div class="w-72 mt-5 mb-5 ml-3">
 											<div class="bg-white shadow-lg rounded-lg py-3">
 												<div class="p-2">
-													<h3 class="text-center text-xl text-gray-900 font-medium leading-8" id="user-name">Loading...</h3>
+													<h3 class="text-center text-xl text-gray-900 font-medium leading-8" id="user-name-home">Loading...</h3>
 													<div class="text-center text-gray-400 text-xs font-semibold mb-5">
 														<p id="user-tim">Loading...</p>
 													</div>
@@ -126,22 +126,12 @@ include_once('templates/header.php');
 	<!-- jQuery -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript">
-		async function getUserDetail(endpoint, queryString) {
-			const user = await fetch( `${endpoint}?${queryString}`, {
-				mode   : "cors",
-				method : "get"
-			} )
-
-			return await user.json(); 
-		}
-
-		const UToken = localStorage.getItem("token");
 
 		getUserDetail( API_PESERTA, `token=${UToken}` )
 		.then( response => {
 			const user = response.data[0];
 
-			$( `#user-name` ).text( user.nama );
+			$( `#user-name-home` ).text( user.nama );
 			$( `#user-tim` ).text( user.kelompok.nama_tim );
 			$( `#user-sekolah` ).text( user.Sekolah.sekolah );
 			$( `#user-email` ).text( user.email );
