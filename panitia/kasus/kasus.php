@@ -75,8 +75,45 @@ include_once('../templates/header.php');
     <!-- jQuery-TE -->
     <script type="text/javascript" src="<?= BASE_URL ?>/src/public/plugin/jQuery-TE/jquery-te-1.4.0.min.js"></script>
 
+    <script type="text/javascript" src="<?php echo BASE_URL ?>/api-routing.js"></script>
+
     <script>
         $("textarea").jqte();
+
+        $( `#form-soal` ).submit( function( e ) {
+            e.preventDefault();
+
+            const soal  = $( `[name="pertanyaan"]` );
+            const image = $( `[name="soal-gambar"]` )[0].files[0]
+            
+            const formData = new FormData;
+
+            formData.append( `soal`, soal.val() );
+            formData.append( `soal_image`, image );
+            formData.append( `soal_image_name`, image?.name );
+
+            const endpoint = `${API_SOAL_KASUS}`;
+            const conf     = {
+                mode    : `cors`,
+                method  : `post`,
+                headers : {
+                    "Authorization" : API_KEY,
+                },
+                body: formData
+            }
+
+            fetch( endpoint, conf )
+            .then( response => response.json() )
+            .then( response => {
+
+                alert(response.msg)
+
+                if( response.code == 200 ) {
+                    $("textarea").jqteVal("");
+                    $("textarea").focus();
+                }
+            } )
+        } )
     </script>
 
 </body>
