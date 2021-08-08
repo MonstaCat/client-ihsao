@@ -102,9 +102,13 @@ include_once('../templates/header.php');
                 body: formData
             }
 
+            $( `#btn-tambah` ).text("Loading...")
+
             fetch( endpoint, conf )
             .then( response => response.json() )
             .then( response => {
+
+                $( `#btn-tambah` ).text("Submit Data Soal")
 
                 alert(response.msg)
 
