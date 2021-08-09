@@ -45,9 +45,6 @@ include_once('templates/header.php');
                                             Asal Sekolah
                                         </th>
                                         <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
-                                            Status
-                                        </th>
-                                        <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
                                             Score
                                         </th>
                                     </tr>
@@ -66,10 +63,6 @@ include_once('templates/header.php');
                                         </th>
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             SMKS Labor Binaan FKIP UR Pekanbaru
-                                        </td>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <i class="fas fa-circle text-emerald-500 mr-2"></i>
-                                            completed
                                         </td>
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             <div class="flex items-center">
@@ -92,12 +85,8 @@ include_once('templates/header.php');
                                             SMKS Labor Binaan FKIP UR Pekanbaru
                                         </td>
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <i class="fas fa-circle text-orange-500 mr-2"></i>
-                                            pending
-                                        </td>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             <div class="flex items-center">
-                                                <p class="mr-2"><b></b></p>
+                                                <p class="mr-2"><b>80</b></p>
                                             </div>
                                         </td>
                                     </tr>
@@ -114,10 +103,6 @@ include_once('templates/header.php');
                                         </th>
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             SMKS Labor Binaan FKIP UR Pekanbaru
-                                        </td>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <i class="fas fa-circle text-emerald-500 mr-2"></i>
-                                            completed
                                         </td>
                                         <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                                             <div class="flex items-center">
