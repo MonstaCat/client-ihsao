@@ -28,7 +28,7 @@ include('config.php');
 </head>
 
 <body class="overflow-x-hidden lg:overflow-x-auto">
-    <!-- <div class="flex flex-col justify-center items-center preloader-wrapper">
+    <div class="flex flex-col justify-center items-center preloader-wrapper">
         <div class="flex-1 text-center preloader">
             <div class="preloader-text">
                 <p>IHSAO 2021</p>
@@ -51,7 +51,7 @@ include('config.php');
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <div class="flex flex-col h-screen">
 
