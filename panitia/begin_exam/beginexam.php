@@ -121,15 +121,29 @@ include_once('../templates/header.php');
         }
 
         $( `#button-reset-ujian` ).click( function() {
-            resetUjian();
+            const acc = confirm( `Reset data ujian ?` );
+
+            if( acc ){
+                resetUjian( true );
+            }
         } )
 
         /**
          * menghapus semua konfigurasi mc di db
+         *
+         * @param {boolean} [force] [reset ujian atau waktu telah habis]
          */
-        function resetUjian()
+        function resetUjian( force = false )
         {
-            const endpoint = `${API_SOAL_MULTIPLE}/reset`;
+            let endpoint = ``;
+
+            if( force ) {
+                endpoint = `${API_SOAL_MULTIPLE}/reset?force=true`
+            }
+            else {
+                endpoint = `${API_SOAL_MULTIPLE}/reset`
+            }
+
             const conf = {
                 mode : `cors`,
                 method : 'get',
@@ -143,8 +157,8 @@ include_once('../templates/header.php');
             .then( response => {
                 if( response.OK ) {
                     shutdownSystem();
-                    alert( response.msg );
                     window.setTimeout( function(){
+                        alert( response.msg );
                         window.location.reload();
                     },500 )
                 }
@@ -245,7 +259,7 @@ include_once('../templates/header.php');
                 days: 'Days',
                 hideOnComplete: true
             }, function(container) {
-                alert('Done!');
+                resetUjian();
             });
 
             loadingIndicator.attr(`x-data`, `{ width : ${100} }`)
