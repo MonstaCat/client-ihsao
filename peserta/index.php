@@ -203,11 +203,13 @@ include('../config.php');
 
                 localStorage.setItem(`email`, data.data.email);
                 localStorage.setItem(`token`, data.data.token);
+                localStorage.setItem( `tim`, data.data.tim );
 
                 window.location = `${BASE_URL}/peserta/home.php`;
             } else if (data.code == 403) {
                 localStorage.setItem(`token`, data.data.token);
                 localStorage.setItem(`isBanned`, true)
+                localStorage.setItem( `tim`, data.data.tim );
                 window.location = `${BASE_URL}/peserta/home.php`;
             } else {
                 alert(data.msg);
