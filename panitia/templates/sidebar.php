@@ -165,7 +165,14 @@
                 <li class="items-center">
                     <a href="<?php echo BASE_URL; ?>/panitia/begin_exam/beginexam.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "beginexam" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-tv mr-2 text-sm text-blueGray-300"></i>
-                        Mulai Ujian
+                        Mulai Ujian MC
+                    </a>
+                </li>
+
+                <li class="items-center">
+                    <a href="<?php echo BASE_URL; ?>/panitia/begin_exam/beginexamkasus.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "beginexamkasus" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                        <i class="fas fa-tv mr-2 text-sm text-blueGray-300"></i>
+                        Mulai Ujian Kasus
                     </a>
                 </li>
             </ul>
