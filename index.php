@@ -28,7 +28,7 @@ include('config.php');
 </head>
 
 <body class="overflow-x-hidden lg:overflow-x-auto">
-    <div class="flex flex-col justify-center items-center preloader-wrapper">
+    <!-- <div class="flex flex-col justify-center items-center preloader-wrapper">
         <div class="flex-1 text-center preloader">
             <div class="preloader-text">
                 <p>IHSAO 2021</p>
@@ -51,7 +51,7 @@ include('config.php');
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="flex flex-col h-screen">
 
@@ -88,7 +88,7 @@ include('config.php');
                         <a href="#timeline">Timeline</a>
                     </div>
                     <div>
-                        <a href="/peserta" class="ml-5 mt-4 mb-4 flex items-center w-32 h-10 justify-center font-mono tracking-widest bg-ihsao-yellow text-black border-2 border-black box-shadow-black hover:bg-ihsao-purple hover:text-white">Masuk!</a>
+                        <button onclick="window.location.href='peserta'" class="ml-5 mt-4 mb-4 flex items-center w-32 h-10 justify-center font-mono tracking-widest bg-ihsao-yellow text-black border-2 border-black box-shadow-black hover:bg-ihsao-purple hover:text-white">Masuk!</button>
                     </div>
                 </nav>
             </div>
