@@ -170,6 +170,23 @@
                 </li>
             </ul>
 
+            <!-- Divider -->
+            <hr class="my-4 md:min-w-full" />
+            <!-- Heading -->
+            <h6 class="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+                Fitur Backup
+            </h6>
+
+            <!-- Navigation -->
+            <ul class="md:flex-col md:min-w-full flex flex-col list-none">
+                <li class="items-center">
+                    <a href="<?php echo BASE_URL; ?>/panitia/backup/backupmc.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "backupmc" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                        <i class="fas fa-database mr-2 text-sm text-blueGray-300"></i>
+                        Backup Multiplechoice
+                    </a>
+                </li>
+            </ul>
+
         </div>
     </div>
 </nav>
