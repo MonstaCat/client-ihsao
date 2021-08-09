@@ -28,12 +28,12 @@ include_once('../templates/header.php');
                                             Tekan tombol untuk memulai ujian
                                         </h6>
                                         <h2 class="text-xl font-semibold mb-8">
-                                            Panel Ujian
+                                            Panel Ujian MC
                                         </h2>
 
                                         <!-- Content Body -->
                                         <button id="button-ujian" class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-full" type="button">
-                                            Mulai Ujian
+                                            Mulai Ujian Multiplechoice
                                         </button>
                                         <button id="button-reset-ujian" class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-full" type="button">
                                             Reset Ujian
@@ -67,9 +67,7 @@ include_once('../templates/header.php');
 
 
                                         <!-- set countdown -->
-                                        <ul id="countdown" hidden="">
-                                            <!-- <li><span class="days"></span><p class="days_text">Days</p></li>
-                                            <li class="seperator">:</li> -->
+                                        <!-- <ul id="countdown" hidden="">
                                             <li><span class="hours"></span>
                                                 <p class="hours_text">Hours</p>
                                             </li>
@@ -81,9 +79,16 @@ include_once('../templates/header.php');
                                             <li><span class="seconds"></span>
                                                 <p class="seconds_text">Seconds</p>
                                             </li>
-                                        </ul>
-
-
+                                        </ul> -->
+                                        <span class="countdown">
+                                            <ul class="flex ml-3" id="countdown" hidden="">
+                                                <li><span class="hours countdown-text">00</span></li>
+                                                <li class="seperator countdown-text">:</li>
+                                                <li><span class="minutes countdown-text">00</span></li>
+                                                <li class="seperator countdown-text">:</li>
+                                                <li><span class="seconds countdown-text">00</span></li>
+                                            </ul>
+                                        </span>
 
 
                                     </div>
@@ -120,58 +125,55 @@ include_once('../templates/header.php');
             loadCache();
         }
 
-        $( `#button-reset-ujian` ).click( function() {
-            const acc = confirm( `Reset data ujian ?` );
+        $(`#button-reset-ujian`).click(function() {
+            const acc = confirm(`Reset data ujian ?`);
 
-            if( acc ){
-                resetUjian( true );
+            if (acc) {
+                resetUjian(true);
             }
-        } )
+        })
 
         /**
          * menghapus semua konfigurasi mc di db
          *
          * @param {boolean} [force] [reset ujian atau waktu telah habis]
          */
-        function resetUjian( force = false )
-        {
+        function resetUjian(force = false) {
             let endpoint = ``;
 
-            if( force ) {
+            if (force) {
                 endpoint = `${API_SOAL_MULTIPLE}/reset?force=true`
-            }
-            else {
+            } else {
                 endpoint = `${API_SOAL_MULTIPLE}/reset`
             }
 
             const conf = {
-                mode : `cors`,
-                method : 'get',
-                headers : {
-                    Authorization : API_KEY
+                mode: `cors`,
+                method: 'get',
+                headers: {
+                    Authorization: API_KEY
                 }
             }
 
-            fetch( endpoint, conf )
-            .then( response => response.json() )
-            .then( response => {
-                if( response.OK ) {
-                    shutdownSystem();
-                    window.setTimeout( function(){
-                        alert( response.msg );
-                        window.location.reload();
-                    },500 )
-                }
-            } )
+            fetch(endpoint, conf)
+                .then(response => response.json())
+                .then(response => {
+                    if (response.OK) {
+                        shutdownSystem();
+                        window.setTimeout(function() {
+                            alert(response.msg);
+                            window.location.reload();
+                        }, 500)
+                    }
+                })
         }
 
         /**
          * matikan ujian yang sedang berlangsung
          */
-        function shutdownSystem()
-        {
-            const socket = io( API_ORIGIN );
-            socket.emit( `shutdown`, true );
+        function shutdownSystem() {
+            const socket = io(API_ORIGIN);
+            socket.emit(`shutdown`, true);
         }
 
         /**
@@ -213,10 +215,10 @@ include_once('../templates/header.php');
                     }
 
                     if (currentOffset < total) {
-                        window.setTimeout( function(){
+                        window.setTimeout(function() {
                             cluster++;
                             loadMC(cluster, currentOffset);
-                        }, 1000 )
+                        }, 1000)
                     } else {
                         loadMCConf();
                     }
