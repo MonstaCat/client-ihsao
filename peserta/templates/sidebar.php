@@ -90,8 +90,7 @@
 
     getUserDetail( API_PESERTA, `token=${UToken}` )
     .then( response => {
-        $( `#user-name` ).text( response.data[0].nama )
-        $( `.user-sekolah` ).text( response.data[0].Sekolah.sekolah );
-        console.log(response.data[0].Sekolah.sekolah);
+        document.querySelector( `#user-name` ).innerText = response.data[0].nama;
+        document.querySelector( `.user-sekolah` ).innerText = response.data[0].Sekolah.sekolah;
     } )
 </script>
