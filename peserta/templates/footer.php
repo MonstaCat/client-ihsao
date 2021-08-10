@@ -15,4 +15,44 @@
 	socket.on( `banned`, token => {
 		window.location = `${BASE_URL}/peserta`;
 	} )
+
+	const CHECK_CREDENTIAL = false;
+	const LOGOUT = true;
+
+	document.getElementById('logout-button').onclick = e => {
+		logout( LOGOUT );
+	} 
+
+	function logout( destroy ) {
+		const sekolah = localStorage.getItem( `isSmk` );
+		const token = localStorage.getItem( `token` );
+		const redirPath = `${BASE_URL}/peserta`;
+
+		fetch( `${API_PESERTA}/logout/${token}/${sekolah}`, {
+			mode 	: "cors",
+			method 	: "post",
+			body 	: JSON.stringify( { token : token } ),
+			headers : {
+				"Authorization" : API_KEY,
+				"Content-Type"	: "application/json"
+			}
+		} )
+		.then( response => response.json() )
+		.then( response => {
+			if( response.logout && destroy ) {
+				localStorage.removeItem( `token` );
+				socket.emit( `logout`, token );
+				window.setTimeout(() => { window.location = redirPath; }, 300)
+			}
+
+			if( response.code == 403 ) {
+				window.location = redirPath;
+			}
+		} )
+		.catch( e =>  {
+			window.location = redirPath;
+		})
+	}
+
+	logout( CHECK_CREDENTIAL );
 </script>

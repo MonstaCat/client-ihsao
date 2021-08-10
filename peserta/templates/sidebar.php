@@ -75,7 +75,7 @@
                 <hr class="my-2 md:min-w-full" />
 
                 <li class="items-center">
-                    <a href="<?php echo BASE_URL; ?>/logout.php" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "logout" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
+                    <a href="#" id="logout-button" class="text-xs uppercase py-3 font-bold block <?= ($PageFile) == "logout" ? "text-pink-500 hover:text-pink-600" : "text-blueGray-700 hover:text-blueGray-500" ?>">
                         <i class="fas fa-lock w-5 mr-2 text-sm text-blueGray-300"></i>
                         Logout
                     </a>
