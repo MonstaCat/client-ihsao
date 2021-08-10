@@ -24,8 +24,7 @@ include_once('templates/header.php');
                         <div class="rounded-t mb-0 px-4 py-3 border-0">
                             <div class="flex flex-wrap items-center">
                                 <div class="relative w-full px-4 max-w-full flex-grow flex-1">
-                                    <h3 class="font-semibold text-lg text-blueGray-700">
-                                        Tim Bersyukur Kepada Allah
+                                    <h3 class="font-semibold text-lg text-blueGray-700" id="team-name">
                                     </h3>
                                 </div>
                             </div>
@@ -83,7 +82,9 @@ include_once('templates/header.php');
     MCDataset()
     .then( response => {
         let no = 1;
+        let team = ``;
         response.data.forEach( v => {
+            team = v.Tim.nama_tim;
             $( `tbody` ).append(`<tr>
                 <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                 <p class="ml-3 font-bold text-blueGray-600">
@@ -107,5 +108,7 @@ include_once('templates/header.php');
 
             no++;
         } )
+
+        $( `#team-name` ).text( team );
     } )
 </script>
