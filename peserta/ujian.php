@@ -89,13 +89,6 @@ include_once('templates/header.php');
 </html>
 
 <script type="text/javascript">
-    $(document).ready(function() {
-        // Hidden card untuk ujian kasus value = none/block
-        document.getElementById("kasus").style.display = "none";
-    });
-</script>
-
-<script type="text/javascript">
     var statusText = $(`#ujian-status`);
     var sekolahText = $(`#ujian-sekolah`);
     const isBan = localStorage.getItem(`isBanned`) != null;
