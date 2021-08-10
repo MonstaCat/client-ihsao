@@ -62,38 +62,7 @@ include_once('templates/header.php');
 
                 <!-- Content Soal -->
                 <div class="mb-auto h-auto soal-content">
-                    <div x-show="openTab === 1">
-                        <img class="max-h-72 mb-4" id="soal_gambar">
-                        <p class="text-sm font-semibold mb-5" id="soal"></p>
-
-                        <!-- Objective -->
-                        <div class="flex flex-col">
-                            <div class="items-center mb-3 set-jawaban">
-                                <input class="mr-3" type="radio" name="objektif[]" id="jawabanA">
-                                <label class="text-sm font-semibold" for="jawabanA">Jawaban A</label>
-                            </div>
-                            <div class="items-center mb-3 set-jawaban">
-                                <input class="mr-3" type="radio" name="objektif[]" id="jawabanB">
-                                <label class="text-sm font-semibold" for="jawabanB">Jawaban B</label>
-                            </div>
-                            <div class="items-center mb-3 set-jawaban">
-                                <input class="mr-3" type="radio" name="objektif[]" id="jawabanC">
-                                <label class="text-sm font-semibold" for="jawabanC">Jawaban C</label>
-                            </div>
-                            <div class="items-center mb-3 set-jawaban">
-                                <input class="mr-3" type="radio" name="objektif[]" id="jawabanD">
-                                <label class="text-sm font-semibold" for="jawabanD">
-                                    <!-- <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png"> -->
-                                </label>
-                            </div>
-                            <div class="items-center mb-3 set-jawaban">
-                                <input class="mr-3" type="radio" name="objektif[]" id="jawabanE">
-                                <label class="text-sm font-semibold" for="jawabanE">
-                                    <!-- <img class="max-h-72 mb-4" src="<?= BASE_URL ?>/src/public/img/ihsao png.png"> -->
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                 </div>
             </div>
@@ -183,7 +152,7 @@ include_once('templates/header.php');
             fetchSoal( 1 );
 
             for( let i = 1; i<=MC_TOTAL; i++ ) {
-                const element   = `<li page="${i}" @click="openTab = ${i}" :class="{ 'border-4': openTab === 1 }" id="${currentPageSlide+i}" class="${pageSlideClass} cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 border border-solid border-emerald-500">
+                const element   = `<li page="${i}" @click="openTab = ${i}" :class="{ 'border-4': openTab === ${i} }" id="${currentPageSlide+i}" class="${pageSlideClass} cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 border border-solid border-emerald-500">
                                <a href="#"></a></li>`;
                 container.append( element );
 
@@ -199,41 +168,66 @@ include_once('templates/header.php');
          */
         function fetchSoal( no ) 
         {
-            const storage = `${API_ORIGIN}/storages/images/soal-multiple`;
+            const storage = `${API_ORIGIN}/storages/images/soal-multiple/`;
 
             fetch( `${API_SOAL_MULTIPLE}/unit/${token}/${sekolah}/${no}` )
             .then( response => response.json() )
             .then( response => {
-                if( response.data.soal_gambar == "" ) {
-                    $( `#soal` ).text( response.data.soal );
-                }
-                else {
-                    const image = `<img src="${storage}/${response.data.soal_gambar}" alt="">`
-                    $("#soal_gambar").html(image);
-                }
+                const jawaban = response.data.jawaban;
+                const soal = response.data;
+                $( `.soal-content` ).html(`<div x-show="openTab === ${no}">
+                    ${ ( response.data.soal_gambar != "" ) ? `<img src="${storage+soal.soal_gambar}" class="max-h-72 mb-4" id="soal_gambar">` : `` }
+                    <p class="text-sm font-semibold mb-5" id="soal">${soal.soal}</p>
 
-                jawabanElList = [];
-                const setJawaban = $( `.set-jawaban` );
+                    <!-- Objective -->
+                    <div class="flex flex-col">
+                    <div class="items-center mb-3">
+                    <input class="mr-3" type="radio" name="objektif[]" id="radio-${ jawaban[0].id }" value="${ jawaban[0].id }">
+                    <label class="text-sm font-semibold" for="jawabanA">
+                        ${ jawaban[0].jawaban }
+                        ${ ( jawaban[0].jawaban_gambar != `` ) ? `<img class="max-h-72 mb-4" src="${storage+jawaban[0].jawaban_gambar}">` : `` }
+                    </label>
+                    </div>
+                    <div class="items-center mb-3">
+                    <input class="mr-3" type="radio" name="objektif[]" id="radio-${ jawaban[1].id }" value="${ jawaban[1].id }">
+                    <label class="text-sm font-semibold" for="jawabanB">
+                        ${ jawaban[1].jawaban }
+                        ${ ( jawaban[1].jawaban_gambar != `` ) ? `<img class="max-h-72 mb-4" src="${storage+jawaban[1].jawaban_gambar}">` : `` }
+                    </label>
+                    </div>
+                    <div class="items-center mb-3">
+                    <input class="mr-3" type="radio" name="objektif[]" id="radio-${ jawaban[2].id }" value="${ jawaban[2].id }">
+                    <label class="text-sm font-semibold" for="jawabanC">
+                        ${ jawaban[2].jawaban }
+                        ${ ( jawaban[2].jawaban_gambar != `` ) ? `<img class="max-h-72 mb-4" src="${storage+jawaban[2].jawaban_gambar}">` : `` }
+                    </label>
+                    </div>
+                    <div class="items-center mb-3">
+                    <input class="mr-3" type="radio" name="objektif[]" id="radio-${ jawaban[3].id }" value="${ jawaban[3].id }">
+                    <label class="text-sm font-semibold" for="jawabanD">
+                        ${ jawaban[3].jawaban }
+                        ${ ( jawaban[3].jawaban_gambar != `` ) ? `<img class="max-h-72 mb-4" src="${storage+jawaban[3].jawaban_gambar}">` : `` }
+                    </label>
+                    </div>
+                    <div class="items-center mb-3">
+                    <input class="mr-3" type="radio" name="objektif[]" id="radio-${ jawaban[4].id }" value="${ jawaban[4].id }">
+                    <label class="text-sm font-semibold" for="jawabanE">
+                        ${ jawaban[4].jawaban }
+                        ${ ( jawaban[4].jawaban_gambar != `` ) ? `<img class="max-h-72 mb-4" src="${storage+jawaban[4].jawaban_gambar}">` : `` }
+                    </label>
+                    </div>
+                    </div>
+                    </div>
+                `)
 
-                for( let i = 0; i < setJawaban.length; i++ ) {
-                    const jawaban = response.data.jawaban[i];
-                    const label   = setJawaban[i].children[1];
-                    const buttonJawaban = $( `[name="objektif[]"]` )[i];
-
-                    setJawabanId( { button : buttonJawaban, jawaban : jawaban } );
-
-                    if( jawaban.jawaban_gambar == "" ) {
-                        label.innerHTML = jawaban.jawaban;
-                    }
-                    else {
-                        const image = `<img src="${storage}/${jawaban.jawaban_gambar}" alt="">`
-                        label.innerHTML = image;
-                    }
-
-                    // saat jawaban diisi
-                    $( `[name="objektif[]"]` )[i].onchange = function(){
-                        changeJawabanValue( { soal : response.data.id, jawaban : this.value, slide : no } );
-                    }
+                /**
+                 * ketika jawaban dipilih
+                 */
+                for( let radio of $(`[name='objektif[]']`) ) {
+                    const id = `#${radio.getAttribute( `id` )}`;
+                    $(id).on( `change`, e => {
+                        changeJawabanValue( { slide : no, soal : soal.id, jawaban : e.target.value } )
+                    } )
                 }
 
                 setDefaultJawaban( response.data.id );
@@ -259,13 +253,8 @@ include_once('templates/header.php');
             .then( response => response.json() )
             .then( response => {
                 if( response.data.jawaban != ``) {
-                    $( `#${response.data.jawaban}` ).prop( `checked`, true )
+                    $( `#radio-${response.data.jawaban}` ).prop( `checked`, true )
                 } 
-                else {
-                    for( el of jawabanElList ) {
-                        $(`#${el}`).prop( `checked`, false )
-                    }
-                }
             } )
         }
 
@@ -276,7 +265,7 @@ include_once('templates/header.php');
         {
             $( `#${currentPageSlide+v.slide}` ).addClass( `cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 bg-emerald-500 bg-opacity-25` )
             $( `#${currentPageSlide+v.slide}` ).removeClass( `border border-solid border-emerald-500` )
-            
+
             const endpoint = `${API_SOAL_MULTIPLE}/unit/jawaban/${token}/${sekolah}/${v.soal}`
             const conf = {
                 mode : `cors`,
@@ -290,12 +279,11 @@ include_once('templates/header.php');
             fetch( endpoint, conf )
             .then( response => response.json() )
             .then( response => {
-                if( response.data.OK ) {
-                    v.slide++;
-
-                    return fetchSoal( v.slide );
-                }
+                // console.log(response);
             } )
+            .catch( e => {
+                // console.log(e);
+            })
         }
 
         /**
@@ -354,7 +342,6 @@ include_once('templates/header.php');
                 $( `#submit-soal` ).text("Submit")
                 const redirPath = `${BASE_URL}/peserta/hasil.php`
 
-                alert( msg );
                 window.location = redirPath;
             } )
         }
