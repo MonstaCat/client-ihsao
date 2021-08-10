@@ -88,7 +88,7 @@ include('config.php');
                         <a href="#timeline">Timeline</a>
                     </div>
                     <div>
-                        <a href="/peserta" class="ml-5 mt-4 mb-4 flex items-center w-32 h-10 justify-center font-mono tracking-widest bg-ihsao-yellow text-black border-2 border-black box-shadow-black hover:bg-ihsao-purple hover:text-white">Masuk!</a>
+                        <button onclick="window.location.href='peserta'" class="ml-5 mt-4 mb-4 flex items-center w-32 h-10 justify-center font-mono tracking-widest bg-ihsao-yellow text-black border-2 border-black box-shadow-black hover:bg-ihsao-purple hover:text-white">Masuk!</button>
                     </div>
                 </nav>
             </div>
