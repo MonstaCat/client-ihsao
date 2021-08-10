@@ -20,7 +20,10 @@
 	const LOGOUT = true;
 
 	document.getElementById('logout-button').onclick = e => {
-		logout( LOGOUT );
+		const conf = confirm( `Keluar dari sistem ?` );
+
+		if( conf )
+			logout( LOGOUT );
 	} 
 
 	function logout( destroy ) {
