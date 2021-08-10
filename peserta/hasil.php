@@ -50,66 +50,7 @@ include_once('templates/header.php');
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <p class="ml-3 font-bold text-blueGray-600">
-                                                1
-                                            </p>
-                                        </td>
-                                        <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                                            <p class="font-bold text-blueGray-600">
-                                                Andika Rizki Pradana
-                                            </p>
-                                        </th>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            SMKS Labor Binaan FKIP UR Pekanbaru
-                                        </td>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <div class="flex items-center">
-                                                <p class="mr-2"><b>80</b></p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <p class="ml-3 font-bold text-blueGray-600">
-                                                2
-                                            </p>
-                                        </td>
-                                        <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                                            <p class="font-bold text-blueGray-600">
-                                                Raga Mulia Kusuma
-                                            </p>
-                                        </th>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            SMKS Labor Binaan FKIP UR Pekanbaru
-                                        </td>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <div class="flex items-center">
-                                                <p class="mr-2"><b>80</b></p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <p class="ml-3 font-bold text-blueGray-600">
-                                                3
-                                            </p>
-                                        </td>
-                                        <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                                            <p class="font-bold text-blueGray-600">
-                                                John Doe
-                                            </p>
-                                        </th>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            SMKS Labor Binaan FKIP UR Pekanbaru
-                                        </td>
-                                        <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                            <div class="flex items-center">
-                                                <p class="mr-2"><b>95</b></p>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -141,6 +82,30 @@ include_once('templates/header.php');
 
     MCDataset()
     .then( response => {
-        console.log(response)
+        let no = 1;
+        response.data.forEach( v => {
+            $( `tbody` ).append(`<tr>
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                <p class="ml-3 font-bold text-blueGray-600">
+                ${no}
+                </p>
+                </td>
+                <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+                <p class="font-bold text-blueGray-600">
+                ${v.peserta.nama}
+                </p>
+                </th>
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                ${v.Sekolah.sekolah}
+                </td>
+                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                <div class="flex items-center">
+                <p class="mr-2"><b>${v.score}</b></p>
+                </div>
+                </td>
+                </tr>`)
+
+            no++;
+        } )
     } )
 </script>
