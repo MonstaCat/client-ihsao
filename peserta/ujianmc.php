@@ -183,14 +183,13 @@ include_once('templates/header.php');
             fetchSoal( 1 );
 
             for( let i = 1; i<=MC_TOTAL; i++ ) {
-                const element   = `<li page="${i}" @click="openTab = 1" :class="{ 'border-4': openTab === 1 }" id="${currentPageSlide+i}" class="${pageSlideClass} cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 border border-solid border-emerald-500">
+                const element   = `<li page="${i}" @click="openTab = ${i}" :class="{ 'border-4': openTab === 1 }" id="${currentPageSlide+i}" class="${pageSlideClass} cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 border border-solid border-emerald-500">
                                <a href="#"></a></li>`;
                 container.append( element );
 
             }
 
             $( document ).on( `click`, `.mc-soal-button`, function(){
-                $(this).addClass( `bg-lightblue-500` )
                 fetchSoal( Number( $(this).attr("page") ) );
             } )
         }
@@ -291,11 +290,11 @@ include_once('templates/header.php');
             fetch( endpoint, conf )
             .then( response => response.json() )
             .then( response => {
-                // if( response.data.OK ) {
-                //     v.slide++;
+                if( response.data.OK ) {
+                    v.slide++;
 
-                //     return fetchSoal( v.slide );
-                // }
+                    return fetchSoal( v.slide );
+                }
             } )
         }
 
@@ -353,8 +352,7 @@ include_once('templates/header.php');
             .then( response => response.json() )
             .then( response => {
                 $( `#submit-soal` ).text("Submit")
-                const msg = `Soal telah disubmit score = ${response.data.score}`;
-                const redirPath = `${BASE_URL}/peserta/home.php`
+                const redirPath = `${BASE_URL}/peserta/hasil.php`
 
                 alert( msg );
                 window.location = redirPath;
