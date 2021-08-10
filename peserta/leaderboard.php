@@ -25,7 +25,7 @@ include_once('templates/header.php');
                             <div class="flex flex-wrap items-center">
                                 <div class="relative w-full px-4 max-w-full flex-grow flex-1">
                                     <h3 class="font-semibold text-lg text-blueGray-700">
-                                        Top 8 Score
+                                        Top 8 Score | SMA
                                     </h3>
                                 </div>
                             </div>
@@ -53,7 +53,46 @@ include_once('templates/header.php');
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
+                        <div class="rounded-t mb-0 px-4 py-3 border-0">
+                            <div class="flex flex-wrap items-center">
+                                <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                                    <h3 class="font-semibold text-lg text-blueGray-700">
+                                        Top 8 Score | SMK
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block w-full overflow-x-auto">
+                            <!-- Leaderboard table -->
+                            <table class="items-center w-full bg-transparent border-collapse">
+                                <thead>
+                                    <tr>
+                                        <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                            Peringkat
+                                        </th>
+                                        <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                            Nama Tim
+                                        </th>
+                                        <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                            Asal Sekolah
+                                        </th>
+                                        <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                            Status
+                                        </th>
+                                        <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100">
+                                            Total Score
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
                                 </tbody>
                             </table>
                         </div>
@@ -73,20 +112,20 @@ include_once('templates/header.php');
 </html>
 <script type="text/javascript">
     async function LBDataset() {
-        const token = localStorage.getItem( `token` );
-        const sekolah = localStorage.getItem( `isSmk` );
+        const token = localStorage.getItem(`token`);
+        const sekolah = localStorage.getItem(`isSmk`);
         const endpoint = `${API_SOAL_MULTIPLE}/leaderboard/${token}/${sekolah}`;
 
-        const lb = await fetch( endpoint );
+        const lb = await fetch(endpoint);
 
         return lb.json();
     }
 
     LBDataset()
-    .then( response => {
-       let no = 1;
-       response.data.forEach( v => {
-            $( `tbody` ).append(`<tr>
+        .then(response => {
+            let no = 1;
+            response.data.forEach(v => {
+                $(`tbody`).append(`<tr>
             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
             <p class="ml-3 font-bold text-blueGray-600">
             ${no}
@@ -109,7 +148,7 @@ include_once('templates/header.php');
             </div>
             </td>
             </tr>`)
-            no++;
-       } )
-    } )
+                no++;
+            })
+        })
 </script>
