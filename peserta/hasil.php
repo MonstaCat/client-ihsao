@@ -138,7 +138,24 @@ include_once('templates/header.php');
 
     <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
 </body>
 
 </html>
+
+<script type="text/javascript">
+    async function MCDataset()
+    {   
+        const token = localStorage.getItem( `token` );
+        const sekolah = localStorage.getItem( `isSmk` );
+        const endpoint = `${API_SOAL_MULTIPLE}/result/${token}/${sekolah}`;
+        
+        const dataset = await fetch( endpoint );
+
+        return dataset.json();
+    }
+
+    MCDataset()
+    .then( response => {
+        console.log(response)
+    } )
+</script>
