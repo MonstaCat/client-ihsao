@@ -223,6 +223,10 @@ include_once('../templates/header.php');
             socket.on(`has-new-token`, token => {
                 $(`#status-${token}`).html("Digunakan")
             })
+
+            socket.on( `peserta-logout`, token => {
+                $(`#status-${token}`).html("Tidak digunakan")
+            } )
         })
     </script>
 </body>
