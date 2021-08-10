@@ -67,46 +67,6 @@ include_once('templates/header.php');
                                                     </table>
                                                 </div>
                                             </div>
-
-                                            <div class="w-72 mt-5 mb-5 ml-3" id="kasus">
-                                                <div class="bg-white shadow-lg rounded-lg py-3">
-                                                    <table class="text-xs mx-4 my-3">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td class="px-2 py-2 text-gray-500 font-semibold flex">Jenis Soal</td>
-                                                                <td class="px-2 py-2">Soal Kasus</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="px-2 py-2 text-gray-500 font-semibold flex">Jumlah Soal</td>
-                                                                <td class="px-2 py-2">50 Soal</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="px-2 py-2 text-gray-500 font-semibold flex">Waktu</td>
-                                                                <td class="px-2 py-2">100 Menit</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="px-2 py-2 text-gray-500 font-semibold flex">Status</td>
-                                                                <td class="px-2 py-2 font-bold" id="ujian-status">Belum Dikerjakan</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="px-2 py-2 text-gray-500 font-semibold flex">Token</td>
-                                                                <td class="px-2 py-2 font-bold">
-                                                                    <form id="form-token">
-                                                                        <input type="text" autocomplete="off" name="token" placeholder="Masukkan Token" class="px-2 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border border-blueGray-300 outline-none focus:outline-none focus:shadow-outline w-full">
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td colspan="2">
-                                                                    <button type="submit" id="ujian-button" class="float-right bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 mt-5 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-                                                                        Mulai Ujian
-                                                                    </button>
-                                                                    </form>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
                                         </div>
                                         <!-- End of content body -->
                                     </div>
