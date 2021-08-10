@@ -18,13 +18,16 @@
 
 	const CHECK_CREDENTIAL = false;
 	const LOGOUT = true;
+	const logoutButton = document.getElementById('logout-button')
 
-	document.getElementById('logout-button').onclick = e => {
-		const conf = confirm( `Keluar dari sistem ?` );
+	if( logoutButton ) {
+		logoutButton.onclick = e => {
+			const conf = confirm( `Keluar dari sistem ?` );
 
-		if( conf )
-			logout( LOGOUT );
-	} 
+			if( conf )
+				logout( LOGOUT );
+		} 
+	}
 
 	function logout( destroy ) {
 		const sekolah = localStorage.getItem( `isSmk` );
