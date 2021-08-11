@@ -143,6 +143,8 @@ include_once('templates/header.php');
      * set status ujian jika sudah dikerjakan
      */
     
-    if( localStorage.getItem( `status_ujian` ) )
-        $(`#ujian-status`).text( localStorage.getItem( `status_ujian` ) );
+    const statusUjian = localStorage.getItem( `status_ujian` )
+    if( ! isBan && statusUjian ) {
+        statusText.html(statusUjian)
+    }
 </script>
