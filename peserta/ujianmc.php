@@ -80,23 +80,34 @@ include_once('templates/header.php');
 
     <!-- Disable dev tools -->
     <script>
-        // document.onkeydown = function(e) {
-        //     if (event.keyCode == 123) {
-        //         return false;
-        //     }
-        //     if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-        //         return false;
-        //     }
-        //     if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
-        //         return false;
-        //     }
-        //     if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-        //         return false;
-        //     }
-        //     if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-        //         return false;
-        //     }
-        // }
+        document.onkeydown = function(e) {
+            if (event.keyCode == 123) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+                return false;
+            }
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+                return false;
+            }
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+                return false;
+            }
+        }
+    </script>
+
+    <!-- Disable refresh -->
+    <script type="text/javascript">
+        function disableF5(e) {
+            if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82) e.preventDefault();
+        };
+
+        $(document).ready(function() {
+            $(document).on("keydown", disableF5);
+        });
     </script>
 
     <script>
