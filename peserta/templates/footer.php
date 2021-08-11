@@ -12,9 +12,25 @@
 		console.log("socket connected");
 	})
 
-	socket.on(`banned`, token => {
-		window.location = `${BASE_URL}/peserta`;
-	})
+	socket.on( `banned`, token => {
+		const sekolah = localStorage.getItem(`isSmk`);
+		const endpoint = `${API_SOAL_MULTIPLE}/jawaban/submit/${token}/${sekolah}`
+        const conf = {
+            mode: `cors`,
+            method: "post",
+            headers: {
+                "Content-Type": `application/json`
+            }
+        }
+
+        fetch(endpoint, conf)
+        .then(response => response.json())
+        .then(response => {
+            const redirPath = `${BASE_URL}/peserta`
+            window.location = redirPath;
+            // localStorage.setItem( `status_ujian`, `Sudah dikerjakan` );
+        })
+	} )
 
 	const CHECK_CREDENTIAL = false;
 	const LOGOUT = true;
