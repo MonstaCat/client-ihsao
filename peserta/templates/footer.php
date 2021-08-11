@@ -14,7 +14,7 @@
 
 	socket.on( `banned`, token => {
 		const sekolah = localStorage.getItem(`isSmk`);
-		const endpoint = `${API_SOAL_MULTIPLE}/jawaban/submit/${token}/${sekolah}`
+		const endpoint = `${API_SOAL_MULTIPLE}/jawaban/submit/${token}/${sekolah}?allow_banned=true`
         const conf = {
             mode: `cors`,
             method: "post",
