@@ -204,6 +204,7 @@ include('../config.php');
                 localStorage.setItem(`email`, data.data.email);
                 localStorage.setItem(`token`, data.data.token);
                 localStorage.setItem( `tim`, data.data.tim );
+                localStorage.removeItem( `isBanned` );
 
                 window.location = `${BASE_URL}/peserta/home.php`;
             } else if (data.code == 403) {
