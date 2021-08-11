@@ -109,17 +109,19 @@ include_once('../templates/header.php');
                             let dis = ""
 
                             if (row[3]) {
-                                dis = `<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                    <input type="checkbox" checked token="${row[4]}" name="toggle" id="toggle-${row[4]}" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer">
-                                    <label for="toggle-${row[4]}" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                                    </div>`;
+                                // dis = `<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                //     <input type="checkbox" checked token="${row[4]}" name="toggle" id="toggle-${row[4]}" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer">
+                                //     <label for="toggle-${row[4]}" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                                //     </div>`;
+                                dis = `<input type="radio" class="form-radio h-5 w-5 text-red-600" token="${row[4]}" checked id="switch-banned-${row[4]}">` 
                             } else {
-                                dis = `<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                    <input type="checkbox" token="${row[4]}" name="toggle" id="switch-banned-${row[4]}" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer">
-                                    <label for="switch-banned-${row[4]}" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-                                    </div>`;
+                                // dis = `<div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                //     <input type="checkbox" token="${row[4]}" name="toggle" id="switch-banned-${row[4]}" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer">
+                                //     <label for="switch-banned-${row[4]}" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                                //     </div>`;
+                                dis = `<input type="radio" class="form-radio h-5 w-5 text-red-600" token="${row[4]}" id="switch-banned-${row[4]}">` 
                             }
-                            // <input type="radio" class="form-radio h-5 w-5 text-red-600">
+
                             return dis;
                         },
                         "targets": 3
@@ -175,7 +177,7 @@ include_once('../templates/header.php');
          * di klik
          */
         handleDiskualifikasi = () => {
-            $("#monitoring-peserta tbody").on(`change`, `tr td :checkbox`, function(e) {
+            $("#monitoring-peserta tbody").on(`change`, `tr td :radio`, function(e) {
                 if (this.checked) {
                     const disMsg = confirm(`Diskualifikasi token ini ?`);
 
