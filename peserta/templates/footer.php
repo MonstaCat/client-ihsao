@@ -55,14 +55,14 @@
 					}, 300)
 				}
 
-				if (response.code == 403) {
-					window.location = redirPath;
-				}
+				// if (response.code == 403) {
+				// 	window.location = redirPath;
+				// }
 			})
 			.catch(e => {
 				window.location = redirPath;
 			})
 	}
 
-	// logout( CHECK_CREDENTIAL );
+	logout( CHECK_CREDENTIAL );
 </script>
