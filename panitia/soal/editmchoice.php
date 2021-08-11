@@ -151,7 +151,7 @@ include_once('../templates/header.php');
                 const dataJawaban = data.jawaban[i];
 
                 $( `[name="jawaban_id[]"]` )[i].value = dataJawaban.id;
-                $( `[name="jawaban[]"]` )[i].value = dataJawaban.jawaban;
+                $( `[name="jawaban[]"]` )[i].value = (dataJawaban.jawaban == `null`) ? "" : dataJawaban.jawaban;
                 $( `[name="jawaban_key[]"]` )[i].checked = dataJawaban.is_key;
 
             }

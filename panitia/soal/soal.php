@@ -138,7 +138,7 @@ include_once('../templates/header.php');
             for( let i = 0; i < $(`[name="jawaban[]"]`).length; i++ ) {
                 const jawaban = {
                     key : $(`[name="jawaban_key[]"]`)[i].value,
-                    jawaban : $(`[name="jawaban[]"]`)[i].value,
+                    jawaban : ( $(`[name="jawaban[]"]`)[i].value == "" ) ? null : $(`[name="jawaban[]"]`)[i].value,
                     is_key : $(`[name="jawaban_key[]"]`)[i].checked,
                     image_name : $(`[name="jawaban_image[]"]`)[i].files[0]?.name,
                     image : $(`[name="jawaban_image[]"]`)[i].files[0]
