@@ -62,7 +62,7 @@ include_once('templates/header.php');
 
                 <!-- Content Soal -->
                 <div class="mb-auto h-auto soal-content">
-                    
+
 
                 </div>
             </div>
@@ -104,7 +104,7 @@ include_once('templates/header.php');
         var currentPage = 1;
         var currentPageSlide = `mc-slide-`; //get slide id
         var pageSlideClass = `mc-soal-button`
-        var sekolah = localStorage.getItem( `isSmk` );
+        var sekolah = localStorage.getItem(`isSmk`);
         var jawabanElList = [];
 
         async function run() {
@@ -120,17 +120,16 @@ include_once('templates/header.php');
         /**
          * keluarkan aplikasi ketika waktu sudah habis
          */
-        function setTimeisOver()
-        {
-            const socket = io( API_ORIGIN );
+        function setTimeisOver() {
+            const socket = io(API_ORIGIN);
 
-            socket.on( `shutdown`, token => {
+            socket.on(`shutdown`, token => {
                 submitSoal();
-                alert( `ujian telah berakhir` );
-                window.setTimeout( function(){
+                alert(`ujian telah berakhir`);
+                window.setTimeout(function() {
                     window.location = `${BASE_URL}/peserta/hasil.php`;
-                }, 500 )
-            } )
+                }, 500)
+            })
         }
 
         /**
@@ -145,37 +144,36 @@ include_once('templates/header.php');
         /**
          * membuat slider pindah halaman
          */
-        function setSoalSlider( conf ) {
-            const container = $( `#button-soal` );
+        function setSoalSlider(conf) {
+            const container = $(`#button-soal`);
 
             // initial soal
-            fetchSoal( 1 );
+            fetchSoal(1);
 
-            for( let i = 1; i<=MC_TOTAL; i++ ) {
-                const element   = `<li page="${i}" @click="openTab = ${i}" :class="{ 'border-4': openTab === ${i} }" id="${currentPageSlide+i}" class="${pageSlideClass} cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 border border-solid border-emerald-500">
+            for (let i = 1; i <= MC_TOTAL; i++) {
+                const element = `<li page="${i}" @click="openTab = ${i}" :class="{ 'border-4': openTab === ${i} }" id="${currentPageSlide+i}" class="${pageSlideClass} cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 border border-solid border-emerald-500">
                                <a href="#"></a></li>`;
-                container.append( element );
+                container.append(element);
 
             }
 
-            $( document ).on( `click`, `.mc-soal-button`, function(){
-                fetchSoal( Number( $(this).attr("page") ) );
-            } )
+            $(document).on(`click`, `.mc-soal-button`, function() {
+                fetchSoal(Number($(this).attr("page")));
+            })
         }
 
         /**
          * mengambil data soal di db
          */
-        function fetchSoal( no ) 
-        {
+        function fetchSoal(no) {
             const storage = `${API_ORIGIN}/storages/images/soal-multiple/`;
 
-            fetch( `${API_SOAL_MULTIPLE}/unit/${token}/${sekolah}/${no}` )
-            .then( response => response.json() )
-            .then( response => {
-                const jawaban = response.data.jawaban;
-                const soal = response.data;
-                $( `.soal-content` ).html(`<div x-show="openTab === ${no}">
+            fetch(`${API_SOAL_MULTIPLE}/unit/${token}/${sekolah}/${no}`)
+                .then(response => response.json())
+                .then(response => {
+                    const jawaban = response.data.jawaban;
+                    const soal = response.data;
+                    $(`.soal-content`).html(`<div x-show="openTab === ${no}">
                     ${ ( response.data.soal_gambar != "" ) ? `<img src="${storage+soal.soal_gambar}" class="max-h-72 mb-4" id="soal_gambar">` : `` }
                     <p class="text-sm font-semibold mb-5" id="soal">${soal.soal}</p>
 
@@ -220,70 +218,73 @@ include_once('templates/header.php');
                     </div>
                 `)
 
-                /**
-                 * ketika jawaban dipilih
-                 */
-                for( let radio of $(`[name='objektif[]']`) ) {
-                    const id = `#${radio.getAttribute( `id` )}`;
-                    $(id).on( `change`, e => {
-                        changeJawabanValue( { slide : no, soal : soal.id, jawaban : e.target.value } )
-                    } )
-                }
+                    /**
+                     * ketika jawaban dipilih
+                     */
+                    for (let radio of $(`[name='objektif[]']`)) {
+                        const id = `#${radio.getAttribute( `id` )}`;
+                        $(id).on(`change`, e => {
+                            changeJawabanValue({
+                                slide: no,
+                                soal: soal.id,
+                                jawaban: e.target.value
+                            })
+                        })
+                    }
 
-                setDefaultJawaban( response.data.id );
-            } )
+                    setDefaultJawaban(response.data.id);
+                })
         }
 
         /**
          * membuat identifier untuk semua jawaban
          */
-        function setJawabanId( dataset )
-        {   
-            jawabanElList.push( dataset.jawaban.id )
-            dataset.button.setAttribute( `id`, dataset.jawaban.id );
+        function setJawabanId(dataset) {
+            jawabanElList.push(dataset.jawaban.id)
+            dataset.button.setAttribute(`id`, dataset.jawaban.id);
             dataset.button.value = dataset.jawaban.id;
-        } 
+        }
 
         /**
          * menampilkan default jawaban
          */
-        function setDefaultJawaban( soal )
-        {
-            fetch( `${API_SOAL_MULTIPLE}/unit/jawaban/${token}/${sekolah}/${soal}` )
-            .then( response => response.json() )
-            .then( response => {
-                if( response.data.jawaban != ``) {
-                    $( `#radio-${response.data.jawaban}` ).prop( `checked`, true )
-                } 
-            } )
+        function setDefaultJawaban(soal) {
+            fetch(`${API_SOAL_MULTIPLE}/unit/jawaban/${token}/${sekolah}/${soal}`)
+                .then(response => response.json())
+                .then(response => {
+                    if (response.data.jawaban != ``) {
+                        $(`#radio-${response.data.jawaban}`).prop(`checked`, true)
+                    }
+                })
         }
 
         /**
          * mengubah data jawaban yang diisi
          */
-        function changeJawabanValue( v ) 
-        {
-            $( `#${currentPageSlide+v.slide}` ).addClass( `cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 bg-emerald-500 bg-opacity-25` )
-            $( `#${currentPageSlide+v.slide}` ).removeClass( `border border-solid border-emerald-500` )
+        function changeJawabanValue(v) {
+            $(`#${currentPageSlide+v.slide}`).addClass(`cursor-pointer w-6 h-6 rounded last:mr-0 mr-2 bg-emerald-500 bg-opacity-25`)
+            $(`#${currentPageSlide+v.slide}`).removeClass(`border border-solid border-emerald-500`)
 
             const endpoint = `${API_SOAL_MULTIPLE}/unit/jawaban/${token}/${sekolah}/${v.soal}`
             const conf = {
-                mode : `cors`,
-                method : `PUT`,
-                body : JSON.stringify( { jawaban : v.jawaban } ),
-                headers : {
-                    "Content-Type" : "application/json"
+                mode: `cors`,
+                method: `PUT`,
+                body: JSON.stringify({
+                    jawaban: v.jawaban
+                }),
+                headers: {
+                    "Content-Type": "application/json"
                 }
             }
 
-            fetch( endpoint, conf )
-            .then( response => response.json() )
-            .then( response => {
-                // console.log(response);
-            } )
-            .catch( e => {
-                // console.log(e);
-            })
+            fetch(endpoint, conf)
+                .then(response => response.json())
+                .then(response => {
+                    // console.log(response);
+                })
+                .catch(e => {
+                    // console.log(e);
+                })
         }
 
         /**
@@ -293,7 +294,7 @@ include_once('templates/header.php');
 
             const d = new Date(JSON.parse(conf.deadline));
 
-            const date = `${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}` 
+            const date = `${d.getMonth()+1}/${d.getDate()}/${d.getFullYear()}`
             const time = `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
             const dt = date + " " + time;
 
@@ -306,46 +307,44 @@ include_once('templates/header.php');
             }, function(container) {
                 // alert('Done!');
                 // Jika countdown selesai, tampilkan aksi disini
-            });     
+            });
         }
 
         /**
          * mengaktifkan tombol submit
          */
-        function setSubmitSoal()
-        {
-            $( `#submit-soal` ).click( function(e) {
+        function setSubmitSoal() {
+            $(`#submit-soal`).click(function(e) {
                 e.preventDefault();
 
-                const msg = confirm( `Yakin ingin melakukan submit soal ?` );
+                const msg = confirm(`Yakin ingin melakukan submit soal ?`);
 
-                if( msg  ) return submitSoal();
-            } )
+                if (msg) return submitSoal();
+            })
         }
 
-        function submitSoal()
-        {
+        function submitSoal() {
             const endpoint = `${API_SOAL_MULTIPLE}/jawaban/submit/${token}/${sekolah}`
             const conf = {
-                mode : `cors`,
-                method : "post",
-                headers : {
-                    "Content-Type" : `application/json`
+                mode: `cors`,
+                method: "post",
+                headers: {
+                    "Content-Type": `application/json`
                 }
             }
 
-            $( `#submit-soal` ).text( `Loading...` )
+            $(`#submit-soal`).text(`Loading...`)
 
-            fetch( endpoint, conf )
-            .then( response => response.json() )
-            .then( response => {
-                $( `#submit-soal` ).text("Submit")
-                const redirPath = `${BASE_URL}/peserta/hasil.php`
+            fetch(endpoint, conf)
+                .then(response => response.json())
+                .then(response => {
+                    $(`#submit-soal`).text("Submit")
+                    const redirPath = `${BASE_URL}/peserta/hasil.php`
 
-                localStorage.setItem( `status_ujian`, `Sudah dikerjakan` );
+                    // localStorage.setItem( `status_ujian`, `Sudah dikerjakan` );
 
-                window.location = redirPath;
-            } )
+                    window.location = redirPath;
+                })
         }
     </script>
 
