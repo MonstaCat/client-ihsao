@@ -52,7 +52,7 @@ include_once('templates/header.php');
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="table-sma">
 
                                 </tbody>
                             </table>
@@ -91,7 +91,7 @@ include_once('templates/header.php');
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="table-smk">
 
                                 </tbody>
                             </table>
@@ -123,9 +123,37 @@ include_once('templates/header.php');
 
     LBDataset()
         .then(response => {
+            console.log(response)
             let no = 1;
-            response.data.forEach(v => {
-                $(`tbody`).append(`<tr>
+            response.data.sma.forEach(v => {
+                $(`tbody#table-sma`).append(`<tr>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+            <p class="ml-3 font-bold text-blueGray-600">
+            ${no}
+            </p>
+            </td>
+            <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
+            <p class="font-bold text-blueGray-600">
+            ${v.Tim.nama_tim}
+            </p>
+            </th>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+            ${v.Sekolah.sekolah}
+            </td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+            ${ ( v.is_complete ) ? `<i class="fas fa-circle text-emerald-500 mr-2"></i> Complete` : `<i class="fas fa-circle text-orange-500 mr-2"></i> Pending` }
+            </td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+            <div class="flex items-center">
+            <p class="mr-2"><b>${v.score}</b></p>
+            </div>
+            </td>
+            </tr>`)
+                no++;
+            })
+
+            response.data.smk.forEach(v => {
+                $(`tbody#table-smk`).append(`<tr>
             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
             <p class="ml-3 font-bold text-blueGray-600">
             ${no}

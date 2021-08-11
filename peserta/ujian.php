@@ -122,20 +122,27 @@ include_once('templates/header.php');
         $(`#ujian-button`).text("Loading...")
 
         fetch(`${API_SOAL_MULTIPLE}/start/${token}/${sekolah}`)
-            .then(response => response.json())
-            .then(response => {
+        .then(response => response.json())
+        .then(response => {
 
-                $(`#ujian-button`).text("Mulai Ujian");
+            $(`#ujian-button`).text("Mulai Ujian");
 
-                if (!response.start) {
-                    return alert(response.msg);
-                }
+            if (!response.start) {
+                return alert(response.msg);
+            }
 
-                localStorage.setItem(`mc-total`, response.data.total);
+            localStorage.setItem(`mc-total`, response.data.total);
 
-                const redirPath = `${BASE_URL}/peserta/ujianmc.php`;
+            const redirPath = `${BASE_URL}/peserta/ujianmc.php`;
 
-                window.location = redirPath;
-            })
+            window.location = redirPath;
+        })
     }
+
+    /**
+     * set status ujian jika sudah dikerjakan
+     */
+    
+    if( localStorage.getItem( `status_ujian` ) )
+        $(`#ujian-status`).text( localStorage.getItem( `status_ujian` ) );
 </script>
