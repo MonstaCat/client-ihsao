@@ -86,8 +86,8 @@ include_once('../templates/header.php');
                 ajax: {
                     url: `${BASE_URL}/panitia/http-request/datatable.data-peserta.php`,
                     dataType: "JSON",
-                    data : {
-                        token : API_KEY
+                    data: {
+                        token: API_KEY
                     }
                 },
                 columnDefs: [{
@@ -119,7 +119,7 @@ include_once('../templates/header.php');
                                     <label for="switch-banned-${row[4]}" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
                                     </div>`;
                             }
-
+                            // <input type="radio" class="form-radio h-5 w-5 text-red-600">
                             return dis;
                         },
                         "targets": 3
@@ -224,9 +224,9 @@ include_once('../templates/header.php');
                 $(`#status-${token}`).html("Digunakan")
             })
 
-            socket.on( `peserta-logout`, token => {
+            socket.on(`peserta-logout`, token => {
                 $(`#status-${token}`).html("Tidak digunakan")
-            } )
+            })
         })
     </script>
 </body>
