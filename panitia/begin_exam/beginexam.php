@@ -35,8 +35,26 @@ include_once('../templates/header.php');
                                         <button id="button-ujian" class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-full" type="button">
                                             Mulai Ujian Multiplechoice
                                         </button>
-                                        <button id="button-reset-ujian" class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-full" type="button">
+                                        <!-- <button id="button-reset-ujian" class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-full" type="button">
                                             Reset Ujian
+                                        </button> -->
+                                        <button id="" class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-full" type="button">
+                                            Reset User Token
+                                        </button>
+                                        <button id="" class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-full" type="button">
+                                            Reset Soal
+                                        </button>
+                                        <button id="" class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-full" type="button">
+                                            Reset Jawaban Peserta
+                                        </button>
+                                        <button id="" class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-full" type="button">
+                                            Reset Score Peserta
+                                        </button>
+                                        <button id="" class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-full" type="button">
+                                            Reset Leaderboard
+                                        </button>
+                                        <button id="" class="bg-red-500 text-white active:bg-red-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 w-full" type="button">
+                                            Reset Konfigurasi Ujian
                                         </button>
 
                                         <div class="my-12" id="loading-indicator" x-data="{ width: '0' }" x-init="
@@ -190,10 +208,9 @@ include_once('../templates/header.php');
         /**
          * memberitahu kesemua panitia jika ujian telah di reset
          */
-        function sendResetMessage()
-        {
+        function sendResetMessage() {
             const socket = io(API_ORIGIN);
-            socket.emit( `reset-mc`, true );
+            socket.emit(`reset-mc`, true);
         }
 
         /**

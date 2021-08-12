@@ -12,30 +12,30 @@
 		console.log("socket connected");
 	})
 
-	socket.on( `reset-mc`, token => {
-		localStorage.removeItem( `status_ujian` );
+	socket.on(`reset-mc`, token => {
+		localStorage.removeItem(`status_ujian`);
 		window.location.reload();
-	} ) 
+	})
 
-	socket.on( `banned`, token => {
+	socket.on(`banned`, token => {
 		const sekolah = localStorage.getItem(`isSmk`);
 		const endpoint = `${API_SOAL_MULTIPLE}/jawaban/submit/${token}/${sekolah}?allow_banned=true`
-        const conf = {
-            mode: `cors`,
-            method: "post",
-            headers: {
-                "Content-Type": `application/json`
-            }
-        }
+		const conf = {
+			mode: `cors`,
+			method: "post",
+			headers: {
+				"Content-Type": `application/json`
+			}
+		}
 
-        fetch(endpoint, conf)
-        .then(response => response.json())
-        .then(response => {
-            const redirPath = `${BASE_URL}/peserta`
-            window.location = redirPath;
-            // localStorage.setItem( `status_ujian`, `Sudah dikerjakan` );
-        })
-	} )
+		fetch(endpoint, conf)
+			.then(response => response.json())
+			.then(response => {
+				const redirPath = `${BASE_URL}/peserta`
+				window.location = redirPath;
+				// localStorage.setItem( `status_ujian`, `Sudah dikerjakan` );
+			})
+	})
 
 	const CHECK_CREDENTIAL = false;
 	const LOGOUT = true;
@@ -85,5 +85,5 @@
 			})
 	}
 
-	logout( CHECK_CREDENTIAL );
+	logout(CHECK_CREDENTIAL);
 </script>
