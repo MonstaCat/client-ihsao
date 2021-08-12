@@ -72,7 +72,7 @@ include_once('templates/header.php');
     {   
         const token = localStorage.getItem( `token` );
         const sekolah = localStorage.getItem( `isSmk` );
-        const endpoint = `${API_SOAL_MULTIPLE}/result/${token}/${sekolah}`;
+        const endpoint = `${API_SOAL_MULTIPLE}/result/${token}/${sekolah}?allow_banned=true`;
         
         const dataset = await fetch( endpoint );
 

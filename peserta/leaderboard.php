@@ -114,7 +114,7 @@ include_once('templates/header.php');
     async function LBDataset() {
         const token = localStorage.getItem(`token`);
         const sekolah = localStorage.getItem(`isSmk`);
-        const endpoint = `${API_SOAL_MULTIPLE}/leaderboard/${token}/${sekolah}`;
+        const endpoint = `${API_SOAL_MULTIPLE}/leaderboard/${token}/${sekolah}?allow_banned=true`;
 
         const lb = await fetch(endpoint);
 
@@ -123,7 +123,6 @@ include_once('templates/header.php');
 
     LBDataset()
         .then(response => {
-            console.log(response)
             let no = 1;
             response.data.sma.forEach(v => {
                 $(`tbody#table-sma`).append(`<tr>
