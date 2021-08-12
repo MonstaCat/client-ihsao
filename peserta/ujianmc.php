@@ -347,18 +347,15 @@ include_once('templates/header.php');
             $(`#submit-soal`).text(`Loading...`)
 
             fetch(endpoint, conf)
-                .then(response => response.json())
-                .then(response => {
-                    $(`#submit-soal`).text("Submit")
-                    const redirPath = `${BASE_URL}/peserta/hasil.php`
+            .then(response => response.json())
+            .then(response => {
+                $(`#submit-soal`).text("Submit")
+                const redirPath = `${BASE_URL}/peserta/hasil.php`
 
-                    window.location = redirPath;
+                window.location = redirPath;
 
-                    localStorage.setItem(`status_ujian`, `Sudah dikerjakan`);
-                })
-
-            const redirPage = `${BASE_URL}/peserta/hasil.php`;
-            window.location = redirPage;
+                localStorage.setItem(`status_ujian`, `Sudah dikerjakan`);
+            })
         }
     </script>
 
