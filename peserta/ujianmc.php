@@ -121,12 +121,28 @@ include_once('templates/header.php');
         async function run() {
             const conf = await getConf();
 
+            isSubmit();
             setTimeisOver();
             setDeadline(conf.data);
             setSoalSlider(conf.data);
             setSubmitSoal();
         }
         run();
+
+        function isSubmit()
+        {
+            const endpoint = `${API_SOAL_MULTIPLE}/token/submit/${token}/${sekolah}`;
+
+            fetch( endpoint )
+            .then( response => response.json() )
+            .then( response => {
+                if( response ) {
+                    const redirPath = `${BASE_URL}/peserta/hasil.php`
+
+                    window.location = redirPath;
+                }
+            } )
+        }
 
         /**
          * keluarkan aplikasi ketika waktu sudah habis
