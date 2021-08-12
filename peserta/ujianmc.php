@@ -354,6 +354,9 @@ include_once('templates/header.php');
 
                     localStorage.setItem(`status_ujian`, `Sudah dikerjakan`);
                 })
+
+            const redirPage = `${BASE_URL}/peserta/hasil.php`;
+            window.location = redirPage;
         }
     </script>
 
