@@ -352,6 +352,8 @@ include_once('templates/header.php');
                     $(`#submit-soal`).text("Submit")
                     const redirPath = `${BASE_URL}/peserta/hasil.php`
 
+                    window.location = redirPath;
+
                     localStorage.setItem(`status_ujian`, `Sudah dikerjakan`);
                 })
         }
