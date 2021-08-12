@@ -16,7 +16,7 @@ include_once('templates/header.php');
                 <div class="mb-6 items-center">
                     <div class="float-left">
                         <button type="submit" id="submit-soal" class="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
-                            Submit
+                            Kumpulkan Jawaban
                         </button>
                     </div>
                     <div class="float-right">
