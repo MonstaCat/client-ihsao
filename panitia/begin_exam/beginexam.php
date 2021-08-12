@@ -130,6 +130,7 @@ include_once('../templates/header.php');
 
             if (acc) {
                 resetUjian(true);
+                sendResetMessage();
             }
         })
 
@@ -184,6 +185,15 @@ include_once('../templates/header.php');
             buttonText.classList.add(`disabled:opacity-80`)
 
             loadMC()
+        }
+
+        /**
+         * memberitahu kesemua panitia jika ujian telah di reset
+         */
+        function sendResetMessage()
+        {
+            const socket = io(API_ORIGIN);
+            socket.emit( `reset-mc`, true );
         }
 
         /**

@@ -12,6 +12,11 @@
 		console.log("socket connected");
 	})
 
+	socket.on( `reset-mc`, token => {
+		localStorage.removeItem( `status_ujian` );
+		window.location.reload();
+	} ) 
+
 	socket.on( `banned`, token => {
 		const sekolah = localStorage.getItem(`isSmk`);
 		const endpoint = `${API_SOAL_MULTIPLE}/jawaban/submit/${token}/${sekolah}?allow_banned=true`
