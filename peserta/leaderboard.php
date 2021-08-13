@@ -149,7 +149,7 @@ include_once('templates/header.php');
             </div>
             </td>
             </tr>`)
-                no++;
+                noSMA++;
             })
 
             response.data.smk.forEach(v => {
@@ -176,7 +176,7 @@ include_once('templates/header.php');
             </div>
             </td>
             </tr>`)
-                no++;
+                noSMK++;
             })
         })
 </script>
