@@ -55,7 +55,7 @@
 		const token = localStorage.getItem(`token`);
 		const redirPath = `${BASE_URL}/peserta`;
 
-		fetch(`${API_PESERTA}/logout/${token}/${sekolah}`, {
+		fetch(`${API_PESERTA}/logout/${token}/${sekolah}?allow_banned=true`, {
 				mode: "cors",
 				method: "post",
 				body: JSON.stringify({
