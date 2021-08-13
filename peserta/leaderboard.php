@@ -123,12 +123,13 @@ include_once('templates/header.php');
 
     LBDataset()
         .then(response => {
-            let no = 1;
+            let noSMK = 1;
+            let noSMA = 1;
             response.data.sma.forEach(v => {
                 $(`tbody#table-sma`).append(`<tr>
             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
             <p class="ml-3 font-bold text-blueGray-600">
-            ${no}
+            ${noSMA}
             </p>
             </td>
             <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
@@ -155,7 +156,7 @@ include_once('templates/header.php');
                 $(`tbody#table-smk`).append(`<tr>
             <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
             <p class="ml-3 font-bold text-blueGray-600">
-            ${no}
+            ${noSMK}
             </p>
             </td>
             <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
