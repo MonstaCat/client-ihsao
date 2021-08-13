@@ -131,12 +131,13 @@ include_once('templates/header.php');
 
         function isSubmit()
         {
-            const endpoint = `${API_SOAL_MULTIPLE}/token/submit/${token}/${sekolah}`;
+            const endpoint = `${API_SOAL_MULTIPLE}/token/submit/${token}/${sekolah}?is_ujian`;
 
             fetch( endpoint )
             .then( response => response.json() )
             .then( response => {
-                if( response ) {
+                console.log(response);
+                if( JSON.parse( response ) ) {
                     const redirPath = `${BASE_URL}/peserta/hasil.php`
 
                     window.location = redirPath;
