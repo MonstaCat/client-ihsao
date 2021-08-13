@@ -136,7 +136,6 @@ include_once('templates/header.php');
             fetch( endpoint )
             .then( response => response.json() )
             .then( response => {
-                console.log(response);
                 if( JSON.parse( response ) ) {
                     const redirPath = `${BASE_URL}/peserta/hasil.php`
 
@@ -199,6 +198,7 @@ include_once('templates/header.php');
             fetch(`${API_SOAL_MULTIPLE}/unit/${token}/${sekolah}/${no}`)
                 .then(response => response.json())
                 .then(response => {
+                    console.log(response);
                     const jawaban = response.data.jawaban;
                     const soal = response.data;
                     $(`.soal-content`).html(`<div x-show="openTab === ${no}">
